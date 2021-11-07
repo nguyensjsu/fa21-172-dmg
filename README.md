@@ -10,3 +10,4 @@
 * Tasks to do this week
   1.  Do more research on book store
   2.  Work on the frontend
+  3.  Create team Task Board
