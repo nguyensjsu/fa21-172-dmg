@@ -2,7 +2,7 @@
 
 ## Week 1( 11/07.2021)  
 
-###Topic Choosing
+### Topic Choosing
 * Options:
   1. Starbuck
   2. Book Store
