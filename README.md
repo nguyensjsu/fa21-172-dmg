@@ -1,6 +1,7 @@
 # Team Project (DMG Journal)
 
-## Week 1( 11/07.2021)
+## Week 1( 11/07.2021)  
+
 ###Topic Choosing
 * Options:
   1. Starbuck
