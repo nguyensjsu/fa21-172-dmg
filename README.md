@@ -7,6 +7,6 @@
   1. Starbuck
   2. Book Store
 * Chosen topic: Book Store
-* Tasks do this week
+* Tasks to do this week
   1.  Do more research on book store
   2.  Work on the frontend
