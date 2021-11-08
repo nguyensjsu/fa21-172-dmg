@@ -8,6 +8,6 @@ Today, I pushed starter code for our project, copied from Labs 6 and 7, to make 
 
 My task:
 
-![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/rhea-nov-8.PNG)
+![image](images/rhea-nov-8.PNG)
 
 [My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/ce91cf02daecc39a9424f7f29f1c6e757c287939)
