@@ -1,20 +1,15 @@
 # Team Project (Book Store )
 
+### Team Journal
+[Team Journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/team_journal/README.md)
+
 ### Individual Member Journals 
-[Rhea's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/rhea.md)
+[Rhea's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rehea_journal/rhea.md)
 
-[Ha's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/ha.md)
+[Ha's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/ha_journal/ha.md)
 
-[Patrick's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/patrick.md)
+[Patrick's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/patrick_journal/patrick.md)
 
-## Week 1( 11/07.2021)  
+### Project Demo
 
-### Topic Choosing
-* Options:
-  1. Starbuck
-  2. Book Store
-* Chosen topic: Book Store
-* Tasks to do this week
-  1.  Do more research on book store
-  2.  Work on the frontend
-  3.  Create team Task Board
+### Book Store App
