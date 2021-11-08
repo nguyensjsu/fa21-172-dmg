@@ -1,5 +1,10 @@
 # Team Project (DMG Journal)
 
+### Individual Member Journals
+// Link to Patrick's journal
+// Link to Ha's journal
+// Link to Rhea's journal
+
 ## Week 1( 11/07.2021)  
 
 ### Topic Choosing
