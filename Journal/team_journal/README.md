@@ -1,4 +1,4 @@
-# Team Project (Book Store )
+# Team Project (DMG Journal)
 
 ### Individual Member Journals 
 [Rhea's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/rhea.md)
