@@ -1,9 +1,9 @@
 # Team Project (DMG Journal)
 
-### Individual Member Journals
-// Link to Patrick's journal
-// Link to Ha's journal
-// Link to Rhea's journal
+### Individual Member Journals 
+[Rhea's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/rhea.md)
+[Ha's journal:](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/ha.md)
+[Patrick's journal:](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/patrick.md)
 
 ## Week 1( 11/07.2021)  
 
