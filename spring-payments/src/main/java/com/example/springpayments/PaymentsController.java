@@ -165,7 +165,8 @@ public class PaymentsController {
         //return "creditcards" ;
         //return "login";
         //return "register";
-        return "home";
+        // return "home";
+        return "catalog";
 
     }
 
