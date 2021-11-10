@@ -11,3 +11,13 @@ My task:
 ![image](images/rhea-nov-8.PNG)
 
 [My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/ce91cf02daecc39a9424f7f29f1c6e757c287939)
+
+### November 9
+
+I added another template for the catalog front-end page, and created starter files for handling the Book object.
+
+My task:
+
+![image](images/rhea-nov-8.PNG)
+
+[My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/0f5394a36cc3597018581f0fe3f0ee9d2772ab38)
