@@ -143,10 +143,14 @@ public class PaymentsController {
     public String getAction( @ModelAttribute("command") PaymentsCommand command, 
                             Model model) {
 
-        return "creditcards" ;
+        //return "creditcards" ;
         //return "login";
+
        // return "register";
        // return "home";
+
+        return "catalog";
+
 
     }
 

@@ -1,0 +1,75 @@
+
+<!-- 
+    https://codepen.io/quinlo/pen/YONMEa 
+    https://www.w3schools.com/howto/howto_css_checkout_form.asp
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_labels
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          max-width: 300px;
+          margin: auto;
+          text-align: center;
+          font-family: arial;
+        }
+        
+        .price {
+          color: grey;
+          font-size: 22px;
+        }
+        
+        .card button {
+          border: none;
+          outline: 0;
+          padding: 12px;
+          color: white;
+          background-color: #000;
+          text-align: center;
+          cursor: pointer;
+          width: 100%;
+          font-size: 18px;
+        }
+        
+        .card button:hover {
+          opacity: 0.7;
+        }
+        </style>
+</head>
+
+<body>
+    <div class="card">
+        <img src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
+        <h1>Intro to Physics</h1>
+        <p class="price">$19.99</p>
+        <p>Some text about the book..</p>
+        <p><button>Add to Cart</button></p>
+      </div>
+      <br/>
+      <div class="card">
+        <img src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
+        <h1>Computer Networking</h1>
+        <p class="price">$19.99</p>
+        <p>netwwork layer control and data plane</p>
+        <p><button>Add to Cart</button></p>
+      </div>
+      <br/>
+      <div class="card">
+        <img src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
+        <h1>Software Enterprise</h1>
+        <p class="price">$19.99</p>
+        <p>Lorem ipsumo dolor...</p>
+        <p><button>Add to Cart</button></p>
+      </div>
+</body>
+</html>
+
