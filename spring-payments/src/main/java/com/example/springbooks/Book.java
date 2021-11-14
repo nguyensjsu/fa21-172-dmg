@@ -21,7 +21,7 @@ class Book {
     @Id @Column(nullable = false)   private Long isbn ;
     @Column(nullable = false)   private String title ;
     @Column(nullable = false)   private double author ;
-    @Column(nullable = false)   private boolean edition ;
+   // @Column(nullable = false)   private boolean edition ;
     @Column(nullable = false)   private int stock ;
     
 }

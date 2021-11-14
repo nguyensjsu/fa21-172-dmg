@@ -139,20 +139,36 @@ public class PaymentsController {
         }
     }
 
-    @GetMapping
-    public String getAction( @ModelAttribute("command") PaymentsCommand command, 
+    @GetMapping("/home")
+    public String getHome( @ModelAttribute("command") PaymentsCommand command,
+                            Model model) {
+       return "home";
+    }
+    @GetMapping("/register")
+    public String getRegister( @ModelAttribute("command") PaymentsCommand command,
+                             Model model) {
+
+         return "register";
+    }
+    @GetMapping("/login")
+    public String getLogin( @ModelAttribute("command") PaymentsCommand command,
+                               Model model) {
+
+        return "login";
+    }
+    @GetMapping("/catalog")
+    public String getCatalog( @ModelAttribute("command") PaymentsCommand command,
                             Model model) {
 
-        //return "creditcards" ;
-        //return "login";
-
-       // return "register";
-       // return "home";
-
         return "catalog";
-
-
     }
+    @GetMapping("/creditcards")
+    public String getCreditcards( @ModelAttribute("command") PaymentsCommand command,
+                              Model model) {
+
+        return "creditcards";
+    }
+
 
     @PostMapping
     public String postAction(@Valid @ModelAttribute("command") PaymentsCommand command,  
