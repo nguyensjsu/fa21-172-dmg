@@ -1,3 +1,6 @@
+
+<!--https://www.w3schools.com/howto/howto_js_topnav_responsive.asp-->
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -73,9 +76,9 @@
 <body>
 
 <div class="topnav" th:fragment="navigation" id="myTopnav">
-    <a th:href="@{/home}" >Home </a>
+    <a th:href="@{/}" >Home </a>
     <a th:href="@{/catalog}">Books </a>
-    <a th:href="@{/creditcards}" >Add Card </a>
+    <a th:href="@{/creditcards}">Add Card </a>
     <a th:href="@{/login}" >Log In </a>
     <a th:href="@{/register}" >Register </a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
