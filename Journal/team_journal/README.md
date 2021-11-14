@@ -1,7 +1,7 @@
 # Team Project (Book Store)
 
 ## Week 1( 11/07.2021)  
-
+* Team meeting: 2:00 pm - 2:30pm
 ### Topic Choosing
 * Options:
   1. Starbuck
@@ -20,3 +20,17 @@
 ![Project Board](images/project_board_week1_2.png)
 <p>&nbsp;</p>
 
+## Week 2 : 11/14/2021
+* Team meeting: 2:00 pm - 2:30pm
+#### Team Discussion:
+  * Using Kong gateway for API calls
+  * Using RabbitMQ 
+  * Create separate databases for user and catalog
+  * RabbitMQ can be used between placing an order, calculating price, and processing a payment.
+  * Updated project Board
+
+#### Tasks division
+* Team members pick up tasks
+
+![Project Board](images/project_board_week2.png)
+<p>&nbsp;</p>
