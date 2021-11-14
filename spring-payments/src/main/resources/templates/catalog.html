@@ -9,23 +9,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:th="http://www.thymeleaf.org">
 
-<html>
+
 <head>
-    <title>Home</title>
+    <title>Catalog</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" th:href="@{/styles.css}" />
     <style>
         .card {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-          max-width: 300px;
+          max-width: 200px;
           margin: auto;
           text-align: center;
           font-family: arial;
+          background-color: #FFF5E8;
+          border: #909090;
         }
         
         .price {
-          color: grey;
-          font-size: 22px;
+          color: #E53E3E;
+          font-size: 18px;
         }
         
         .card button {
@@ -33,7 +35,7 @@
           outline: 0;
           padding: 12px;
           color: white;
-          background-color: #000;
+          background-color: rgb(71, 15, 244);
           text-align: center;
           cursor: pointer;
           width: 100%;
@@ -43,20 +45,31 @@
         .card button:hover {
           opacity: 0.7;
         }
+        .description{
+            font-size: 14px;
+        }
         </style>
 </head>
 
 <body>
-    <div class="card">
-        <img src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
-        <h1>Intro to Physics</h1>
-        <p class="price">$19.99</p>
-        <p>Some text about the book..</p>
-        <p><button>Add to Cart</button></p>
-      </div>
+<div class="row">
+    <div class="column">
+         <div class="card">
+             <img th:src="@{/images/the-christmas-pig.jpg}" width="200" height="220"/>
+             <h3>The Christmas Pig</h3>
+             <h6>J.K.Rowling</h6>
+            <p class="price">$21.99</p>
+            <p class="description">A heartwarming, page-turning adventure about one child's love for his most treasured thing,
+                and how far he will go to find it. A tale for the whole family to fall in love with.
+                One boy and his toy are about to change everything...
+            </p>
+            <p><button>Add to Cart</button></p>
+          </div>
+    </div>
+
       <br/>
       <div class="card">
-        <img src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
+        <img th:src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
         <h1>Computer Networking</h1>
         <p class="price">$19.99</p>
         <p>netwwork layer control and data plane</p>
@@ -70,6 +83,7 @@
         <p>Lorem ipsumo dolor...</p>
         <p><button>Add to Cart</button></p>
       </div>
+</div>
 </body>
 </html>
 
