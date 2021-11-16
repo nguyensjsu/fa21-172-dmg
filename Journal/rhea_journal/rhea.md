@@ -21,3 +21,13 @@ My task:
 ![image](images/rhea-nov-8.PNG)
 
 [My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/0f5394a36cc3597018581f0fe3f0ee9d2772ab38)
+
+## Week 2
+
+### November 16
+
+I added two more templates, for the password reset page and the refund page. 
+
+![image]()
+
+[My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/67c1d610a932215575b247d63144d5debc5e3997)

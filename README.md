@@ -4,7 +4,7 @@
 [Team Journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/team_journal/README.md)
 
 ### Individual Member Journals 
-[Rhea's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rehea_journal/rhea.md)
+[Rhea's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/rhea.md)
 
 [Ha's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/ha_journal/ha.md)
 
