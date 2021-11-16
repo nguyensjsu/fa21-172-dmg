@@ -28,6 +28,14 @@ My task:
 
 I added two more templates, for the password reset page and the refund page. 
 
-![image]()
+My next task will be adding the back end support for resetting passwords.
+
+My changes:
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-16-a.JPG)
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-16-b.JPG)
 
 [My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/67c1d610a932215575b247d63144d5debc5e3997)
+
+My task:
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-16-board.JPG)
