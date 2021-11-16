@@ -144,24 +144,40 @@ public class PaymentsController {
                             Model model) {
        return "home";
     }
-//    @GetMapping("/register")
-//    public String getRegister( @ModelAttribute("command") PaymentsCommand command,
-//                             Model model) {
-//
-//         return "register";
-//    }
-//    @GetMapping("/login")
-//    public String getLogin( @ModelAttribute("command") PaymentsCommand command,
-//                               Model model) {
-//
-//        return "login";
-//    }
-//    @GetMapping("/catalog")
-//    public String getCatalog( @ModelAttribute("command") PaymentsCommand command,
-//                            Model model) {
-//
-//        return "catalog";
-//    }
+   @GetMapping("/register")
+   public String getRegister( @ModelAttribute("command") PaymentsCommand command,
+                            Model model) {
+
+        return "register";
+   }
+   @GetMapping("/login")
+   public String getLogin( @ModelAttribute("command") PaymentsCommand command,
+                              Model model) {
+
+       return "login";
+   }
+   @GetMapping("/catalog")
+   public String getCatalog( @ModelAttribute("command") PaymentsCommand command,
+                           Model model) {
+
+       return "catalog";
+   }
+
+    @GetMapping("/passwordreset")
+    public String getPasswordReset( @ModelAttribute("command") PaymentsCommand command,
+                              Model model) {
+
+        return "passwordreset";
+    }
+
+    @GetMapping("/refund")
+    public String getRefund( @ModelAttribute("command") PaymentsCommand command,
+                              Model model) {
+                                  
+        System.out.println("Accessing refund page");
+        return "refund";
+    }
+
     @GetMapping("/creditcards")
     public String getCreditcards( @ModelAttribute("command") PaymentsCommand command,
                               Model model) {
