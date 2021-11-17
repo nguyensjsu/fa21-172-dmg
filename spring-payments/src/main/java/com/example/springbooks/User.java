@@ -16,11 +16,12 @@ import lombok.RequiredArgsConstructor;
 @Table(indexes=@Index(name = "altIndex", columnList = "cardNumber", unique = true))
 @Data
 @RequiredArgsConstructor
-class Book {
+class User {
     
-    @Id @Column(nullable = false)   private Long isbn ;
-    @Column(nullable = false)   private String title ;
-    @Column(nullable = false)   private String author ;
+    @Id @Column(nullable = false)   private Long id ;
+    @Column(nullable = false)   private String firstName ;
+    @Column(nullable = false)   private String lastName ;
+    @Column(nullable = false)   private double author ;
    // @Column(nullable = false)   private boolean edition ;
     @Column(nullable = false)   private int stock ;
     
