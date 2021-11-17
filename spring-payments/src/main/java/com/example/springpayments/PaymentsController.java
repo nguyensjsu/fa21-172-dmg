@@ -150,12 +150,7 @@ public class PaymentsController {
 
         return "register";
    }
-   @GetMapping("/login")
-   public String getLogin( @ModelAttribute("command") PaymentsCommand command,
-                              Model model) {
 
-       return "login";
-   }
    @GetMapping("/catalog")
    public String getCatalog( @ModelAttribute("command") PaymentsCommand command,
                            Model model) {
