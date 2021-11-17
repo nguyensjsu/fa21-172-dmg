@@ -50,6 +50,15 @@
 ![Project Board](images/week2_task.png)
 <p>&nbsp;</p>
 
+#### Day: 11/16/2021
+* Finish style home page
+  ![Project Board](images/homepage.png)
+<p>&nbsp;</p>
+
+* Pick new task
+  ![Project Board](images/style_creditcard.png)
+<p>&nbsp;</p>
+
 
 
 
