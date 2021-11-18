@@ -60,14 +60,5 @@
 <p>&nbsp;</p>
 
 
-#### Day: 11/18/2021
-* Re-structure the code as microservices
-	* Created three separate services:
-		* Spring-user
-		* Spring-books
-		* Spring-payments
-  
-
-
 
 
