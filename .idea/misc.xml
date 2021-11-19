@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/spring-books" />
     <file type="web" url="file://$PROJECT_DIR$/spring-payments" />
+    <file type="web" url="file://$PROJECT_DIR$/spring-users" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="adopt-openj9-11" project-jdk-type="JavaSDK" />
 </project>

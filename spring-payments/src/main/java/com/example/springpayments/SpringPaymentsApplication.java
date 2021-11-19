@@ -2,8 +2,10 @@ package com.example.springpayments;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+
 public class SpringPaymentsApplication {
 
 	public static void main(String[] args) {

@@ -1,3 +1,4 @@
+//Model class
 package com.example.springpayments;
 
 import javax.persistence.Entity;

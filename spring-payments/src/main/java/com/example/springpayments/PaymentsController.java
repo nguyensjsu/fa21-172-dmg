@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -18,10 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-
+@EnableWebMvc
 @Slf4j
 @Controller
-@RequestMapping("/")
+//@RequestMapping("/")
 public class PaymentsController { 
     
     @Value("${cybersource.apihost}") String apiHost; 
@@ -139,17 +140,17 @@ public class PaymentsController {
         }
     }
 
-    @GetMapping
-    public String getHome( @ModelAttribute("command") PaymentsCommand command,
-                            Model model) {
-       return "home";
-    }
-   @GetMapping("/register")
-   public String getRegister( @ModelAttribute("command") PaymentsCommand command,
-                            Model model) {
-
-        return "register";
-   }
+//    @GetMapping
+//    public String getHome( @ModelAttribute("command") PaymentsCommand command,
+//                            Model model) {
+//       return "home";
+//    }
+//   @GetMapping("/register")
+//   public String getRegister( @ModelAttribute("command") PaymentsCommand command,
+//                            Model model) {
+//
+//        return "register";
+//   }
 
    @GetMapping("/catalog")
    public String getCatalog( @ModelAttribute("command") PaymentsCommand command,
@@ -176,7 +177,7 @@ public class PaymentsController {
     @GetMapping("/creditcards")
     public String getCreditcards( @ModelAttribute("command") PaymentsCommand command,
                               Model model) {
-
+        System.out.println("Accessing credit card page");
         return "creditcards";
     }
 
