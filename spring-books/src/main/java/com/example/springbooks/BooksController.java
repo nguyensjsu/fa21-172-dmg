@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Slf4j
 @Controller
-@EnableWebMvc
+//@EnableWebMvc
 
 public class BooksController {
 

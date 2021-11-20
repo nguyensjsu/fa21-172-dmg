@@ -13,9 +13,13 @@
 .container {
   width: 100%;
   max-width: 400px;
-  max-height: 251px;
-  height: 54vw;
-  padding: 20px;
+  max-height: 450px;
+  /*padding: 20px;*/
+  position: absolute;
+  left: 100px;
+  margin-top:110px;
+  padding: 16px 20px;
+  background-color: #f2f2f2;
 }
 
 #ccsingle {
