@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.example.springpayments","com.example.springbooks","com.example.springusers"})
+
 
 public class SpringUsersApplication {
 

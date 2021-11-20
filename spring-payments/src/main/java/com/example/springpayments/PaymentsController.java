@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-@EnableWebMvc
+//@EnableWebMvc
 @Slf4j
 @Controller
 //@RequestMapping("/")

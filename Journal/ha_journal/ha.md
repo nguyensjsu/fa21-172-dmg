@@ -41,7 +41,7 @@
 
 ## Week 2
 
-#### Day: 11/14/2021
+### Day: 11/14/2021
 * Finish style catalog page
 ![Project Board](images/catalog_page.png)
 <p>&nbsp;</p>
@@ -50,7 +50,7 @@
 ![Project Board](images/week2_task.png)
 <p>&nbsp;</p>
 
-#### Day: 11/16/2021
+### Day: 11/16/2021
 * Finish style home page
   ![Project Board](images/homepage.png)
 <p>&nbsp;</p>
@@ -60,14 +60,14 @@
 <p>&nbsp;</p>
 
 
-#### Day: 11/18/2021
+### Day: 11/18/2021
 * Re-structure the code as microservices
 	* Created three separate services:
 		* Spring-user
 		* Spring-books
 		* Spring-payments
 
-#### Day: 11/19/2021
+### Day: 11/19/2021
 ##### Try to figure out how to navigate to a view in different packages
 
   * Spring Annotations: https://www.baeldung.com/spring-componentscan-vs-enableautoconfiguration
@@ -104,7 +104,7 @@
   Otherwise, Spring scans all the classes in all jars in a classpath,
   which causes errors and the application probably does not start.
 
-## What is Spring MVC
+#### What is Spring MVC
 * Spring MVC is a module of the Spring framework dealing with the Model-View-Controller or MVC pattern
 * Spring implements MVC with the front controller pattern using its DispatcherServlet
 * The DispatcherServlet acts as the main controller to route requests to their intended destination
@@ -134,7 +134,7 @@
   * Adding "spring-boot-starter-thymeleaf" dependency to enable Thymeleaf
   
 
-## What is front controller pattern
+#### What is front controller pattern
 * Reference: https://www.baeldung.com/java-front-controller-pattern
 * Front Controller is defines as a controller that handles all requests for aWeb site.
 * The font controller consolidates all requests handling by channeling requests through a single handler object
@@ -142,12 +142,20 @@
   * A single dispatching controller
   * A hierarchy of commands
   
-## Thymeleaf
+#### Thymeleaf
 * Thymeleaf is a template engine 
 * Spring Boot provides a default location where it expects to find templates (resources/templates)
 
-## Microservices with Spring
+#### Microservices with Spring
 * Reference: https://spring.io/blog/2015/07/14/microservices-with-spring
 * Microservices allow large systems to built up from a number of collaborating components.
 
 ##### End today work : Cannot find a way to handle view in different packages
+
+### Day: 11/20/2021
+* Fixing No mapping to image and loss of css style
+  * Solution: Do not use @EnableWebMvc
+* @EnableWebMvc annotation is used for enabling Spring MVC in an application and works by importing the Spring MVC Configuration
+from WebMvcConfigurationSupport.
+* But I do not know why when using this annotation will cause of losing 
+css style and no mapping to image
