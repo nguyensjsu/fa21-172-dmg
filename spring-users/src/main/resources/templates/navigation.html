@@ -1,9 +1,12 @@
+
+<!--https://www.w3schools.com/howto/howto_js_topnav_responsive.asp-->
+
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="navigation">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" th:href="@{/styles.css}" />
-    <meta charset="UTF-8">
+<!--    <link rel="stylesheet" th:href="@{/styles.css}" />-->
     <style>
         body {
             margin: 0;
@@ -20,7 +23,7 @@
             display: block;
             color: #f2f2f2;
             text-align: center;
-            padding: 14px 16px;
+            padding: 10px 13px ;
             text-decoration: none;
             font-size: 17px;
         }
@@ -60,6 +63,17 @@
                 text-align: left;
             }
         }
+        .title {
+            color: cornflowerblue;
+            font-size: 30px;
+            font-family: serif;
+            text-align: left;
+            letter-spacing: 3px;
+            text-shadow: 1px 1px 2px black, 0 0 5px blue, 0 0 1px darkblue;
+            background-color: darkslateblue;
+            margin-bottom: 0;
+            padding: 10px 13px ;
+        }
     </style>
     <script>
         function myFunction() {
@@ -73,8 +87,10 @@
     </script>
 </head>
 <body>
-
-<div class="topnav" th:fragment="navigation"  id="myTopnav">
+<div>
+    <h3  th:fragment="navigation" class="title">DMGBooks</h3>
+</div>
+<div class="topnav" th:fragment="navigation" id="myTopnav">
     <a th:href="@{/}" >Home </a>
     <a th:href="@{/register}" >Register </a>
     <a th:href="@{/catalog}">Books </a>
@@ -85,6 +101,8 @@
         <i class="fa fa-bars"></i>
     </a>
 </div>
+
+
 
 </body>
 </html>

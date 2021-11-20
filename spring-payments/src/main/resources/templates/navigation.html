@@ -23,7 +23,7 @@
             display: block;
             color: #f2f2f2;
             text-align: center;
-            padding: 14px 16px;
+            padding: 10px 13px ;
             text-decoration: none;
             font-size: 17px;
         }
@@ -63,6 +63,17 @@
                 text-align: left;
             }
         }
+        .title {
+            color: cornflowerblue;
+            font-size: 30px;
+            font-family: serif;
+            text-align: left;
+            letter-spacing: 3px;
+            text-shadow: 1px 1px 2px black, 0 0 5px blue, 0 0 1px darkblue;
+            background-color: darkslateblue;
+            margin-bottom: 0;
+            padding: 10px 13px ;
+        }
     </style>
     <script>
         function myFunction() {
@@ -76,7 +87,9 @@
     </script>
 </head>
 <body>
-
+<div>
+    <h3  th:fragment="navigation" class="title">DMGBooks</h3>
+</div>
 <div class="topnav" th:fragment="navigation" id="myTopnav">
     <a th:href="@{/}" >Home </a>
     <a th:href="@{/register}" >Register </a>
@@ -88,6 +101,8 @@
         <i class="fa fa-bars"></i>
     </a>
 </div>
+
+
 
 </body>
 </html>
