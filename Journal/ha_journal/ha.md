@@ -159,3 +159,9 @@
 from WebMvcConfigurationSupport.
 * But I do not know why when using this annotation will cause of losing 
 css style and no mapping to image
+
+* Adding app's name on top of the navigation bar
+
+##### Working on spring-payment
+* Adding process_payment.html
+* 

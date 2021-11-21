@@ -328,9 +328,11 @@ body {
 
 .ccontainer {
   background-color: #f2f2f2;
-  padding: 5px 20px 15px 20px;
+  padding: 0px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;
+  width: 500px;
+  margin-top: 20px;
 }
 
 input[type=text] {
