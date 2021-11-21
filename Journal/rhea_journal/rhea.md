@@ -39,3 +39,18 @@ My changes:
 
 My task:
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-16-board.JPG)
+
+### November 20
+
+I have created my own branch to do some test implementation. Currently my team and I are trying to decide whether to split our source code into 3 folders or 1, and I am testing whether implementing in one folder is feasible. 
+
+[My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/1d2ef67a0420178ea9e42120a8b78bf7dd775231)
+
+(later)
+
+I have also implemented the registration & login backend. Now users can create an account and login. 
+
+[My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/357db383d9f201f86ee577356b77c53c0ed0baf8)
+
+My task:
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-20-board.JPG)
