@@ -21,6 +21,7 @@ class User {
     private String firstName ;
     private String lastName ;
     private String email ;
+    private String password ;
 //    @Column(nullable = false)   private String firstName ;
 //    @Column(nullable = false)   private String lastName ;
 //    @Column(nullable = false)   private String email ;
