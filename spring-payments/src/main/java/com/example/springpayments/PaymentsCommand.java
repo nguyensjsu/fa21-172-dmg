@@ -3,17 +3,16 @@ package com.example.springpayments;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
+
+import javax.persistence.*;
+
 @Entity
 @Table(name="Payments")
 @Data
 @RequiredArgsConstructor
 public class PaymentsCommand {
 
- private @Id @GeneratedValue Long id;
+ private @Id @GeneratedValue (strategy= GenerationType.AUTO)   Long id;
  transient private String action ;
  private String firstname ;
  private String lastname ;

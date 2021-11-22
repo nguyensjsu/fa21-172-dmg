@@ -164,4 +164,33 @@ css style and no mapping to image
 
 ##### Working on spring-payment
 * Adding process_payment.html
-* 
+* Creating user's address form and credit card form
+
+![Project Board](images/address_credit_card.png)
+<p>&nbsp;</p>
+
+![Project Board](images/address.png)
+<p>&nbsp;</p>
+
+![Project Board](images/credit_cards.png)
+<p>&nbsp;</p>
+
+
+
+### Day: 11/21/2021
+* Work on taking user's address and credit card info and display them
+
+
+#### Handling the command object
+* Reference: https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html
+* Command object is the name Spring MVC gives to form-backing beans.
+* That is, to objects that model a form's fields and provide getter and setter methods
+* That will be used by the framework for establishing and obtaining the values input by the user at the browser side
+* Thymeleaf requires to **specify the command object by using a th:object attribute** in <form> tag
+* Values for **th:object attributes** must be **variable expressions(${...})** specifying the name of a model attribute
+
+
+* th:field attribute
+  * binding input with a property in the form -backing bean
+  * Values for the th:field attributes must be selection expressions(*{...})
+  * Ex: th:field="*{datePlanted}"
