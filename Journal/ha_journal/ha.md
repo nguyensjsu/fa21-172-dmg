@@ -194,3 +194,9 @@ css style and no mapping to image
   * binding input with a property in the form -backing bean
   * Values for the th:field attributes must be selection expressions(*{...})
   * Ex: th:field="*{datePlanted}"
+  
+### Day : 11/22/2022
+
+* Continue on handling the command object
+* String concatenation with Thymeleaf: https://www.wimdeblauwe.com/blog/2021/01/11/string-concatenation-with-thymeleaf/
+* 

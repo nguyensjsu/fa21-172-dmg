@@ -26,9 +26,9 @@ public class PaymentsCommand {
  private String expyear ;
  private String cvv ;
  private String email ;
- private String notes ;
+// private String notes ;
 
- private String orderNumber;
+// private String orderNumber;
  private String transactionAmount;
  private String transactionCurrency;
  private String authId;
@@ -48,7 +48,7 @@ public class PaymentsCommand {
  public String expyear (){return expyear;}
  public String cvv (){return cvv;}
  public String email (){return email;}
- public String notes (){return notes;}
+// public String notes (){return notes;}
 
 
 }
