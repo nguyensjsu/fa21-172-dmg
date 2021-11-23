@@ -124,6 +124,17 @@ public class PaymentsController {
     int max = 9999999 ;
     int random_int = (int) Math.floor(Math.random()*(max-min+1)+min) ;
     String order_num = String.valueOf(random_int) ;
+    double balance;
+    String fname;
+    String lname;
+    String address;
+    String city;
+    String state;
+    String zip;
+    String cardnum;
+    String exp;
+    String phone;
+
 
 
     @GetMapping("/creditcards")
@@ -231,7 +242,7 @@ public class PaymentsController {
         auth.billToZipCode = command.zip() ;
         auth.billToPhone = command.phone() ;
         auth.billToEmail = command.email() ;
-        auth.transactionAmount = "30.00" ;
+        auth.transactionAmount = "300.00" ;
         auth.transactionCurrency = "USD" ;
         auth.cardNumber = command.cardnumber() ;
         auth.cardExpMonth = months.get(command.expmonth()) ;
@@ -262,7 +273,7 @@ public class PaymentsController {
         if ( authValid ) {
 //            capture.reference = order_num ;
             capture.paymentId = authResponse.id ;
-            capture.transactionAmount = "30.00" ;
+            capture.transactionAmount = "300.00" ;
             capture.transactionCurrency = "USD" ;
             System.out.println("\n\nCapture Request: " + capture.toJson() ) ;
             captureResponse = api.capture(capture) ;
@@ -278,7 +289,7 @@ public class PaymentsController {
 
         if ( authValid && captureValid ) {
 //            command.setOrderNumber( order_num ) ;
-            command.setTransactionAmount( 30.00) ;
+            command.setTransactionAmount( 300.00) ;
             command.setTransactionCurrency( "USD") ;
             command.setAuthId( authResponse.id ) ;
             command.setAuthStatus( authResponse.status ) ;
@@ -286,10 +297,21 @@ public class PaymentsController {
             command.setCaptureStatus( captureResponse.status) ;
 
             repository.save ( command ) ;
+        fname = command.getFirstname();
+        lname = command.getLastname();
+        address = command.getAddress();
+        city = command.getCity();
+        state = command.getState();
+        zip = command.getZip();
+        balance = command.getTransactionAmount();
+        cardnum = command.getCardnumber();
+        exp = command.getExpmonth();
+        exp = exp + "/";
+        exp = exp + command.getExpyear();
+        phone = command.getPhone();
 
-         System.out.println("User's Address " + command);
 
-
+        System.out.println("User's Address " + command);
         model.addAttribute("order_number", order_num);
         model.addAttribute("total", total);
 
@@ -322,25 +344,23 @@ public class PaymentsController {
     public String getPlaceOrder(@ModelAttribute("command") PaymentsCommand command,
                         Model model) {
         log.info("Command: " + command);
-        double current_balance =  command.getTransactionAmount();
-        double new_balance  = current_balance - total;
+        double new_balance  = balance - total;
 
 
-        model.addAttribute("firstname", command.getFirstname() );
-        model.addAttribute("lastname", command.getLastname());
-        model.addAttribute("address", command.getAddress() );
-        model.addAttribute("city", command.getCity() );
-        model.addAttribute("state", command.getState() );
-        model.addAttribute("zip", command.getZip());
-        model.addAttribute("phone", command.getPhone());
+        model.addAttribute("firstname", fname);
+        model.addAttribute("lastname", lname);
+        model.addAttribute("address", address);
+        model.addAttribute("city", city);
+        model.addAttribute("state", state);
+        model.addAttribute("zip", zip);
+        model.addAttribute("phone", phone);
 
-        model.addAttribute("card_num", command.getCardnumber());
+        model.addAttribute("card_num", cardnum);
         model.addAttribute("card_balance", new_balance);
-        model.addAttribute("exp_month", command.getExpmonth());
-        model.addAttribute("exp_year", command.getExpyear());
+        model.addAttribute("exp", exp);
+
         return "place_order";
     }
-
 
 }
 

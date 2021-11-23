@@ -205,3 +205,12 @@ css style and no mapping to image
 ![Project Board](images/authorized_credit_card.png)
 <p>&nbsp;</p>
 
+### Day : 11/23/2022
+
+* Task:
+  * Make place order as button
+  * Process payment
+ ![Project Board](images/place_order.png)
+<p>&nbsp;</p>
+
+
