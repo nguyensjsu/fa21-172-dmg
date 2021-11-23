@@ -180,6 +180,8 @@ css style and no mapping to image
 ### Day: 11/21/2021
 * Work on taking user's address and credit card info and display them
 
+ ![Project Board](images/save_credit_card_mysql.png)
+<p>&nbsp;</p>
 
 #### Handling the command object
 * Reference: https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html
@@ -194,7 +196,9 @@ css style and no mapping to image
   * binding input with a property in the form -backing bean
   * Values for the th:field attributes must be selection expressions(*{...})
   * Ex: th:field="*{datePlanted}"
-  
+ 
+## Week 3
+
 ### Day : 11/22/2022
 
 * Continue on handling the command object
@@ -208,9 +212,17 @@ css style and no mapping to image
 ### Day : 11/23/2022
 
 * Task:
-  * Make place order as button
-  * Process payment
+* Process an order
+ ![Project Board](images/process_order.png)
+<p>&nbsp;</p>
+
+  * Process payment result
  ![Project Board](images/place_order.png)
 <p>&nbsp;</p>
 
 
+### Day : 11/24/2022
+
+* Task
+![Project Board](images/connect_RabbitMQ.png)
+<p>&nbsp;</p>
