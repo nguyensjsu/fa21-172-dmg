@@ -4,6 +4,8 @@
     https://www.w3schools.com/howto/howto_css_checkout_form.asp
     https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_labels
     https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2
+    https://developer.cybersource.com/hello-world/testing-guide-v1.html
+    https://ebc2test.cybersource.com/ebc2/
 -->
 
 <!DOCTYPE html>
@@ -92,21 +94,26 @@
 
 <div  th:insert="navigation :: navigation"></div>
 <!--Order Information-->
-<div class="row">
+<div class="row" style="margin-left: 5px">
     <div class="ccontainer">
         <div class="col-50">
             <h4> Order Information <i class="fa fa-shopping-cart"></i></h4>
             <hr>
             <p>
               <span th:text="| Order Number:  ${order_number}|"> </span><br>
-              <span th:text="| Total: |">$30.0 </span>
+              <span th:text="| Total: ${total} |"> </span>
             </p>
         </div>
+<!--        <form name="form" th:object="${command}" method="post" action="">-->
         <div class="col-25">
-            <button style="width: 200px" class="btn btn-primary" id="place_order">
-                Place your order
-            </button>
+<!--            <button style="width: 200px" class="btn btn-primary" id="place_order" type="submit">-->
+<!--                Place your order-->
+<!--            </button>-->
+            <p>
+                <a  class="button"  th:href="@{/place_order}" role="button"> Place your order</a>
+            </p>
         </div>
+<!--        </form>-->
     </div>
 </div>
 
@@ -312,22 +319,22 @@
                     <div class="row">
                         <div class="col-50">
                             <label for="ccnum">Credit card number</label>
-                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required = "true">
+                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required = "true" th:field="*{cardnumber}">
                         </div>
                         <div class="col-50">
                             <label for="expmonth">Exp Month</label>
-                            <input type="text" id="expmonth" name="expmonth" placeholder="September" required = "true" >
+                            <input type="text" id="expmonth" name="expmonth" placeholder="September" required = "true" th:field="*{expmonth}">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-50">
                             <label for="expyear">Exp Year</label>
-                            <input type="text" id="expyear" name="expyear" placeholder="2018" required = "true">
+                            <input type="text" id="expyear" name="expyear" placeholder="2018" required = "true" th:field="*{expyear}">
                         </div>
                         <div class="col-50">
                             <label for="cvv">CVV</label>
-                            <input type="text" id="cvv" name="cvv" placeholder="352" required = "true">
+                            <input type="text" id="cvv" name="cvv" placeholder="352" required = "true" th:field="*{cvv}">
                         </div>
                     </div>
 
@@ -339,6 +346,14 @@
                         <div class="col-50">
                             <input type="submit" name="action" id="save_card" value="Save" class="btn">
                         </div>
+                    </div>
+                </div>
+
+                <div th:if="${not#lists.isEmpty(messages)}">
+                    <div class="messages">
+                        <ul th:each="m : ${messages}">
+                            <li th:text="${m.msg}"/>
+                        </ul>
                     </div>
                 </div>
             </form>
@@ -365,13 +380,6 @@
 
 </script>
 
-            <div th:if="${not#lists.isEmpty(messages)}">
-                <div class="messages">
-                    <ul th:each="m : ${messages}">
-                        <li th:text="${m.msg}"/>
-                    </ul>
-                </div>
-            </div>
 
 <!--<script>-->
 <!--    var card_modal = document.getElementById("my_Modal");-->

@@ -10,8 +10,8 @@ public class Config implements WebMvcConfigurer{
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/process_payment").setViewName("process_payment");
-//        registry.addViewController("/register").setViewName("register");
-//        registry.addViewController("/login").setViewName("login");
+
+        registry.addViewController("/place_order").setViewName("place_order");
 //        registry.addViewController("/catalog").setViewName("catalog");
         registry.addViewController("/creditcards").setViewName("creditcards");
 

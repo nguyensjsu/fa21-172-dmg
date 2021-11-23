@@ -29,7 +29,7 @@ public class PaymentsCommand {
 // private String notes ;
 
 // private String orderNumber;
- private String transactionAmount;
+ private double transactionAmount;
  private String transactionCurrency;
  private String authId;
  private String authStatus;

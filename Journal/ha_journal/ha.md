@@ -199,4 +199,9 @@ css style and no mapping to image
 
 * Continue on handling the command object
 * String concatenation with Thymeleaf: https://www.wimdeblauwe.com/blog/2021/01/11/string-concatenation-with-thymeleaf/
-* 
+* Credit card: https://developer.cybersource.com/hello-world/testing-guide-v1.html
+* Get shipping information, authorize credit card, and stored in MySQL
+
+![Project Board](images/authorized_credit_card.png)
+<p>&nbsp;</p>
+
