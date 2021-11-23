@@ -17,10 +17,12 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 class Books {
-   private @Id @GeneratedValue Long id;
-   private Long isbn ;
+   private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long book_id;
+   private String isbn ;
    private String title ;
    private String author ;
+   private String description;
+   private float price;
    private int stock ;
 
     //    @Column(nullable = false)  private Long isbn ;

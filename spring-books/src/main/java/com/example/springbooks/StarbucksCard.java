@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+/*
 @Entity
 @Table(indexes=@Index(name = "altIndex", columnList = "cardNumber", unique = true))
 @Data
@@ -24,3 +25,4 @@ class StarbucksCard {
     @Column(nullable = false)   private boolean activated ;
                                 private String status ;
 }
+*/

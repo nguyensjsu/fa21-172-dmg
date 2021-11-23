@@ -1,5 +1,5 @@
 package com.example.springbooks;
-
+/*
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -31,3 +31,4 @@ class StarbucksOrder {
                                 
     private String status ;
 }
+*/

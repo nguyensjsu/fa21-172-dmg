@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
-
+/*
 @RestController
 class StarbucksCardController {
     private final StarbucksCardRepository repository;
@@ -90,3 +90,4 @@ class StarbucksCardController {
         return msg;
     }
 }
+*/
