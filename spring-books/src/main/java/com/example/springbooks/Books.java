@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 class Books {
-   private @Id @GeneratedValue Long book_id;
+   private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long book_id;
    private String isbn ;
    private String title ;
    private String author ;
