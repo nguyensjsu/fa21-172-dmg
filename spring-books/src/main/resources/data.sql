@@ -1,4 +1,4 @@
-INSERT INTO Books (isbn, title, author, description, price, stock) VALUES
+INSERT INTO books (isbn, title, author, description, price, stock) VALUES
 ('1338790234', 'The Christmas Pig', 'J.K. Rowling', 'Adventure about one child''s love for his most treasured thing, and how far he will go to find it. A tale for the whole family to fall in love with. One boy and his toy are about to change everything.', 21.99, 10),
 ('1419749153', 'Diary of a Wimpy Kid', 'Jeff Kinney', 'After a disastrous field day competition at school, Greg decides that when it comes to his athletic career, he''s officially retired. But after his mom urges him to give sports one more chance.', 13.87, 10),
 ('0786967293', 'Fizban''s Treasury of Dragons', 'Wizards RPG Team', 'Unlikely war hero, divine avatar of a dragon-god--and your guide to the mysteries of dragonkind. What is the difference between a red dragon and a gold dragon?', 41.97, 10),
