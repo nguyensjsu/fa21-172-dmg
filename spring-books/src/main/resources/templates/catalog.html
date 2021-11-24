@@ -94,6 +94,7 @@
 
 <body>
 <div  th:insert="navigation :: navigation"></div>
+<form name="form" th:object="${command}" method="post" action="">
 <div class="body">
     <div class="row">
         <div class ="column">
@@ -104,11 +105,12 @@
                  <p>ISBN: 1338790234</p>
                  <p class="price">$21.99</p>
                  <p class="description">
-                     Adventure about one child's love for his most treasured thing,
+                    Adventure about one child's love for his most treasured thing,
                     and how far he will go to find it. A tale for the whole family to fall in love with.
                     One boy and his toy are about to change everything...
                  </p>
-                <p><button>Add to Cart</button></p>
+                <!--<p><button>Add to Cart</button></p>-->
+                <p><button type="submit" name="action" id="btnBook1" value="1338790234">Add to Cart</button></p>
              </div>
         </div>
 
@@ -124,7 +126,7 @@
                     Greg decides that when it comes to his athletic career,
                     he's officially retired. But after his mom urges him to give sports one more chance ...
                 </p>
-                <p><button>Add to Cart</button></p>
+                <p><button type="submit" name="action" id="btnBook2" value="1419749153">Add to Cart</button></p>
             </div>
         </div>
 
@@ -139,7 +141,7 @@
                     Unlikely war hero, divine avatar of a dragon-god--and your guide to the mysteries of dragonkind.
                     What is the difference between a red dragon and a gold dragon?...
                 </p>
-                <p><button>Add to Cart</button></p>
+                <p><button type="submit" name="action" id="btnBook3" value="0786967293">Add to Cart</button></p>
             </div>
         </div>
 
@@ -154,7 +156,7 @@
                     A glorious account of a magnificent adventure, filled with suspense and seasoned with a quiet humor that is irresistible.
                     A fine adventurous tale...
                 </p>
-                <p><button>Add to Cart</button></p>
+                <p><button type="submit" name="action" id="btnBook4" value="B009MSFXRQ">Add to Cart</button></p>
             </div>
         </div>
 
@@ -169,7 +171,7 @@
                     Guinness World Records 2022 provides a fascinating snapshot of our world today.
                     Our editors have chosen to curate the book with environmental issues at the forefront of their mind,...
                 </p>
-                <p><button>Add to Cart</button></p>
+                <p><button type="submit" name="action" id="btnBook5" value="1913484106">Add to Cart</button></p>
             </div>
         </div>
     </div>
@@ -187,7 +189,7 @@
                     A collection of interrelated short pieces which ultimately reads with the dramatic force and tension of a novel.
                     Yet each one of the twenty-two short pieces is written with such...
                 </p>
-                <p><button>Add to Cart</button></p>
+                <p><button type="submit" name="action" id="btnBook6" value="0767902890">Add to Cart</button></p>
             </div>
         </div>
 
@@ -202,7 +204,7 @@
                     Harriet Vanger, a scion of one of Sweden's wealthiest families disappeared over forty years ago.
                     All these years later, her aged uncle continues to seek the truth. ...
                 </p>
-                <p><button>Add to Cart</button></p>
+                <p><button type="submit" name="action" id="btnBook7" value="0307454541">Add to Cart</button></p>
             </div>
         </div>
 
@@ -219,7 +221,7 @@
                     Shel Silverstein, has been a classic favorite for generations.
                     The gift of giving...
                 </p>
-                <p><button>Add to Cart</button></p>
+                <p><button type="submit" name="action" id="btnBook8" value="0060256702">Add to Cart</button></p>
             </div>
         </div>
 
@@ -234,7 +236,7 @@
                     One of the most dynamic and globally recognized entertainment forces of our time opens up fully about his life,
                     in a brave and inspiring book that traces his learning curve to....
                 </p>
-                <p><button>Add to Cart</button></p>
+                <p><button type="submit" name="action" id="btnBook9" value="1984877925">Add to Cart</button></p>
             </div>
         </div>
 
@@ -250,7 +252,7 @@
                     Of half-burnt firecrackers, of gathering dandelions.
                     It was a summer of sorrows and marvels....
                 </p>
-                <p><button>Add to Cart</button></p>
+                <p><button type="submit" name="action" id="btnBook10" value="0439906652">Add to Cart</button></p>
             </div>
         </div>
     </div>
@@ -285,6 +287,7 @@
 <!--        </div>-->
 <!--    </div>-->
 </div>
+</form>
 </body>
 </html>
 
