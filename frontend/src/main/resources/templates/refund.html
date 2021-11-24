@@ -1,0 +1,38 @@
+
+<!-- 
+    https://codepen.io/quinlo/pen/YONMEa 
+    https://www.w3schools.com/howto/howto_css_checkout_form.asp
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_labels
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>Refunds and Returns</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+   
+<div  th:insert="navigation :: navigation"></div>
+
+<h1>Returns and Refunds </h1>
+<p>Do you have an order you would like to return?</p>
+<form method="post" action="">
+
+    <label for="orderID">Order ID:</label>
+    <input type="orderID" id="orderID" name="orderID" title="orderID" />
+
+    <input type="submit" value="Submit" title="Submit" />
+    </p>
+    
+    </form>
+<br/>
+
+</body>
+</html>
+
