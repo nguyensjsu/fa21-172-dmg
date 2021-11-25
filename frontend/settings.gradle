@@ -1,2 +1,6 @@
-rootProject.name = 'spring-books'
+rootProject.name = 'frontend'
+
+include 'spring-users'
+// include 'service-b'
+// include 'service-c'
 

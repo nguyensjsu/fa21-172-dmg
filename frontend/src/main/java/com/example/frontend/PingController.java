@@ -1,4 +1,4 @@
-package com.example.springbooks;
+package com.example.frontend;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,4 +1,4 @@
-package com.example.springbooks;
+package com.example.frontend;
 
 import java.util.List;
 import java.util.HashMap;

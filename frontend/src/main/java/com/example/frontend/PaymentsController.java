@@ -1,4 +1,4 @@
-package com.example.springpayments;
+package com.example.frontend;
 
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
@@ -6,7 +6,7 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.example.springcybersource.*;
+//import com.example.springcybersource.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,24 +28,24 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/")
 public class PaymentsController {
 
-    @Autowired
-    private PaymentsCommandRepository repository;
+    // @Autowired
+    // private PaymentsCommandRepository repository;
 
-    PaymentsController(PaymentsCommandRepository repository) {
-        this.repository = repository;
-    }
+    // PaymentsController(PaymentsCommandRepository repository) {
+    //     this.repository = repository;
+    // }
 
-    private static boolean DEBUG = true;
-    private CyberSourceAPI api = new CyberSourceAPI();
+    // private static boolean DEBUG = true;
+    // private CyberSourceAPI api = new CyberSourceAPI();
 
-    @Value("${cybersource.apihost}")
-    private String apiHost;
-    @Value("${cybersource.merchantkeyid}")
-    private String merchantKeyId;
-    @Value("${cybersource.merchantsecretkey}")
-    private String merchantsecretKey;
-    @Value("${cybersource.merchantid}")
-    private String merchantId;
+    // @Value("${cybersource.apihost}")
+    // private String apiHost;
+    // @Value("${cybersource.merchantkeyid}")
+    // private String merchantKeyId;
+    // @Value("${cybersource.merchantsecretkey}")
+    // private String merchantsecretKey;
+    // @Value("${cybersource.merchantid}")
+    // private String merchantId;
 
     private static HashMap<String, String> months = new HashMap<>();
 
@@ -192,142 +192,142 @@ public class PaymentsController {
             return "creditcards";
         }
 
-        CyberSourceAPI.setHost( apiHost) ;
-        CyberSourceAPI.setKey( merchantKeyId ) ;
-        CyberSourceAPI.setSecret(merchantsecretKey) ;
-        CyberSourceAPI.setMerchant( merchantId) ;
-        CyberSourceAPI.debugConfig() ;
+        // CyberSourceAPI.setHost( apiHost) ;
+        // CyberSourceAPI.setKey( merchantKeyId ) ;
+        // CyberSourceAPI.setSecret(merchantsecretKey) ;
+        // CyberSourceAPI.setMerchant( merchantId) ;
+        // CyberSourceAPI.debugConfig() ;
 
-        ErrorMessages msgs = new ErrorMessages() ;
+//         ErrorMessages msgs = new ErrorMessages() ;
 
-        boolean hasErrors = false ;
-        if ( command.firstname().equals("") ) { hasErrors = true ; msgs.add("First Name Required.") ; }
-        if ( command.lastname().equals("") ) { hasErrors = true ; msgs.add("Last Name Required.") ; }
-        if ( command.address().equals("") ) { hasErrors = true ; msgs.add("Address Required.") ; }
-        if ( command.city().equals("") ) { hasErrors = true ; msgs.add("City Required.") ; }
-        if ( command.state().equals("") ) { hasErrors = true ; msgs.add("State Required.") ; }
-        if ( command.zip().equals("") ) { hasErrors = true ; msgs.add("Zip Required.") ; }
-        if ( command.phone().equals("") ) { hasErrors = true ; msgs.add("Phone Required.") ; }
-        if ( command.cardnumber().equals("") ) { hasErrors = true ; msgs.add("Credit Card Number Required.") ; }
-        if ( command.expmonth().equals("") ) { hasErrors = true ; msgs.add("Credit Card Expiration Month Required.") ; }
-        if ( command.expyear().equals("") ) { hasErrors = true ; msgs.add("Credit Card Expiration Year Required.") ; }
-        if ( command.cvv().equals("") ) { hasErrors = true ; msgs.add("Credit Card CVV Required.") ; }
-        if ( command.email().equals("") ) { hasErrors = true ; msgs.add("Email Address Required.") ; }
+//         boolean hasErrors = false ;
+//         if ( command.firstname().equals("") ) { hasErrors = true ; msgs.add("First Name Required.") ; }
+//         if ( command.lastname().equals("") ) { hasErrors = true ; msgs.add("Last Name Required.") ; }
+//         if ( command.address().equals("") ) { hasErrors = true ; msgs.add("Address Required.") ; }
+//         if ( command.city().equals("") ) { hasErrors = true ; msgs.add("City Required.") ; }
+//         if ( command.state().equals("") ) { hasErrors = true ; msgs.add("State Required.") ; }
+//         if ( command.zip().equals("") ) { hasErrors = true ; msgs.add("Zip Required.") ; }
+//         if ( command.phone().equals("") ) { hasErrors = true ; msgs.add("Phone Required.") ; }
+//         if ( command.cardnumber().equals("") ) { hasErrors = true ; msgs.add("Credit Card Number Required.") ; }
+//         if ( command.expmonth().equals("") ) { hasErrors = true ; msgs.add("Credit Card Expiration Month Required.") ; }
+//         if ( command.expyear().equals("") ) { hasErrors = true ; msgs.add("Credit Card Expiration Year Required.") ; }
+//         if ( command.cvv().equals("") ) { hasErrors = true ; msgs.add("Credit Card CVV Required.") ; }
+//         if ( command.email().equals("") ) { hasErrors = true ; msgs.add("Email Address Required.") ; }
 
-        if (!command.zip().matches("\\d{5}") ) { hasErrors = true ; msgs.add("Invalid Zip.") ; }
-        if (!command.phone().matches("[(]\\d{3}[)]-\\d{3}-\\d{4}") ) { hasErrors = true ; msgs.add("Invalid Phone.") ; }
-        if (!command.cardnumber().matches("\\d{4}-\\d{4}-\\d{4}-\\d{4}") ) { hasErrors = true ; msgs.add("Invalid Card Number.") ; }
-        if (!command.expyear().matches("\\d{4}") ) { hasErrors = true ; msgs.add("Invalid Card Expiration Year.") ; }
-        if (!command.cvv().matches("\\d{3}") ) { hasErrors = true ; msgs.add("Invalid Card CVV.") ; }
+//         if (!command.zip().matches("\\d{5}") ) { hasErrors = true ; msgs.add("Invalid Zip.") ; }
+//         if (!command.phone().matches("[(]\\d{3}[)]-\\d{3}-\\d{4}") ) { hasErrors = true ; msgs.add("Invalid Phone.") ; }
+//         if (!command.cardnumber().matches("\\d{4}-\\d{4}-\\d{4}-\\d{4}") ) { hasErrors = true ; msgs.add("Invalid Card Number.") ; }
+//         if (!command.expyear().matches("\\d{4}") ) { hasErrors = true ; msgs.add("Invalid Card Expiration Year.") ; }
+//         if (!command.cvv().matches("\\d{3}") ) { hasErrors = true ; msgs.add("Invalid Card CVV.") ; }
 
-        if ( months.get( command.expmonth()) == null ) { hasErrors = true ; msgs.add("Invalid Card Expiration Month: " + command.expmonth() ) ; }
-        if ( states.get( command.state()) == null ) { hasErrors = true ; msgs.add("Invalid State: " + command.state() ) ; }
+//         if ( months.get( command.expmonth()) == null ) { hasErrors = true ; msgs.add("Invalid Card Expiration Month: " + command.expmonth() ) ; }
+//         if ( states.get( command.state()) == null ) { hasErrors = true ; msgs.add("Invalid State: " + command.state() ) ; }
 
-        if (hasErrors) {
-            msgs.print() ;
-            model.addAttribute ( "messages", msgs.getMessages() ) ;
-            return "creditcards" ;
-        }
-//        int min = 1239871 ;
-//        int max = 9999999 ;
-//        int random_int = (int) Math.floor(Math.random()*(max-min+1)+min) ;
-//        String order_num = String.valueOf(random_int) ;
-        AuthRequest auth = new AuthRequest() ;
-//        auth.reference = order_num ;
-        auth.billToFirstName = command.firstname() ;
-        auth.billToLastName = command.lastname() ;
-        auth.billToAddress = command.address() ;
-        auth.billToCity = command.city() ;
-        auth.billToState = command.state() ;
-        auth.billToZipCode = command.zip() ;
-        auth.billToPhone = command.phone() ;
-        auth.billToEmail = command.email() ;
-        auth.transactionAmount = "300.00" ;
-        auth.transactionCurrency = "USD" ;
-        auth.cardNumber = command.cardnumber() ;
-        auth.cardExpMonth = months.get(command.expmonth()) ;
-        auth.cardExpYear = command.expyear() ;
-        auth.cardCVV = command.cvv() ;
-        auth.cardType = CyberSourceAPI.getCardType( auth.cardNumber ) ;
-        if (auth.cardType.equals("ERROR") ) {
-            System.out.println( "Unsupported Credit Card Type.") ;
-            model.addAttribute( "message", "Unsupported Credit Card Type.") ;
-            return "creditcards";
-        }
-        boolean authValid = true ;
-        AuthResponse authResponse = new AuthResponse() ;
-        System.out.println("\n\nAuth Request: " + auth.toJson() ) ;
-        authResponse = api.authorize(auth) ;
-        System.out.println("\n\nAuth Response " + authResponse.toJson() ) ;
+//         if (hasErrors) {
+//             msgs.print() ;
+//             model.addAttribute ( "messages", msgs.getMessages() ) ;
+//             return "creditcards" ;
+//         }
+// //        int min = 1239871 ;
+// //        int max = 9999999 ;
+// //        int random_int = (int) Math.floor(Math.random()*(max-min+1)+min) ;
+// //        String order_num = String.valueOf(random_int) ;
+//         AuthRequest auth = new AuthRequest() ;
+// //        auth.reference = order_num ;
+//         auth.billToFirstName = command.firstname() ;
+//         auth.billToLastName = command.lastname() ;
+//         auth.billToAddress = command.address() ;
+//         auth.billToCity = command.city() ;
+//         auth.billToState = command.state() ;
+//         auth.billToZipCode = command.zip() ;
+//         auth.billToPhone = command.phone() ;
+//         auth.billToEmail = command.email() ;
+//         auth.transactionAmount = "300.00" ;
+//         auth.transactionCurrency = "USD" ;
+//         auth.cardNumber = command.cardnumber() ;
+//         auth.cardExpMonth = months.get(command.expmonth()) ;
+//         auth.cardExpYear = command.expyear() ;
+//         auth.cardCVV = command.cvv() ;
+//         auth.cardType = CyberSourceAPI.getCardType( auth.cardNumber ) ;
+//         if (auth.cardType.equals("ERROR") ) {
+//             System.out.println( "Unsupported Credit Card Type.") ;
+//             model.addAttribute( "message", "Unsupported Credit Card Type.") ;
+//             return "creditcards";
+//         }
+//         boolean authValid = true ;
+//         AuthResponse authResponse = new AuthResponse() ;
+//         System.out.println("\n\nAuth Request: " + auth.toJson() ) ;
+//         authResponse = api.authorize(auth) ;
+//         System.out.println("\n\nAuth Response " + authResponse.toJson() ) ;
 
-        if ( !authResponse.status.equals("AUTHORIZED")) {
-            authValid = false ;
-            System.out.println( authResponse.message ) ;
-            model.addAttribute( "message", authResponse.message ) ;
-            return "creditcards" ;
-        }
+//         if ( !authResponse.status.equals("AUTHORIZED")) {
+//             authValid = false ;
+//             System.out.println( authResponse.message ) ;
+//             model.addAttribute( "message", authResponse.message ) ;
+//             return "creditcards" ;
+//         }
 
-        boolean captureValid = true;
-        CaptureRequest capture = new CaptureRequest() ;
-        CaptureResponse captureResponse = new CaptureResponse() ;
-        if ( authValid ) {
-//            capture.reference = order_num ;
-            capture.paymentId = authResponse.id ;
-            capture.transactionAmount = "300.00" ;
-            capture.transactionCurrency = "USD" ;
-            System.out.println("\n\nCapture Request: " + capture.toJson() ) ;
-            captureResponse = api.capture(capture) ;
-            System.out.println("\n\nCapture Response: " + captureResponse.toJson() ) ;
+//         boolean captureValid = true;
+//         CaptureRequest capture = new CaptureRequest() ;
+//         CaptureResponse captureResponse = new CaptureResponse() ;
+//         if ( authValid ) {
+// //            capture.reference = order_num ;
+//             capture.paymentId = authResponse.id ;
+//             capture.transactionAmount = "300.00" ;
+//             capture.transactionCurrency = "USD" ;
+//             System.out.println("\n\nCapture Request: " + capture.toJson() ) ;
+//             captureResponse = api.capture(capture) ;
+//             System.out.println("\n\nCapture Response: " + captureResponse.toJson() ) ;
 
-            if ( !captureResponse.status.equals("PENDING")) {
-                captureValid = false ;
-                System.out.println( captureResponse.message ) ;
-                model.addAttribute( "message", captureResponse.message ) ;
-                return "creditcards";
-            }
-        }
+//             if ( !captureResponse.status.equals("PENDING")) {
+//                 captureValid = false ;
+//                 System.out.println( captureResponse.message ) ;
+//                 model.addAttribute( "message", captureResponse.message ) ;
+//                 return "creditcards";
+//             }
+//         }
 
-        if ( authValid && captureValid ) {
-//            command.setOrderNumber( order_num ) ;
-            command.setTransactionAmount( 300.00) ;
-            command.setTransactionCurrency( "USD") ;
-            command.setAuthId( authResponse.id ) ;
-            command.setAuthStatus( authResponse.status ) ;
-            command.setCaptureId( captureResponse.id ) ;
-            command.setCaptureStatus( captureResponse.status) ;
+//         if ( authValid && captureValid ) {
+// //            command.setOrderNumber( order_num ) ;
+//             command.setTransactionAmount( 300.00) ;
+//             command.setTransactionCurrency( "USD") ;
+//             command.setAuthId( authResponse.id ) ;
+//             command.setAuthStatus( authResponse.status ) ;
+//             command.setCaptureId( captureResponse.id ) ;
+//             command.setCaptureStatus( captureResponse.status) ;
 
-            repository.save ( command ) ;
-        fname = command.getFirstname();
-        lname = command.getLastname();
-        address = command.getAddress();
-        city = command.getCity();
-        state = command.getState();
-        zip = command.getZip();
-        balance = command.getTransactionAmount();
-        cardnum = command.getCardnumber();
-        exp = command.getExpmonth();
-        exp = exp + "/";
-        exp = exp + command.getExpyear();
-        phone = command.getPhone();
+//             repository.save ( command ) ;
+//         fname = command.getFirstname();
+//         lname = command.getLastname();
+//         address = command.getAddress();
+//         city = command.getCity();
+//         state = command.getState();
+//         zip = command.getZip();
+//         balance = command.getTransactionAmount();
+//         cardnum = command.getCardnumber();
+//         exp = command.getExpmonth();
+//         exp = exp + "/";
+//         exp = exp + command.getExpyear();
+//         phone = command.getPhone();
 
 
-        System.out.println("User's Address " + command);
-        model.addAttribute("order_number", order_num);
-        model.addAttribute("total", total);
+//         System.out.println("User's Address " + command);
+//         model.addAttribute("order_number", order_num);
+//         model.addAttribute("total", total);
 
-        model.addAttribute("fname", command.getFirstname() );
-        model.addAttribute("lname", command.getLastname());
-        model.addAttribute("address", command.getAddress() );
-        model.addAttribute("city", command.getCity() );
-        model.addAttribute("state", command.getState() );
-        model.addAttribute("zip", command.getZip());
-        model.addAttribute("phone", command.getPhone());
+//         model.addAttribute("fname", command.getFirstname() );
+//         model.addAttribute("lname", command.getLastname());
+//         model.addAttribute("address", command.getAddress() );
+//         model.addAttribute("city", command.getCity() );
+//         model.addAttribute("state", command.getState() );
+//         model.addAttribute("zip", command.getZip());
+//         model.addAttribute("phone", command.getPhone());
 
-        model.addAttribute("card_num", command.getCardnumber());
-        model.addAttribute("card_balance", command.getTransactionAmount());
-        model.addAttribute("exp_month", command.getExpmonth());
-        model.addAttribute("exp_year", command.getExpyear());
-        }
+//         model.addAttribute("card_num", command.getCardnumber());
+//         model.addAttribute("card_balance", command.getTransactionAmount());
+//         model.addAttribute("exp_month", command.getExpmonth());
+//         model.addAttribute("exp_year", command.getExpyear());
+//         }
 
 
 

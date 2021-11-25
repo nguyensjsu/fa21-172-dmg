@@ -16,7 +16,7 @@ services:
       MYSQL_ROOT_PASSWORD: "cmpe172"
     restart: always     
   # books:
-  #   image: rheadash/spring-books:v1
+  #   image: rheadash/spring-users:v1
   #   depends_on:
   #   - mysql    
   #   volumes:
@@ -27,33 +27,7 @@ services:
   #     - 8080    
   #   environment:
   #     MYSQL_HOST: "mysql"
-  #   restart: always 
-  # payments:
-  #   image: rheadash/spring-payments:v1
-  #   depends_on:
-  #   - mysql    
-  #   volumes:
-  #     - /tmp:/tmp
-  #   networks:
-  #     - network   
-  #   ports:
-  #     - 8081    
-  #   environment:
-  #     MYSQL_HOST: "mysql"
-  #   restart: always
-  users:
-    image: rheadash/spring-users:v1
-    depends_on:
-    - mysql    
-    volumes:
-      - /tmp:/tmp
-    networks:
-      - network   
-    ports:
-      - 8082    
-    environment:
-      MYSQL_HOST: "mysql"
-    restart: always       
+  #   restart: always     
   lb:
     image: eeacms/haproxy
     depends_on:

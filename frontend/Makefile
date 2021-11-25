@@ -15,30 +15,30 @@ jar:
 
 run: jar
 	echo Starting Spring at:  http://localhost:8080
-	java -jar build/libs/spring-books-1.0.jar
+	java -jar build/libs/frontend-1.0.jar
 
 # Docker
 
 docker-build: jar
-	docker build -t spring-books .
+	docker build -t frontend .
 	docker images
 
 docker-run: docker-build
-	docker run --name spring-books -td -p 80:8080 spring-books	
+	docker run --name frontend -td -p 80:8080 frontend	
 	docker ps
 
 docker-clean:
-	docker stop spring-books
-	docker rm spring-books
-	docker rmi spring-books
+	docker stop frontend
+	docker rm frontend
+	docker rmi frontend
 
 docker-shell:
-	docker exec -it spring-books bash 
+	docker exec -it frontend bash 
 
 docker-push:
 	docker login
-	docker build -t merrillpe/spring-books:v1 -t merrillpe/spring-books:v1 .
-	docker push merrillpe/spring-books:v1 
+	docker build -t rheadash/frontend:v1 -t rheadash/frontend:v1 .
+	docker push rheadash/frontend:v1 
 
 # Compose
 
@@ -46,7 +46,7 @@ network-ls:
 	docker network ls 
 
 network-create:
-	docker network create --driver bridge spring-books-v1_network
+	docker network create --driver bridge frontend-v1_network
 
 network-prune:
 	docker network prune
@@ -74,16 +74,16 @@ pod-list:
 	kubectl get pods
 
 pod-desc:
-	kubectl describe pods spring-books
+	kubectl describe pods frontend
 
 pod-delete:
 	kubectl delete -f pod.yaml
 
 pod-shell:
-	kubectl exec -it spring-books -- /bin/bash
+	kubectl exec -it frontend -- /bin/bash
 
 pod-logs:
-	kubectl logs -f spring-books
+	kubectl logs -f frontend
 
 # Deployment
 
@@ -94,7 +94,7 @@ deployment-get:
 	kubectl get deployments
 
 deployment-get-pods:
-	kubectl get pods -l name=spring-books
+	kubectl get pods -l name=frontend
 
 deployment-pod-shell:
 	kubectl exec -it $(pod) -- /bin/bash
@@ -103,7 +103,7 @@ deployment-upgrade:
 	kubectl apply  -f deployment.yaml
 
 deployment-delete:
-	kubectl delete deployment spring-books-deployment
+	kubectl delete deployment frontend-deployment
 
 # Service
 
@@ -114,10 +114,10 @@ service-get:
 	kubectl get services
 
 service-get-ip:
-	kubectl get service spring-books -o wide
+	kubectl get service frontend -o wide
 
 service-delete:
-	kubectl delete service spring-books
+	kubectl delete service frontend
 
 # Ingress
 
@@ -125,4 +125,4 @@ ingress-apply:
 	kubectl apply -f ingress.yaml
 
 ingress-ip:
-	kubectl get ingress spring-books-ingress
+	kubectl get ingress frontend-ingress
