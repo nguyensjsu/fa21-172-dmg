@@ -61,3 +61,17 @@ My task:
 
 In my own branch, I separated the html templates into their own frontend folder, and edited the docker-compose.yaml files so that I can deploy the frontend and my own spring-users microservice on separate ports. I also added REST API calls for the frontend to communicate with the backend. I now have the frontend and the login/registration backend running on separate ports, and able to communicate. 
 
+[My task](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-24-tasks.JPG)
+
+[My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/e3f84627b80654e5d5cba07b20793e60cb6bdcd8)
+[My commit #2](https://github.com/nguyensjsu/fa21-172-dmg/commit/71fbbfa7734a7dc6c8171b1bda5977f05dfade92)
+[My commit #3](https://github.com/nguyensjsu/fa21-172-dmg/commit/d32dac2ba9e19ce4c3970fbb617dac9371d9abf2)
+
+Docker deployment below
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-24-b.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-24-c.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-24-d.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-24-a.JPG)
