@@ -54,3 +54,10 @@ I have also implemented the registration & login backend. Now users can create a
 
 My task:
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-20-board.JPG)
+
+## Week 3
+
+### November 24
+
+In my own branch, I separated the html templates into their own frontend folder, and edited the docker-compose.yaml files so that I can deploy the frontend and my own spring-users microservice on separate ports. I also added REST API calls for the frontend to communicate with the backend. I now have the frontend and the login/registration backend running on separate ports, and able to communicate. 
+
