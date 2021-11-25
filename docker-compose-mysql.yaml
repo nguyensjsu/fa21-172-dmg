@@ -12,6 +12,7 @@ services:
       MYSQL_USER: springuser
       MYSQL_PASSWORD: ThePassword
       MYSQL_DATABASE: cmpe172
+      MYSQL_ROOT_PASSWORD: cmpe172
     restart: always
 
 volumes:
