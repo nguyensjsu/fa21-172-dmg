@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "Books" )
 @Data
 @RequiredArgsConstructor
-class Books {
+class Book {
    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long book_id;
    private String isbn ;
    private String title ;
