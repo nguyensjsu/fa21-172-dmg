@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 interface ShoppingCartRepository extends CrudRepository<ShoppingCart, Long> {
     ShoppingCart findByCartId(Long cartId);
+    ShoppingCart findByUserId(Long userId);
 }

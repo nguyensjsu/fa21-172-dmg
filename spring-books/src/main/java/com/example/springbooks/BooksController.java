@@ -30,10 +30,29 @@ public class BooksController {
     @Autowired
     private CartItemRepository itemRepo;
 
+    private Long userID = Long.valueOf(1);
+
     // Initialize shopping cart
     // TODO: make userId match user
-    private ShoppingCart cart = new ShoppingCart(Long.valueOf(1));
-    
+    private ShoppingCart cart = new ShoppingCart(userID);
+
+    public List<CartItem> getItems(ShoppingCart cartIn) {
+        List<CartItem> items = itemRepo.findByCart(cartIn);
+        return items;
+    }
+
+    public float calculateSubtotal(ShoppingCart cartIn) {
+        List<CartItem> items = itemRepo.findByCart(cart);
+        //log.info("Shopping Cart: " + items);
+
+        float subtotal = 0;
+
+        for (CartItem item : items) {
+            subtotal += item.getBook().getPrice();
+        }
+
+        return subtotal;
+    }
 
     @GetMapping("/catalog")
     public String getHome( @ModelAttribute("book") Book book,
@@ -59,7 +78,7 @@ public class BooksController {
         //Example<Book> findByISBNExample = Example.of(findByISBN);
         //log.info("Book: " + findByISBNExample);
 
-        log.info("Book: " + books.findByisbn(action));
+        //log.info("Book: " + books.findByisbn(action));
 
         Book cartBook = books.findByisbn(action);
         CartItem cartItem = new CartItem();
@@ -68,15 +87,38 @@ public class BooksController {
         cartItem.setQuantity(1);
         itemRepo.save(cartItem);
         
-        log.info("Cart Item: " + cartItem);
-        log.info("Cart: " + cart);
+        //log.info("Cart Item: " + cartItem);
+        //log.info("Cart: " + cart);
 
-        // Get subtotal from shopping cart
-        List<CartItem> items = itemRepo.findByCart(cart);
-        log.info("Shopping Cart: " + items);
-        
+        log.info("Subtotal: " + calculateSubtotal(cart));
+        //log.info("User Cart: " + cartRepo.findByUserId(userID));
 
         return "catalog";
+    }
+
+    @GetMapping("/shoppingcart")
+    public String getCart( @ModelAttribute("shoppingcart") ShoppingCart cart,
+                             Model model) {
+        System.out.println("Accessing shopping cart");
+        
+        List<CartItem> items = getItems(cartRepo.findByUserId(userID));
+        model.addAttribute("items", items);
+        
+        float subtotal = calculateSubtotal(cartRepo.findByUserId(userID));
+        model.addAttribute("subtotal", String.valueOf(subtotal));
+
+        log.info("Cart Total: " + String.valueOf(subtotal));
+
+        return "shoppingcart";
+    }
+
+    @PostMapping("/shoppingcart")
+    public String postCart(@RequestParam(value="action", required=true) String action, 
+                            Model model) {
+        
+        log.info( "Action: " + action);
+
+        return "shoppingcart";
     }
 
     /*
