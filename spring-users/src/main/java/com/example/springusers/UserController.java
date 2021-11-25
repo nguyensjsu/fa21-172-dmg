@@ -64,7 +64,7 @@ public class UserController {
     // }
     
     @PostMapping("/users")
-    public User postAction(@Valid @ModelAttribute("user") User user,  @RequestParam(value="action", required=false) String action, Errors errors, Model model, HttpServletRequest request) throws ServerException {
+    public User postAction(@RequestBody final User user,  @RequestParam(value="action", required=false) String action, Errors errors, Model model, HttpServletRequest request) throws ServerException {
         log.info(" User : " + user) ;
         if (user == null) {
 			throw new ServerException("The user sent is null.");

@@ -27,12 +27,14 @@ import java.util.regex.Pattern;
 
 
 @Slf4j
-@RestController
+@Controller
 @RequestMapping("/")
 public class UserController {
 
     @Autowired
 	private RestTemplate restTemplate;
+
+    private String SPRING_USERS_URI = "http://10.0.0.158:8082";
 
     @Bean
     public RestTemplate restTemplate() {
@@ -49,7 +51,7 @@ public class UserController {
     @PostMapping
     public String login(@Valid @ModelAttribute("user") User user,  @RequestParam(value="action", required=false) String action, Errors errors, Model model, HttpServletRequest request) throws RestClientException, Exception {
         log.info(" User : " + user) ;
-        User existingUser = restTemplate.getForObject("/users/{email}", User.class, toMap(user));
+        User existingUser = restTemplate.getForObject(SPRING_USERS_URI + "/users/{email}", User.class, toMap(user));
         //User existingUser = repository.findByEmail(user.getEmail());
         if (existingUser == null) {
             log.info("User does not exist!");
@@ -74,7 +76,7 @@ public class UserController {
     @PostMapping("/register")
     public User postAction(@Valid @ModelAttribute("user") User user,  @RequestParam(value="action", required=false) String action, Errors errors, Model model, HttpServletRequest request) {
         log.info(" User : " + user) ;
-        User createdUser = restTemplate.postForObject("/users", user, User.class);
+        User createdUser = restTemplate.postForObject(SPRING_USERS_URI + "/users", user, User.class);
         // if (existingUser != null) {
         //     throw new ResponseStatusException(HttpStatus.FORBIDDEN, "That email is already registered!");
         // }
