@@ -34,7 +34,7 @@ public class UserController {
     @Autowired
 	private RestTemplate restTemplate;
 
-    private String SPRING_USERS_URI = "http://10.0.0.158:8082";
+    private String SPRING_USERS_URI = "http://localhost:8082";
 
     @Bean
     public RestTemplate restTemplate() {
