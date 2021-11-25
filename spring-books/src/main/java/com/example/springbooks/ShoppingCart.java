@@ -9,14 +9,17 @@ import javax.persistence.Index;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "Shopping_Cart" )
 @Data
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class ShoppingCart {
-    private @Id @GeneratedValue Long cart_id;
-    private Long user_id ;
+    private @GeneratedValue(strategy=GenerationType.IDENTITY) @Id Long cartId;
+    private @NonNull Long userId ;
 }

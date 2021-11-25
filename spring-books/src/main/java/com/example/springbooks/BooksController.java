@@ -1,5 +1,8 @@
 package com.example.springbooks;
+
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,16 +12,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import java.util.List;
+import java.util.Optional;
+import org.springframework.data.domain.Example;
+
 
 @Slf4j
 @Controller
 //@EnableWebMvc
 public class BooksController {
 
+    @Autowired
+    private BooksRepository books;
+
+    @Autowired 
+    private ShoppingCartRepository cartRepo;
+    @Autowired
+    private CartItemRepository itemRepo;
+
+    // Initialize shopping cart
+    // TODO: make userId match user
+    private ShoppingCart cart = new ShoppingCart(Long.valueOf(1));
+    
+
     @GetMapping("/catalog")
-    public String getHome( @ModelAttribute("book") Books book,
+    public String getHome( @ModelAttribute("book") Book book,
                              Model model) {
         System.out.println("Accessing catalog");
+        
+        // Test cartRepo
+        if(cartRepo.findByCartId(cart.getCartId()) == null) {
+            cartRepo.save(cart);
+        }
+        
+
         return "catalog";
     }
 
@@ -26,6 +53,29 @@ public class BooksController {
     public String postAction(@RequestParam(value="action", required=true) String action, 
                             Model model) {
         log.info( "Action: " + action);
+        
+        //Book findByISBN = new Book();
+        //findByISBN.setIsbn(action);
+        //Example<Book> findByISBNExample = Example.of(findByISBN);
+        //log.info("Book: " + findByISBNExample);
+
+        log.info("Book: " + books.findByisbn(action));
+
+        Book cartBook = books.findByisbn(action);
+        CartItem cartItem = new CartItem();
+        cartItem.setCart(cart);
+        cartItem.setBook(cartBook);
+        cartItem.setQuantity(1);
+        itemRepo.save(cartItem);
+        
+        log.info("Cart Item: " + cartItem);
+        log.info("Cart: " + cart);
+
+        // Get subtotal from shopping cart
+        List<CartItem> items = itemRepo.findByCart(cart);
+        log.info("Shopping Cart: " + items);
+        
+
         return "catalog";
     }
 

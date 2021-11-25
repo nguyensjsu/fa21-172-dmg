@@ -1,7 +1,12 @@
 package com.example.springbooks;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
-    
+import java.util.List;
+
+@Repository
+interface ShoppingCartRepository extends CrudRepository<ShoppingCart, Long> {
+    ShoppingCart findByCartId(Long cartId);
 }
