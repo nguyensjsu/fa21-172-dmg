@@ -226,3 +226,42 @@ css style and no mapping to image
 * Task
 ![Project Board](images/connect_RabbitMQ.png)
 <p>&nbsp;</p>
+
+* Try to figure out how to navigate to view in different modules
+* @Controller and @RestController
+* Reference: https://www.baeldung.com/spring-controller-vs-restcontroller
+* @Controller annotation is a classic controller, which is a specialization of the @Component class
+* @Component allows us to auto-detect implementation classes through the classpath scanning.
+* We typically use @Controller in combination with a @RequestMapping annotation for request handling methods
+* @ResponseBody enables automatic serialization of the return object into the HttpResponse  
+
+* @RestController is a specialized version of the controller
+* @RestController is used to simplify the creation of RESTful web services.
+  * It combines @Controller and @ResponseBody to eliminates the need to annotate every request handling method
+    of the controller class with the @ResponseBody annotation.
+  * The @ResponseBody is not required when using @RestController
+  * Every request  handling method of the controller class automatically serializes return objects into HttpResponse
+
+
+* What are RESTful Web Services?
+  * Reference: https://docs.oracle.com/javaee/6/tutorial/doc/gijqy.html
+  * RESTful web services are built to work best on the Web.
+  * Representational State Transfer(REST) is an architecture style that specifies constraints,
+  such as performance, scalability, and modifiability, that enable services to work best on the Web.
+  * In the REST architecture style , **data and functionality are considered resources** and are accessed using Uniform Resource Identifies(URIs)- links on the Web
+    * Clients and servers exchange representations of resources by using a standardized interface and 
+      a stateless communication protocol-HTTP
+  * Principles in RESTful applications:
+    * Resources identification through URI:
+      * A RESTful web service exposes a set of resources that identify the targets of the interaction with its clients.
+      * Resources are identified by URIs, which provide a global addressing space for resource and service discovery.
+    * Uniform interface:
+      * Resources are manipulated using a fixed set of four create, read, update, and delete operations:
+        * PUT, GET, POST, DELETE
+          * PUT creates a new resource
+          * GET retrieves the current state of a resource in some representation
+          * POST transfer a new state onto a resource.
+
+
+* REST is a set of architectural constraints, not a protocol or a standard
+* In RESTful web services, HTTP requests are handled by a controller.
