@@ -1,2 +1,0 @@
-com/example/springpayments/SpringPaymentsApplicationTests.java
- com.example.springpayments.SpringPaymentsApplicationTests
