@@ -51,3 +51,7 @@
   
 * Challenges
   * Cannot navigate to the views from different modules
+### November 24
+
+* On rhea branch, frontend (html pages & controllers) separated from backend code. Rhea's service (login/registration) can communicate with frontend via REST API calls. Frontend and spring-users services can be deployed to Docker on separate ports and communicate. 
+* Main branch still has frontend and backend code together for now.
