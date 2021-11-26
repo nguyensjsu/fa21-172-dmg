@@ -91,3 +91,9 @@ Login functionality below
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-25-b.JPG)
 
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-25-c.JPG)
+
+### November 26
+
+For the login, registration, and password reset functions, I added response pages so that when the user enters an incorrect email or an incorrect password, the website does not simply display an HTTP 404 or 500 error. 
+
+[ADD PICTURES LATER]
