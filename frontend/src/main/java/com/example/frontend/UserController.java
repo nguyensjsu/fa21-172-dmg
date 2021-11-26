@@ -34,7 +34,7 @@ public class UserController {
     @Autowired
 	private RestTemplate restTemplate;
 
-    private String SPRING_USERS_URI = "http://localhost:8082";
+    private String SPRING_USERS_URI = "http://users:8082";
 
     @Bean
     public RestTemplate restTemplate() {
@@ -46,7 +46,7 @@ public class UserController {
                            Model model) {
         System.out.println("Accessing home");
         System.out.println("frontend changed.");
-        System.out.println("latest edit 2.");
+        System.out.println("latest edit 7:10pm.");
         return "home";
     }
 
@@ -58,7 +58,8 @@ public class UserController {
         log.info(" User : " + user) ;
         System.out.println("frontend/UserController.java");
         System.out.println("Email = " + user.getEmail() + ", Password = " + user.getPassword());
-        User existingUser = restTemplate.getForObject(SPRING_USERS_URI + "/users/{email}", User.class, toMap(user));
+        User existingUser = restTemplate.getForObject(SPRING_USERS_URI + "/users?email=" + user.getEmail() + "&password=" + user.getPassword(), User.class, user);
+        //User existingUser = restTemplate.getForObject(SPRING_USERS_URI + "/users/" + user.getEmail(), User.class, toMap(user));
         //User existingUser = repository.findByEmail(user.getEmail());
         if (existingUser == null) {
             log.info("User does not exist!");

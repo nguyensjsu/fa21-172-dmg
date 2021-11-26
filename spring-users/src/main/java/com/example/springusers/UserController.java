@@ -37,8 +37,8 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
-    @GetMapping("/users/{email}")
-    public ResponseEntity<User> getUser(@RequestParam(value = "email") String email, @RequestParam(value = "email") String password) throws ServerException {
+    @GetMapping("/users")
+    public ResponseEntity<User> getUser(@RequestParam(value = "email") String email, @RequestParam(value = "password") String password) throws ServerException {
         
         User user = repository.findByEmail(email);
         System.out.println("getUser in spring-users/UserController.java");
