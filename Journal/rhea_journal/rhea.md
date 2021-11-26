@@ -96,4 +96,10 @@ Login functionality below
 
 For the login, registration, and password reset functions, I added response pages so that when the user enters an incorrect email or an incorrect password, the website does not simply display an HTTP 404 or 500 error. 
 
+[Login commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/42b2561e811a8e4a50999e9f36cfd57c81dc9b4e)
+
+[Registration commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/0d0589ccf0a9c572b6b9113e8ca0506a593a71eb)
+
+[Pswd reset commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/578ac1db2e25a3627a22b4a1cdcb7455df67b457)
+
 [ADD PICTURES LATER]
