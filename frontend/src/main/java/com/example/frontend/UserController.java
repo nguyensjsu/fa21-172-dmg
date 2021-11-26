@@ -87,12 +87,28 @@ public class UserController {
         return "register_null";
     }
     
-    @GetMapping("/register_alr")
-    public String registerAlreadyExists(@ModelAttribute("user") User user,
+    @GetMapping("/reset_dne")
+    public String resetDNE(@ModelAttribute("user") User user,
     Model model)  {
         
-        System.out.println("Accessing register_alr");
-        return "register_alr";
+        System.out.println("Accessing reset_dne");
+        return "reset_dne";
+    }
+
+    @GetMapping("/reset_inc")
+    public String resetInc(@ModelAttribute("user") User user,
+    Model model)  {
+        
+        System.out.println("Accessing reset_inc");
+        return "reset_inc";
+    }
+    
+    @GetMapping("/reset_suc")
+    public String registrationSuccessful(@ModelAttribute("user") User user,
+    Model model)  {
+        
+        System.out.println("Accessing reset_suc");
+        return "reset_suc";
     }
 
     @GetMapping("/register_suc")
@@ -172,20 +188,35 @@ public class UserController {
     }
 
     @PostMapping("/passwordreset")
-    public User resetPassword(@Valid @ModelAttribute("user") User user,  
+    public String resetPassword(@Valid @ModelAttribute("user") User user,  
         @RequestParam(value="action", required=false) String action, 
         Errors errors, Model model, HttpServletRequest request) {
         
         String uri_path = SPRING_USERS_URI + "/passwordreset?email=" + user.getEmail() + 
         "&oldPassword=" + user.getPassword() + "&newPassword=" + user.getNewPassword();
         System.out.println("frontend/passwordreset");
-        System.out.println(uri_path);
+       // System.out.println(uri_path);
         HttpEntity<User> userEntity = new HttpEntity<User>(user);
-        User createdUser = restTemplate.postForObject(
+        ResponseEntity<User> response = restTemplate.postForEntity(
             uri_path, 
             user, User.class);
-        
-        return createdUser;
+
+        System.out.println("header = " + response.getHeaders().getFirst("status"));    
+        if (response.getHeaders().getFirst("status").equals(HttpStatus.INTERNAL_SERVER_ERROR + "")) {
+            System.out.println("Email address not registered.");
+            return "reset_dne";
+        }
+
+        else if (response.getHeaders().getFirst("status").equals(HttpStatus.CONFLICT + "")) {
+            System.out.println("Email address not registered.");
+            return "reset_inc";
+        }
+        else if (response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+            return "reset_suc";
+        }
+        else {
+            return "register";
+        }
     }
 
     public static Map<String, Object> toMap( Object object ) throws Exception

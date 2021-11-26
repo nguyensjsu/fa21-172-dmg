@@ -126,19 +126,24 @@ public class UserController {
         @RequestParam(value = "newPassword") String newPassword) throws ServerException {
         System.out.println("backend/passwordreset");
         System.out.println("Email = " + email + ", Old password = " + oldPassword + ", New Password = " + newPassword);
+        HttpHeaders responseHeaders = new HttpHeaders();
 
         User user = repository.findByEmail(email);
         if (user == null) {
-			return ResponseEntity.badRequest().body("That email is not registered.");
+			responseHeaders.set("status", HttpStatus.INTERNAL_SERVER_ERROR + "");
 		}
         else if (!user.getPassword().equals(oldPassword)) {
-            return ResponseEntity.badRequest().body("Incorrect password.");
+            responseHeaders.set("status", HttpStatus.CONFLICT + "");
         } 
         else {
             user.setPassword(newPassword);
             repository.save(user);
-            return ResponseEntity.ok("Password reset for " + user.getEmail());
-        }         
+            responseHeaders.set("status", HttpStatus.OK + "");
+        } 
+        System.out.println("Before response creation " + responseHeaders.toString());
+        ResponseEntity response = new ResponseEntity(responseHeaders, HttpStatus.OK);
+        System.out.println("after response creation " + response.getHeaders().toString());
+        return response;        
     }
 //    @GetMapping("/home")
 //    public String getRegister( @ModelAttribute("user") User user,
