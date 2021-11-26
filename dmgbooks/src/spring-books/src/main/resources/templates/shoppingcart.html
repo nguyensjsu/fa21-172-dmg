@@ -1,0 +1,155 @@
+
+<!-- 
+    https://codepen.io/quinlo/pen/YONMEa 
+    https://www.w3schools.com/howto/howto_css_checkout_form.asp
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_labels
+    https://www.thriftbooks.com/
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_column_cards
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head >
+    <title>Books</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+
+        .body{
+            margin-top: 50px;
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          max-width: 200px;
+          max-height: 600px;
+          margin: auto;
+          text-align: center;
+          font-family: arial;
+          background-color: #FFF5E8;
+          border-color: #ff00ff;
+          overflow: auto;
+        }
+        
+        .price {
+          color: #E53E3E;
+          font-size: 18px;
+        }
+        
+        .card button {
+          border: none;
+          outline: 0;
+          padding: 12px;
+          color: white;
+          background-color: rgb(71, 15, 244);
+          text-align: center;
+          cursor: pointer;
+          width: 100%;
+          font-size: 18px;
+        }
+        
+        .card button:hover {
+          opacity: 0.7;
+        }
+        .description{
+            font-size: 14px;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .img{
+            width:100%;
+            height:220px ;
+        }
+        .row {margin: 0 -5px;}
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .column {
+            float: left;
+            width: 20%;
+            padding: 0 10px;
+        }
+        @media screen and (max-width: 800px) {
+            .column {
+                width: 100%;
+                display: block;
+                margin-bottom: 20px;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div  th:insert="navigation :: navigation"></div>
+<form name="form" th:object="${command}" method="post" action="">
+<div class="body">
+        <table>
+            <th scope="col">ISBN</th>
+            <th scope="col">Title</th>
+            <th scope="col">Price</th>
+            <th scope="col">Qty</th>
+            <tr th:each="item: ${items}">
+                <div class="row">
+                    <td th:text="${item.book.isbn}" />
+                    <td th:text="${item.book.title}" />
+                    <td th:text="${item.book.price}" />
+                    <td th:text="${item.quantity}" />
+                </div>
+            </tr>
+            <tr>
+                <td><b>Subtotal: </b></td>
+                <td th:text="${subtotal}"></td>
+                <td><button type="submit" name="action" id="checkout" value="checkout">Checkout</button></td>
+            </tr>
+        </table>
+    
+        
+    
+
+<!--        <div class ="column">-->
+<!--        <div class="card">-->
+<!--            <img class="img" th:src="@{/images/pete-the-cat.jpg}"/>-->
+<!--            <h3>Pete the Cat I Love My White Shoes</h3>-->
+<!--            <p>Eric Litwin and James Dean</p>-->
+<!--            <p>ISBN: 0545419662</p>-->
+<!--            <p class="price">$4.19</p>-->
+<!--            <p class="description">-->
+<!--                Along the way, his shoes change from white to red to blue-->
+<!--                as he steps in piles of strawberries, blueberries,-->
+<!--                and other big messes...-->
+<!--            </p>-->
+<!--            <p><button>Add to Cart</button></p>-->
+<!--        </div>-->
+<!--        </div>-->
+<!--        <div class ="column">-->
+<!--        <div class="card">-->
+<!--            <img class="img" th:src="@{/images/the-secret-history-of-food.jpg}"/>-->
+<!--            <h3>The Secret History of Food: </h3>-->
+<!--            <p>Matt Siegel</p>-->
+<!--            <p>ISBN: 0062973215</p>-->
+<!--            <p class="price">$20.19</p>-->
+<!--            <p class="description">-->
+<!--                Are we dipping our bread in lamp oil? Why are we masochistically drawn to foods that can hurt us,-->
+<!--                like hot peppers? Far from being a classic American dish ...-->
+<!--            </p>-->
+<!--            <p><button>Add to Cart</button></p>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+</form>
+</body>
+</html>
+
