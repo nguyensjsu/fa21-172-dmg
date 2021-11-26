@@ -265,3 +265,38 @@ css style and no mapping to image
 
 * REST is a set of architectural constraints, not a protocol or a standard
 * In RESTful web services, HTTP requests are handled by a controller.
+
+
+### Day : 11/25/2022
+
+* Making spring-payment works on rhea branch 
+* Get creditcard view
+
+ ![Project Board](images/restcontrol_creditcard.png)
+<p>&nbsp;</p>
+
+* Add card modal
+
+![Project Board](images/restcontrol_creditcard_addcard.png)
+<p>&nbsp;</p>
+
+* Take user's info
+
+![Project Board](images/restcontrol_creditcard_addcard_1.png)
+<p>&nbsp;</p>
+
+* Add card result
+
+![Project Board](images/restcontrol_creditcard_addcard_result.png)
+<p>&nbsp;</p>
+
+* Save card's info in DB
+
+![Project Board](images/restcontrol_creditcard_savedb.png)
+<p>&nbsp;</p>
+
+
+* Place order
+
+![Project Board](images/restcontrol_creditcard_place_order.png)
+<p>&nbsp;</p>
