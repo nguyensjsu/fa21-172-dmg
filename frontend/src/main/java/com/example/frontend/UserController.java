@@ -45,12 +45,19 @@ public class UserController {
     public String getHome( @ModelAttribute("user") User user,
                            Model model) {
         System.out.println("Accessing home");
+        System.out.println("frontend changed.");
+        System.out.println("latest edit 2.");
         return "home";
     }
 
     @PostMapping
-    public String login(@Valid @ModelAttribute("user") User user,  @RequestParam(value="action", required=false) String action, Errors errors, Model model, HttpServletRequest request) throws RestClientException, Exception {
+    public String login(@Valid @ModelAttribute("user") User user,  
+            @RequestParam(value="action", required=false) String action, 
+            Errors errors, Model model, HttpServletRequest request) 
+            throws RestClientException, Exception {
         log.info(" User : " + user) ;
+        System.out.println("frontend/UserController.java");
+        System.out.println("Email = " + user.getEmail() + ", Password = " + user.getPassword());
         User existingUser = restTemplate.getForObject(SPRING_USERS_URI + "/users/{email}", User.class, toMap(user));
         //User existingUser = repository.findByEmail(user.getEmail());
         if (existingUser == null) {
