@@ -77,3 +77,17 @@ Docker deployment below
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-24-d.JPG)
 
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-24-a.JPG)
+
+### November 25
+
+I implemented the login function to connect to the backend, and the app can now detect when a user correctly logs in, when the user enters an incorrect password, and whent he user enters an incorrect email (i.e. an email address not in the database).
+
+[My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/31aca83dd43508ca850e7b404b8ee7dd3daf2c64)
+
+Login functionality below
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-25-a.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-25-b.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-25-c.JPG)
