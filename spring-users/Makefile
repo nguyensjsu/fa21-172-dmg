@@ -37,8 +37,8 @@ docker-shell:
 
 docker-push:
 	docker login
-	docker build -t rheadash/frontend:v1 .
-	docker push rheadash/frontend:v1 
+	docker build -t rheadash/spring-users:v1 .
+	docker push rheadash/spring-users:v1 
 
 # Compose
 

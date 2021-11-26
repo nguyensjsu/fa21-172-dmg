@@ -36,7 +36,21 @@ services:
       - 8082:8082
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
-    restart: always       
+    restart: always 
+  payments:
+    #image: rheadash/spring-users:v1
+    build: spring-payments
+    depends_on:
+    - mysql    
+    volumes:
+      - /tmp:/tmp
+    networks:
+      - network   
+    ports:
+      - 8081:8081
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
+    restart: always      
   # lb:
   #   image: eeacms/haproxy
   #   depends_on:

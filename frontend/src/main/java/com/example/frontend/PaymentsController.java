@@ -35,7 +35,7 @@ public class PaymentsController {
     @Autowired
     private RestTemplate restTemp;
 
-    private String SPRING_PAYMENTS_URI = "http://localhost:8082";
+    private String SPRING_PAYMENTS_URI = "http://payments:8081";
 
     @Bean
     public RestTemplate restTemp() {
