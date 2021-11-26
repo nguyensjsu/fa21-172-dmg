@@ -107,12 +107,16 @@
                     <td th:text="${item.book.title}" />
                     <td th:text="${item.book.price}" />
                     <td th:text="${item.quantity}" />
+                    <td><button type="submit" th:name="action" id="delete" th:value="${item.itemID}">Remove</button></td>
                 </div>
             </tr>
             <tr>
                 <td><b>Subtotal: </b></td>
                 <td th:text="${subtotal}"></td>
                 <td><button type="submit" name="action" id="checkout" value="checkout">Checkout</button></td>
+            </tr>
+            <tr>
+                <td><button type="submit" name="action" id="clearcart" tvalue="clear">Clear Cart</button></td>
             </tr>
         </table>
     

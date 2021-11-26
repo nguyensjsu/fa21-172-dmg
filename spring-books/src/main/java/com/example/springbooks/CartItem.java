@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class CartItem {
-    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long item_id;
+    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long itemID;
     
     @ManyToOne
     private Book book;

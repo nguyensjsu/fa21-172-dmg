@@ -117,6 +117,17 @@ public class BooksController {
                             Model model) {
         
         log.info( "Action: " + action);
+        List<CartItem> items = getItems(cartRepo.findByUserId(userID));
+
+        if(action.equals("clear")) {
+            log.info( "Action: " + action);
+            for (CartItem item : items) {
+                itemRepo.deleteById(item.getItemID());
+                log.info("Removed Item " + item.getItemID());
+            }
+        } else {
+            itemRepo.deleteById(Long.valueOf(action));
+        }
 
         return "shoppingcart";
     }
