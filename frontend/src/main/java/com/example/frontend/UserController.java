@@ -22,6 +22,8 @@ import org.springframework.http.ResponseEntity;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.fasterxml.jackson.databind.ser.impl.StringArraySerializer;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,7 +78,30 @@ public class UserController {
         System.out.println("Accessing login_suc");
         return "login_suc";
     }
+
+    @GetMapping("/register_null")
+    public String registerNull(@ModelAttribute("user") User user,
+    Model model)  {
+        
+        System.out.println("Accessing register_null");
+        return "register_null";
+    }
     
+    @GetMapping("/register_alr")
+    public String registerAlreadyExists(@ModelAttribute("user") User user,
+    Model model)  {
+        
+        System.out.println("Accessing register_alr");
+        return "register_alr";
+    }
+
+    @GetMapping("/register_suc")
+    public String registerSucceeded(@ModelAttribute("user") User user,
+    Model model)  {
+        
+        System.out.println("Accessing register_suc");
+        return "register_suc";
+    }
 
     @PostMapping
     public String login(@Valid @ModelAttribute("user") User user,  
@@ -115,13 +140,28 @@ public class UserController {
     }
     
     @PostMapping("/register")
-    public User postAction(@Valid @ModelAttribute("user") User user,  @RequestParam(value="action", required=false) String action, Errors errors, Model model, HttpServletRequest request) {
+    public String postAction(@Valid @ModelAttribute("user") User user,  @RequestParam(value="action", required=false) String action, Errors errors, Model model, HttpServletRequest request) {
         log.info(" User : " + user) ;
-        User createdUser = restTemplate.postForObject(SPRING_USERS_URI + "/users", user, User.class);
+        ResponseEntity<User> response = restTemplate.postForEntity(SPRING_USERS_URI + "/users", user, User.class);
         // if (existingUser != null) {
         //     throw new ResponseStatusException(HttpStatus.FORBIDDEN, "That email is already registered!");
         // }
-        return createdUser;          
+        System.out.println("frontend/register");
+        System.out.println("response " + response.toString());
+        System.out.println("Headers " + response.getHeaders());
+        if (response.getHeaders().getFirst("status").equals(HttpStatus.INTERNAL_SERVER_ERROR + "")) {
+            return "register_null";
+        }
+
+        else if (response.getHeaders().getFirst("status").equals(HttpStatus.CONFLICT + "")) {
+            return "register_alr";
+        }
+        else if (response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+            return "register_suc";
+        }
+        else {
+            return "register";
+        }          
     }
 
     @GetMapping("/passwordreset")

@@ -100,19 +100,24 @@ public class UserController {
     // }
     
     @PostMapping("/users")
-    public ResponseEntity<String> postAction(@RequestBody final User user,  @RequestParam(value="action", required=false) String action, Errors errors, Model model, HttpServletRequest request) throws ServerException {
+    public ResponseEntity<User> postAction(@RequestBody final User user,  @RequestParam(value="action", required=false) String action, Errors errors, Model model, HttpServletRequest request) throws ServerException {
         log.info(" User : " + user) ;
+        HttpHeaders responseHeaders = new HttpHeaders();
         if (user == null) {
-			return ResponseEntity.badRequest().body("The user sent is null");
+			responseHeaders.set("status", HttpStatus.INTERNAL_SERVER_ERROR + "");
 		}
         User existingUser = repository.findByEmail(user.getEmail());
         if (existingUser != null) {
-            return ResponseEntity.badRequest().body("That email is already registered!");
+            responseHeaders.set("status", HttpStatus.CONFLICT + "");
         } 
         else {
             repository.save(user);
-            return ResponseEntity.ok("User registered for "  + user.getEmail());
-        }         
+            responseHeaders.set("status", HttpStatus.OK + "");
+        }   
+        System.out.println("Before response creation " + responseHeaders.toString());
+        ResponseEntity response = new ResponseEntity(responseHeaders, HttpStatus.OK);
+        System.out.println("after response creation " + response.getHeaders().toString());
+        return response;      
     }
 
     @PostMapping("/passwordreset")
