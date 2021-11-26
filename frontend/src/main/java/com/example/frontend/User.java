@@ -10,6 +10,7 @@ class User {
     private String lastName ;
     private String email ;
     private String password ;
+    private String newPassword ;
 //    @Column(nullable = false)   private String firstName ;
 //    @Column(nullable = false)   private String lastName ;
 //    @Column(nullable = false)   private String email ;

@@ -73,47 +73,12 @@
 
 <body>
 <div  th:insert="navigation :: navigation"></div>
-    <div class="bg-img">
-        <div class="container" >
-            <form th:object="${user}" method="post">
-                <div th:if="${param.error}">
-                 <div class="alert alert-danger">Invalid email or
-                  password.</div>
-                </div>
-                <div th:if="${param.logout}">
-                 <div class="alert alert-info">You have been logged out.</div>
-                </div>
-                <div class="form-group">
-                 <label for="username">Email</label>: <input type="text"
-                  id="email" name="email" class="form-control"
-                  autofocus="autofocus" placeholder="email" th:field="*{email}"/>
-                </div>
-                <div class="form-group">
-                 <label for="password">Password</label>: <input type="password"
-                  id="password" name="password" class="form-control" th:field="*{password}"
-                  placeholder="Password" />
-                </div>
-                <div class="form-group">
-                 <div class="row">
-                  <div class="col-sm-6 col-sm-offset-3">
-                   <input type="submit" name="login-submit" id="login-submit"
-                    class="form-control btn btn-primary" value="Log In" />
-                  </div>
-                 </div>
-                </div>
-                <div class="form-group">
-                 <span>New user? <a th:href="@{/registration}">Register
-                   here</a></span>
-                </div>
-               </form>
+    <h1>That email address does not exist.</h1>
 
-            <div >
-                Don't have an account? <button>Register</button><br/><br/>
-                Forgot password? <button>Reset Password</button><br/>
-            </div>
-        </div>
+    <p>Please try logging in again.</p>
 
-    </div>
+    <!-- <span><a th:href="@{/}">Login
+        here</a></span> -->
 
 </body>
 </html>
