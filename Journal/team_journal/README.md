@@ -34,3 +34,20 @@
 
 ![Project Board](images/project_board_week2.png)
 <p>&nbsp;</p>
+
+
+## Week 3 : 11/22/2021
+
+* Team members pick up tasks
+
+![Project Board](images/project_board_week3.png)
+<p>&nbsp;</p>
+
+* Discussion on how to make the application as microservices
+* Separating the project to three models:
+  * Spring-user
+  * Spring-books
+  * Spring-payments
+  
+* Challenges
+  * Cannot navigate to the views from different modules

@@ -14,17 +14,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
-@Controller
+//@Controller
+@RestController
 @RequestMapping("/")
 public class PaymentsController {
 
@@ -135,18 +132,40 @@ public class PaymentsController {
     String exp;
     String phone;
 
+//    @PostMapping("/command")
+//    public PaymentsCommand postAction(@RequestBody final PaymentsCommand command,  @RequestParam(value="action", required=false) String action,
+//                                      Errors errors, Model model, HttpServletRequest request) {
+//        log.info( "Action: " + action ) ;
+//        log.info( "Command: " + command ) ;
+
+//    @GetMapping("/command")
+//    public PaymentsCommand getAction(@ModelAttribute("command") PaymentsCommand command,
+//                            Model model) {
+//        log.info("Command: " + command);
+//
+//
+//        model.addAttribute("order_number", order_num);
+//        model.addAttribute("total", total);
+//        return "creditcards";
+//    }
 
 
-    @GetMapping("/creditcards")
-    public String getAction(@ModelAttribute("command") PaymentsCommand command,
-                            Model model) {
-        log.info("Command: " + command);
 
 
-        model.addAttribute("order_number", order_num);
-        model.addAttribute("total", total);
-        return "creditcards";
-    }
+
+
+
+
+//    @GetMapping("/creditcards")
+//    public String getAction(@ModelAttribute("command") PaymentsCommand command,
+//                            Model model) {
+//        log.info("Command: " + command);
+//
+//
+//        model.addAttribute("order_number", order_num);
+//        model.addAttribute("total", total);
+//        return "creditcards";
+//    }
 
 
     @Getter
@@ -179,18 +198,20 @@ public class PaymentsController {
 
 
 
-    @PostMapping("/creditcards")
-    public String postAction(@Valid @ModelAttribute("command") PaymentsCommand command,
-                             @RequestParam(value="action", required=true) String action,
-                             Errors errors, Model model, HttpServletRequest request) {
-
+//    @PostMapping("/creditcards")
+//    public String postAction(@Valid @ModelAttribute("command") PaymentsCommand command,
+//                             @RequestParam(value="action", required=true) String action,
+//                             Errors errors, Model model, HttpServletRequest request) {
+@PostMapping("/command")
+public PaymentsCommand postAction(@RequestBody final PaymentsCommand command,  @RequestParam(value="action", required=false) String action,
+                         Errors errors, Model model, HttpServletRequest request) {
         log.info( "Action: " + action ) ;
         log.info( "Command: " + command ) ;
 
 
-        if (errors.hasErrors()) {
-            return "creditcards";
-        }
+//        if (errors.hasErrors()) {
+//            return "creditcards";
+//        }
 
         CyberSourceAPI.setHost( apiHost) ;
         CyberSourceAPI.setKey( merchantKeyId ) ;
@@ -223,11 +244,11 @@ public class PaymentsController {
         if ( months.get( command.expmonth()) == null ) { hasErrors = true ; msgs.add("Invalid Card Expiration Month: " + command.expmonth() ) ; }
         if ( states.get( command.state()) == null ) { hasErrors = true ; msgs.add("Invalid State: " + command.state() ) ; }
 
-        if (hasErrors) {
-            msgs.print() ;
-            model.addAttribute ( "messages", msgs.getMessages() ) ;
-            return "creditcards" ;
-        }
+//        if (hasErrors) {
+//            msgs.print() ;
+//            model.addAttribute ( "messages", msgs.getMessages() ) ;
+//            return "creditcards" ;
+//        }
 //        int min = 1239871 ;
 //        int max = 9999999 ;
 //        int random_int = (int) Math.floor(Math.random()*(max-min+1)+min) ;
@@ -252,7 +273,7 @@ public class PaymentsController {
         if (auth.cardType.equals("ERROR") ) {
             System.out.println( "Unsupported Credit Card Type.") ;
             model.addAttribute( "message", "Unsupported Credit Card Type.") ;
-            return "creditcards";
+//            return "creditcards";
         }
         boolean authValid = true ;
         AuthResponse authResponse = new AuthResponse() ;
@@ -264,7 +285,7 @@ public class PaymentsController {
             authValid = false ;
             System.out.println( authResponse.message ) ;
             model.addAttribute( "message", authResponse.message ) ;
-            return "creditcards" ;
+//            return "creditcards" ;
         }
 
         boolean captureValid = true;
@@ -283,7 +304,7 @@ public class PaymentsController {
                 captureValid = false ;
                 System.out.println( captureResponse.message ) ;
                 model.addAttribute( "message", captureResponse.message ) ;
-                return "creditcards";
+//                return "creditcards";
             }
         }
 
@@ -296,7 +317,7 @@ public class PaymentsController {
             command.setCaptureId( captureResponse.id ) ;
             command.setCaptureStatus( captureResponse.status) ;
 
-            repository.save ( command ) ;
+//            repository.save ( command ) ;
         fname = command.getFirstname();
         lname = command.getLastname();
         address = command.getAddress();
@@ -310,28 +331,28 @@ public class PaymentsController {
         exp = exp + command.getExpyear();
         phone = command.getPhone();
 
-
-        System.out.println("User's Address " + command);
-        model.addAttribute("order_number", order_num);
-        model.addAttribute("total", total);
-
-        model.addAttribute("fname", command.getFirstname() );
-        model.addAttribute("lname", command.getLastname());
-        model.addAttribute("address", command.getAddress() );
-        model.addAttribute("city", command.getCity() );
-        model.addAttribute("state", command.getState() );
-        model.addAttribute("zip", command.getZip());
-        model.addAttribute("phone", command.getPhone());
-
-        model.addAttribute("card_num", command.getCardnumber());
-        model.addAttribute("card_balance", command.getTransactionAmount());
-        model.addAttribute("exp_month", command.getExpmonth());
-        model.addAttribute("exp_year", command.getExpyear());
+//
+//        System.out.println("User's Address " + command);
+//        model.addAttribute("order_number", order_num);
+//        model.addAttribute("total", total);
+//
+//        model.addAttribute("fname", command.getFirstname() );
+//        model.addAttribute("lname", command.getLastname());
+//        model.addAttribute("address", command.getAddress() );
+//        model.addAttribute("city", command.getCity() );
+//        model.addAttribute("state", command.getState() );
+//        model.addAttribute("zip", command.getZip());
+//        model.addAttribute("phone", command.getPhone());
+//
+//        model.addAttribute("card_num", command.getCardnumber());
+//        model.addAttribute("card_balance", command.getTransactionAmount());
+//        model.addAttribute("exp_month", command.getExpmonth());
+//        model.addAttribute("exp_year", command.getExpyear());
         }
 
 
 
-        return "creditcards";
+        return repository.save(command);
     }
 
 

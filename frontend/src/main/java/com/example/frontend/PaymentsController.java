@@ -19,14 +19,32 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.client.RestTemplate;
 import lombok.extern.slf4j.Slf4j;
-
-
+import org.springframework.context.annotation.Bean;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
 @Slf4j
 @Controller
 @RequestMapping("/")
 public class PaymentsController {
+
+    @Autowired
+    private RestTemplate restTemp;
+
+    private String SPRING_PAYMENTS_URI = "http://localhost:8082";
+
+    @Bean
+    public RestTemplate restTemp() {
+        return new RestTemplate();
+    }
+
+
+
+
 
     // @Autowired
     // private PaymentsCommandRepository repository;
@@ -47,78 +65,78 @@ public class PaymentsController {
     // @Value("${cybersource.merchantid}")
     // private String merchantId;
 
-    private static HashMap<String, String> months = new HashMap<>();
-
-    static {
-        months.put("January", "01");
-        months.put("February", "02");
-        months.put("March", "03");
-        months.put("April", "04");
-        months.put("May", "05");
-        months.put("June", "06");
-        months.put("July", "07");
-        months.put("August", "08");
-        months.put("September", "09");
-        months.put("October", "10");
-        months.put("November", "11");
-        months.put("December", "12");
-    }
-
-    private static HashMap<String, String> states = new HashMap<>();
-
-    static {
-        states.put("AL", "Alabama");
-        states.put("AK", "Alaska");
-        states.put("AZ", "Arizona");
-        states.put("AR", "Arkansas");
-        states.put("CA", "California");
-        states.put("CO", "Colorado");
-        states.put("CT", "Connecticut");
-        states.put("DE", "Delaware");
-        states.put("FL", "Florida");
-        states.put("GA", "Georgia");
-        states.put("HI", "Hawaii");
-        states.put("ID", "Idaho");
-        states.put("IL", "Illinois");
-        states.put("IN", "Indiana");
-        states.put("IA", "Iowa");
-        states.put("KS", "Kansas");
-        states.put("KY", "Kentucky");
-        states.put("LA", "Louisiana");
-        states.put("ME", "Maine");
-        states.put("MD", "Maryland");
-        states.put("MA", "Massachusetts");
-        states.put("MI", "Michigan");
-        states.put("MN", "Minnesota");
-        states.put("MS", "Mississippi");
-        states.put("MO", "Missouri");
-        states.put("MT", "Montana");
-        states.put("NE", "Nebraska");
-        states.put("NV", "Nevada");
-        states.put("NH", "New Hampshire");
-        states.put("NJ", "New Jersey");
-        states.put("NM", "New Mexico");
-        states.put("NY", "New York");
-        states.put("NC", "North Carolina");
-        states.put("ND", "North Dakota");
-        states.put("OH", "Ohio");
-        states.put("OK", "Oklahoma");
-        states.put("OR", "Oregon");
-        states.put("PA", "Pennsylvania");
-        states.put("RI", "Rhode Island");
-        states.put("SC", "South Carolina");
-        states.put("SD", "South Dakota");
-        states.put("TN", "Tennessee");
-        states.put("TX", "Texas");
-        states.put("UT", "Utah");
-        states.put("VT", "Vermont");
-        states.put("VA", "Virginia");
-        states.put("WA", "Washington");
-        states.put("WV", "West Virginia");
-        states.put("WI", "Wisconsin");
-        states.put("WY", "Wyoming");
-
-    }
+//    private static HashMap<String, String> months = new HashMap<>();
+//
+//    static {
+//        months.put("January", "01");
+//        months.put("February", "02");
+//        months.put("March", "03");
+//        months.put("April", "04");
+//        months.put("May", "05");
+//        months.put("June", "06");
+//        months.put("July", "07");
+//        months.put("August", "08");
+//        months.put("September", "09");
+//        months.put("October", "10");
+//        months.put("November", "11");
+//        months.put("December", "12");
+//    }
+//
+//    private static HashMap<String, String> states = new HashMap<>();
+//
+//    static {
+//        states.put("AL", "Alabama");
+//        states.put("AK", "Alaska");
+//        states.put("AZ", "Arizona");
+//        states.put("AR", "Arkansas");
+//        states.put("CA", "California");
+//        states.put("CO", "Colorado");
+//        states.put("CT", "Connecticut");
+//        states.put("DE", "Delaware");
+//        states.put("FL", "Florida");
+//        states.put("GA", "Georgia");
+//        states.put("HI", "Hawaii");
+//        states.put("ID", "Idaho");
+//        states.put("IL", "Illinois");
+//        states.put("IN", "Indiana");
+//        states.put("IA", "Iowa");
+//        states.put("KS", "Kansas");
+//        states.put("KY", "Kentucky");
+//        states.put("LA", "Louisiana");
+//        states.put("ME", "Maine");
+//        states.put("MD", "Maryland");
+//        states.put("MA", "Massachusetts");
+//        states.put("MI", "Michigan");
+//        states.put("MN", "Minnesota");
+//        states.put("MS", "Mississippi");
+//        states.put("MO", "Missouri");
+//        states.put("MT", "Montana");
+//        states.put("NE", "Nebraska");
+//        states.put("NV", "Nevada");
+//        states.put("NH", "New Hampshire");
+//        states.put("NJ", "New Jersey");
+//        states.put("NM", "New Mexico");
+//        states.put("NY", "New York");
+//        states.put("NC", "North Carolina");
+//        states.put("ND", "North Dakota");
+//        states.put("OH", "Ohio");
+//        states.put("OK", "Oklahoma");
+//        states.put("OR", "Oregon");
+//        states.put("PA", "Pennsylvania");
+//        states.put("RI", "Rhode Island");
+//        states.put("SC", "South Carolina");
+//        states.put("SD", "South Dakota");
+//        states.put("TN", "Tennessee");
+//        states.put("TX", "Texas");
+//        states.put("UT", "Utah");
+//        states.put("VT", "Vermont");
+//        states.put("VA", "Virginia");
+//        states.put("WA", "Washington");
+//        states.put("WV", "West Virginia");
+//        states.put("WI", "Wisconsin");
+//        states.put("WY", "Wyoming");
+//
+//    }
     double total = 25;
     int min = 1239871 ;
     int max = 9999999 ;
@@ -179,18 +197,18 @@ public class PaymentsController {
 
 
 
-    @PostMapping("/creditcards")
-    public String postAction(@Valid @ModelAttribute("command") PaymentsCommand command,
-                             @RequestParam(value="action", required=true) String action,
-                             Errors errors, Model model, HttpServletRequest request) {
-
-        log.info( "Action: " + action ) ;
-        log.info( "Command: " + command ) ;
-
-
-        if (errors.hasErrors()) {
-            return "creditcards";
-        }
+//    @PostMapping("/creditcards")
+//    public String postAction(@Valid @ModelAttribute("command") PaymentsCommand command,
+//                             @RequestParam(value="action", required=true) String action,
+//                             Errors errors, Model model, HttpServletRequest request) {
+//
+//        log.info( "Action: " + action ) ;
+//        log.info( "Command: " + command ) ;
+//
+//
+//        if (errors.hasErrors()) {
+//            return "creditcards";
+//        }
 
         // CyberSourceAPI.setHost( apiHost) ;
         // CyberSourceAPI.setKey( merchantKeyId ) ;
@@ -331,8 +349,8 @@ public class PaymentsController {
 
 
 
-        return "creditcards";
-    }
+//        return "creditcards";
+//    }
 
 
 
@@ -361,6 +379,64 @@ public class PaymentsController {
 
         return "place_order";
     }
+
+    @PostMapping("/creditcards")
+    public PaymentsCommand postAction(@Valid @ModelAttribute("command") PaymentsCommand command,
+                             @RequestParam(value="action", required=true) String action,
+                             Errors errors, Model model, HttpServletRequest request) {
+
+        log.info("Action: " + action);
+        log.info("Command: " + command);
+    PaymentsCommand payment = restTemp.postForObject(SPRING_PAYMENTS_URI + "/command", command, PaymentsCommand.class);
+        command.setTransactionAmount( 300.00) ;
+        fname = command.getFirstname();
+        lname = command.getLastname();
+        address = command.getAddress();
+        city = command.getCity();
+        state = command.getState();
+        zip = command.getZip();
+        balance = command.getTransactionAmount();
+        cardnum = command.getCardnumber();
+        exp = command.getExpmonth();
+        exp = exp + "/";
+        exp = exp + command.getExpyear();
+        phone = command.getPhone();
+
+
+
+
+        model.addAttribute("order_number", order_num);
+        model.addAttribute("total", total);
+
+        model.addAttribute("fname", command.getFirstname() );
+        model.addAttribute("lname", command.getLastname());
+        model.addAttribute("address", command.getAddress() );
+        model.addAttribute("city", command.getCity() );
+        model.addAttribute("state", command.getState() );
+        model.addAttribute("zip", command.getZip());
+        model.addAttribute("phone", command.getPhone());
+
+        model.addAttribute("card_num", command.getCardnumber());
+        model.addAttribute("card_balance", command.getTransactionAmount());
+        model.addAttribute("exp_month", command.getExpmonth());
+        model.addAttribute("exp_year", command.getExpyear());
+//        if (errors.hasErrors()) {
+            return payment;
+        }
+
+    public static Map<String, Object> toMap( Object object ) throws Exception
+    {
+        Map<String, Object> map = new HashMap<>();
+        for ( Field field : object.getClass().getDeclaredFields() )
+        {
+            field.setAccessible( true );
+            map.put( field.getName(), field.get( object ) );
+        }
+        return map;
+    }
+
+
+
 
 }
 

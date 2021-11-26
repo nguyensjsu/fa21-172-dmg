@@ -1,10 +1,10 @@
-com/example/springusers/UserController.java
- com.example.springusers.UserController
+com/example/springusers/User.java
+ com.example.springusers.User
 com/example/springusers/UserRepository.java
  com.example.springusers.UserRepository
 com/example/springusers/MvcConfig.java
  com.example.springusers.MvcConfig
 com/example/springusers/SpringUsersApplication.java
  com.example.springusers.SpringUsersApplication
-com/example/springusers/User.java
- com.example.springusers.User
+com/example/springusers/UserController.java
+ com.example.springusers.UserController

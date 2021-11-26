@@ -18,10 +18,10 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class CartItem {
-    private @Id @GeneratedValue Long item_id;
+    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long item_id;
     
     @ManyToOne
-    private Books book;
+    private Book book;
 
     @ManyToOne
     private ShoppingCart cart;
