@@ -113,10 +113,10 @@
             <tr>
                 <td><b>Subtotal: </b></td>
                 <td th:text="${subtotal}"></td>
-                <td><button type="submit" name="action" id="checkout" value="checkout">Checkout</button></td>
+                <td><button type="submit" th:name="action" id="checkout" th:value="checkout">Checkout</button></td>
             </tr>
             <tr>
-                <td><button type="submit" name="action" id="clearcart" tvalue="clear">Clear Cart</button></td>
+                <td><button type="submit" th:name="action" id="clear" th:value="clear">Clear Cart</button></td>
             </tr>
         </table>
     

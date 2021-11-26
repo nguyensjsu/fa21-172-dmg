@@ -113,14 +113,15 @@ public class BooksController {
     }
 
     @PostMapping("/shoppingcart")
-    public String postCart(@RequestParam(value="action", required=true) String action, 
+    public void postCart(@RequestParam(value="action", required=true) String action, 
                             Model model) {
         
         log.info( "Action: " + action);
         List<CartItem> items = getItems(cartRepo.findByUserId(userID));
-
-        if(action.equals("clear")) {
-            log.info( "Action: " + action);
+        
+        if(action.equals("checkout")) {
+            
+        } else if(action.equals("clear")) {
             for (CartItem item : items) {
                 itemRepo.deleteById(item.getItemID());
                 log.info("Removed Item " + item.getItemID());
@@ -129,7 +130,8 @@ public class BooksController {
             itemRepo.deleteById(Long.valueOf(action));
         }
 
-        return "shoppingcart";
+        getCart(cart, model);
+        //return "shoppingcart";
     }
 
     /*
