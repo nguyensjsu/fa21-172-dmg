@@ -38,9 +38,11 @@ public class UserController {
     private UserRepository repository;
 
     @GetMapping("/users/{email}")
-    public ResponseEntity<User> getUser(@PathVariable final String email, @PathVariable final String password) throws ServerException {
+    public ResponseEntity<User> getUser(@RequestParam(value = "email") String email, @RequestParam(value = "email") String password) throws ServerException {
         
         User user = repository.findByEmail(email);
+        System.out.println("getUser in spring-users/UserController.java");
+        System.out.println("Email = " + email + ", Password = " + password);
         if (user == null) {
             throw new ServerException("User not found");
         }
@@ -53,6 +55,26 @@ public class UserController {
         }
         
     }
+
+    // @GetMapping("/users/{email}")
+    // public ResponseEntity<User> getUser(@RequestBody final User loginInfo) 
+    //     throws ServerException {
+        
+    //     User user = repository.findByEmail(loginInfo.getEmail());
+    //     System.out.println("getUser in spring-users/UserController.java");
+    //     System.out.println("Email = " + loginInfo.getEmail() + ", Password = " + loginInfo.getPassword());
+    //     if (user == null) {
+    //         throw new ServerException("User not found");
+    //     }
+
+    //     else if (!user.getPassword().equals(loginInfo.getPassword())) {
+    //         throw new ServerException("Incorrect password!");
+    //     }
+    //     else {
+    //         return new ResponseEntity<>(user, HttpStatus.CREATED);
+    //     }
+        
+    // }
 
     // @PostMapping("/users/{email}")
     // public ResponseEntity<User> login(@PathVariable final String email, @PathVariable final String password) {

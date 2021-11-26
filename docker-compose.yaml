@@ -1,47 +1,21 @@
-
 version: "3.8"
 
 services:
-  # mysql:
-  #   image: mysql:8.0
-  #   networks:
-  #     - network   
-  #   ports:
-  #     - 3306:3306
-  #   environment:
-  #     MYSQL_USER: springuser
-  #     MYSQL_PASSWORD: ThePassword
-  #     MYSQL_DATABASE: cmpe172
-  #   restart: always
-  
-  # books:
-  #   image: rheadash/spring-books:v1
-  #   depends_on:
-  #   - mysql    
-  #   volumes:
-  #     - /tmp:/tmp
-  #   networks:
-  #     - network   
-  #   ports:
-  #     - 8080    
-  #   environment:
-  #     MYSQL_HOST: "mysql"
-  #   restart: always 
-  # payments:
-  #   image: rheadash/spring-payments:v1
-  #   depends_on:
-  #   - mysql    
-  #   volumes:
-  #     - /tmp:/tmp
-  #   networks:
-  #     - network   
-  #   ports:
-  #     - 8081    
-  #   environment:
-  #     MYSQL_HOST: "mysql"
-  #   restart: always
+  mysql:
+    image: mysql:8.0
+    networks:
+      - network   
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: springuser
+      MYSQL_PASSWORD: ThePassword
+      MYSQL_DATABASE: cmpe172
+      MYSQL_ROOT_PASSWORD: cmpe172
+    restart: always
   frontend:
     build: frontend
+    #image: rheadash/frontend:v1
     depends_on:
     - users
     networks:
@@ -50,7 +24,7 @@ services:
       - 8080:8080
     restart: always
   users:
-    #image: backend
+    #image: rheadash/spring-users:v1
     build: spring-users
     depends_on:
     - mysql    
@@ -60,8 +34,8 @@ services:
       - network   
     ports:
       - 8082:8082
-    #environment:
-    #  MYSQL_HOST: "mysql"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
     restart: always       
   # lb:
   #   image: eeacms/haproxy
