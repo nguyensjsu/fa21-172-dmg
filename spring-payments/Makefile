@@ -2,7 +2,6 @@ all: clean
 
 clean:
 	gradle clean
-	rm -rf bin
 
 compile:
 	gradle build
@@ -16,4 +15,114 @@ jar:
 
 run: jar
 	echo Starting Spring at:  http://localhost:8080
-	java -jar build/libs/spring-payments-1.0.jar
+	java -jar build/libs/frontend-1.0.jar
+
+# Docker
+
+docker-build: jar
+	docker build -t frontend .
+	docker images
+
+docker-run: docker-build
+	docker run --name frontend -td -p 80:8080 frontend	
+	docker ps
+
+docker-clean:
+	docker stop frontend
+	docker rm frontend
+	docker rmi frontend
+
+docker-shell:
+	docker exec -it frontend bash 
+
+docker-push:
+	docker login
+	docker build -t rheadash/spring-payments:v1 .
+	docker push rheadash/spring-payments:v1 
+
+# Compose
+
+network-ls:
+	docker network ls 
+
+network-create:
+	docker network create --driver bridge frontend-v1_network
+
+network-prune:
+	docker network prune
+
+compose-up:
+	docker-compose up --scale books=2 -d
+
+compose-down:
+	docker-compose down 	
+
+lb-stats:
+	echo "user = admin | password = admin"
+	open http://localhost:1936
+
+lb-test:
+	open http://localhost
+
+
+# Pod
+
+pod-run:
+	kubectl apply -f pod.yaml
+
+pod-list:
+	kubectl get pods
+
+pod-desc:
+	kubectl describe pods frontend
+
+pod-delete:
+	kubectl delete -f pod.yaml
+
+pod-shell:
+	kubectl exec -it frontend -- /bin/bash
+
+pod-logs:
+	kubectl logs -f frontend
+
+# Deployment
+
+deployment-create:
+	kubectl create -f deployment.yaml --save-config 
+
+deployment-get:
+	kubectl get deployments
+
+deployment-get-pods:
+	kubectl get pods -l name=frontend
+
+deployment-pod-shell:
+	kubectl exec -it $(pod) -- /bin/bash
+
+deployment-upgrade:
+	kubectl apply  -f deployment.yaml
+
+deployment-delete:
+	kubectl delete deployment frontend-deployment
+
+# Service
+
+service-create:
+	kubectl create -f service.yaml
+
+service-get:
+	kubectl get services
+
+service-get-ip:
+	kubectl get service frontend -o wide
+
+service-delete:
+	kubectl delete service frontend
+
+# Ingress
+
+ingress-apply:
+	kubectl apply -f ingress.yaml
+
+ingress-ip:
+	kubectl get ingress frontend-ingress

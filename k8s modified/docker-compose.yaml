@@ -1,0 +1,76 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:8.0
+    networks:
+      - network   
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: springuser
+      MYSQL_PASSWORD: ThePassword
+      MYSQL_DATABASE: cmpe172
+      MYSQL_ROOT_PASSWORD: cmpe172
+    restart: always
+  frontend:
+    build: frontend
+    #image: rheadash/frontend:v1
+    depends_on:
+    - users
+    networks:
+      - network
+    ports:
+      - 8080:8080
+    restart: always
+  users:
+    #image: rheadash/spring-users:v1
+    build: spring-users
+    depends_on:
+    - mysql    
+    volumes:
+      - /tmp:/tmp
+    networks:
+      - network   
+    ports:
+      - 8082:8082
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
+    restart: always 
+  payments:
+    #image: rheadash/spring-users:v1
+    build: spring-payments
+    depends_on:
+    - mysql    
+    volumes:
+      - /tmp:/tmp
+    networks:
+      - network   
+    ports:
+      - 8081:8081
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
+    restart: always      
+  # lb:
+  #   image: eeacms/haproxy
+  #   depends_on:
+  #   - b
+  #   ports:
+  #   - "80:5000"
+  #   - "1936:1936"
+  #   environment:
+  #     BACKENDS: "gumball"
+  #     BACKENDS_PORT: "8080"
+  #     DNS_ENABLED: "true"
+  #     COOKIES_ENABLED: "false"
+  #     LOG_LEVEL: "info"
+  #   networks:
+  #     - network
+
+volumes:
+  schemas:
+    external: false
+
+networks:
+  network:
+    driver: bridge
