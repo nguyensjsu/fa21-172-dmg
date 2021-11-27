@@ -28,21 +28,21 @@ services:
     environment:
       MYSQL_HOST: "mysql"
     restart: always     
-  lb:
-    image: eeacms/haproxy
-    depends_on:
-    - b
-    ports:
-    - "80:5000"
-    - "1936:1936"
-    environment:
-      BACKENDS: "gumball"
-      BACKENDS_PORT: "8080"
-      DNS_ENABLED: "true"
-      COOKIES_ENABLED: "false"
-      LOG_LEVEL: "info"
-    networks:
-      - network
+  #lb:
+    #image: eeacms/haproxy
+    #depends_on:
+    #- b
+    #ports:
+    #- "80:5000"
+    #- "1936:1936"
+    #environment:
+    #  BACKENDS: "gumball"
+    #  BACKENDS_PORT: "8080"
+    #  DNS_ENABLED: "true"
+    #  COOKIES_ENABLED: "false"
+    #  LOG_LEVEL: "info"
+    #networks:
+    #  - network
 
 volumes:
   schemas:
