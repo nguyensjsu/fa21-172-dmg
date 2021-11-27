@@ -77,3 +77,29 @@ Docker deployment below
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-24-d.JPG)
 
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-24-a.JPG)
+
+### November 25
+
+I implemented the login function to connect to the backend, and the app can now detect when a user correctly logs in, when the user enters an incorrect password, and whent he user enters an incorrect email (i.e. an email address not in the database).
+
+[My commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/31aca83dd43508ca850e7b404b8ee7dd3daf2c64)
+
+Login functionality below
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-25-a.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-25-b.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/nov-25-c.JPG)
+
+### November 26
+
+For the login, registration, and password reset functions, I added response pages so that when the user enters an incorrect email or an incorrect password, the website does not simply display an HTTP 404 or 500 error. 
+
+[Login commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/42b2561e811a8e4a50999e9f36cfd57c81dc9b4e)
+
+[Registration commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/0d0589ccf0a9c572b6b9113e8ca0506a593a71eb)
+
+[Pswd reset commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/578ac1db2e25a3627a22b4a1cdcb7455df67b457)
+
+[ADD PICTURES LATER]
