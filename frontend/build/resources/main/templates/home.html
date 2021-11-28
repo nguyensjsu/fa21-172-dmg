@@ -12,9 +12,16 @@
 
 <html>
 <head>
-    <title>Login</title>
+    <title>Home</title>
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+<!--&lt;!&ndash;    <link rel="stylesheet" th:href="@{/styles.css}" />&ndash;&gt;-->
+    <meta  charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Credit Cards</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<!--    <link rel="stylesheet" th:href="@{/styles.css}" />-->
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         body {
 
@@ -36,7 +43,7 @@
             left:80px;
             margin-top:110px;
             max-width: 400px;
-            max-height: 500px;
+            max-height: 450px;
             height: 700px;
             padding: 16px 20px;
             background-color: #f2f2f2;
@@ -62,8 +69,9 @@
             padding: 16px 20px;
             border: none;
             cursor: pointer;
-            width: 100%;
+            max-width: 320px;
             opacity: 0.9;
+            margin: 5px 0 22px 0;
         }
         .btn:hover {
             opacity: 1;
@@ -84,7 +92,7 @@
                  <div class="alert alert-info">You have been logged out.</div>
                 </div>
                 <div class="form-group">
-                 <label for="username">Email</label>: <input type="text"
+                 <label for="email">Email</label>: <input type="text"
                   id="email" name="email" class="form-control"
                   autofocus="autofocus" placeholder="email" th:field="*{email}"/>
                 </div>
@@ -96,23 +104,24 @@
                 <div class="form-group">
                  <div class="row">
                   <div class="col-sm-6 col-sm-offset-3">
-                   <input type="submit" name="login-submit" id="login-submit"
-                    class="form-control btn btn-primary" value="Log In" />
+                   <input  type="submit" name="login-submit" id="login-submit"
+                    class="btn" value="Log In" />
                   </div>
                  </div>
                 </div>
-                <div class="form-group">
-                 <span>New user? <a th:href="@{/registration}">Register
-                   here</a></span>
-                </div>
                </form>
 
-            <div >
-                Don't have an account? <button>Register</button><br/><br/>
-                Forgot password? <button>Reset Password</button><br/>
+            <div style="margin-top: 30px">
+                <span>New user?
+                    <a  th:href="@{/register}">Register here</a></span>
+                <br>
+                <br>
+
+                <span>Forgot password?
+                    <a  th:href="@{/passwordreset}">Reset here</a></span>
+                <br>
             </div>
         </div>
-
     </div>
 
 </body>
