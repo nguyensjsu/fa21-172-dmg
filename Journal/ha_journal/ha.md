@@ -300,3 +300,49 @@ css style and no mapping to image
 
 ![Project Board](images/restcontrol_creditcard_place_order.png)
 <p>&nbsp;</p>
+
+### Day : 11/28/2022
+
+* Merge Rhea branch to main
+* Fixing login and register navigation
+* Redirect to catalog page after logged in success
+
+![Project Board](images/redirect_to_catalog_after_loggedin.png)
+<p>&nbsp;</p>
+
+* Edit home view 
+* Register here and Reset here redirect to the correct views.
+
+![Project Board](images/home.png)
+<p>&nbsp;</p>
+
+* Login again navigation
+
+![Project Board](images/login_again.png)
+<p>&nbsp;</p>
+
+![Project Board](images/incorrect_pass.png)
+<p>&nbsp;</p>
+
+* register form and navigate to login page
+
+![Project Board](images/register.png)
+<p>&nbsp;</p>
+
+* register again navigation
+
+  ![Project Board](images/register_again.png)
+<p>&nbsp;</p>
+
+* register success navigation
+
+![Project Board](images/register_success.png)
+<p>&nbsp;</p>
+
+
+* Reset password
+
+![Project Board](images/reset_pass.png)
+<p>&nbsp;</p>
+
+

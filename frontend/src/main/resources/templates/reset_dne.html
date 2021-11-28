@@ -13,71 +13,19 @@
 <head>
     <title>Reset: password does not exist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<!--    <link rel="stylesheet" th:href="@{/styles.css}" />-->
     <style>
         body {
 
             font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .bg-img {
-            background-image: url("http://localhost:8080/images/bookstore.jpg");
-            min-height: 700px;
-            /* Center and scale the image nicely */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            position: relative;
-
-        }
-        .container {
-            position: absolute;
-            left:80px;
-            margin-top:110px;
-            max-width: 400px;
-            max-height: 500px;
-            height: 700px;
-            padding: 16px 20px;
-            background-color: #f2f2f2;
-
-        }
-        input[type=text], input[type=password] {
-            width: 90%;
-            padding: 16px 20px;
-            margin: 5px 0 22px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background: #f1f1f1;
-            resize: vertical;
-        }
-
-        input[type=text]:focus, input[type=password]:focus {
-            background-color: #ddd;
-            outline: none;
-        }
-        .btn {
-            background-color: #04AA6D;
-            color: white;
-            padding: 16px 20px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            opacity: 0.9;
-        }
-        .btn:hover {
-            opacity: 1;
         }
     </style>
 </head>
 
 <body>
 <div  th:insert="navigation :: navigation"></div>
-    <h1>That email address is not registered.</h1>
 
-    <p>Please try resetting your password again.</p>
-
-    <!-- <span><a th:href="@{/}">Login
-        here</a></span> -->
+<h3 style="margin-left: 100px">That email address is not registered</h3>
+<span style="margin-left: 100px">Please <a th:href="@{/passwordreset}">Reset </a> your password again</span>
 
 </body>
 </html>

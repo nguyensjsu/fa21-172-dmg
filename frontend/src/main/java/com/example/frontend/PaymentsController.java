@@ -35,9 +35,11 @@ public class PaymentsController {
 
     @Autowired
     private RestTemplate restTemp;
-
+    //run on Docker
     private String SPRING_PAYMENTS_URI = "http://payments:8081";
 
+    //run locally
+//        private String SPRING_PAYMENTS_URI = "http://localhost:8081";
     @Bean
     public RestTemplate restTemp() {
         return new RestTemplate();
