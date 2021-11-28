@@ -12,6 +12,8 @@ services:
       MYSQL_PASSWORD: ThePassword
       MYSQL_DATABASE: cmpe172
       MYSQL_ROOT_PASSWORD: cmpe172
+    volumes: 
+      - ./init:/docker-entrypoint-initdb.d
     restart: always
   frontend:
     build: frontend
@@ -35,7 +37,7 @@ services:
     ports:
       - 8082:8082
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/spring-users
     restart: always 
   payments:
     #image: rheadash/spring-users:v1
