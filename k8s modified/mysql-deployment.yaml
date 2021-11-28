@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yaml
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mysql
+  name: mysql
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      name: mysql
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: mysql
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          value: cmpe172
+        - name: MYSQL_PASSWORD
+          value: ThePassword
+        - name: MYSQL_ROOT_PASSWORD
+          value: cmpe172
+        - name: MYSQL_USER
+          value: springuser
+        image: mysql:8.0
+        name: mysql
+        ports:
+        - containerPort: 3306
+        resources: {}
+      restartPolicy: Always
+status: {}

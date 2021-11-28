@@ -10,18 +10,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.validation.Errors;
 import org.springframework.beans.factory.annotation.Value;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Example;
 
 
 @Slf4j
-@Controller
-//@EnableWebMvc
+@RestController
+@RequestMapping("/")
 public class BooksController {
 
     @Autowired
@@ -38,8 +45,8 @@ public class BooksController {
     // TODO: make userId match user
     private ShoppingCart cart = new ShoppingCart(userID);
 
-    public List<CartItem> getItems(ShoppingCart cartIn) {
-        List<CartItem> items = itemRepo.findByCart(cartIn);
+    public ArrayList<CartItem> getItems(ShoppingCart cartIn) {
+        ArrayList<CartItem> items = itemRepo.findByCart(cartIn);
         return items;
     }
 
@@ -54,6 +61,7 @@ public class BooksController {
         return subtotal;
     }
 
+    // Need to fix
     @GetMapping("/catalog")
     public String getHome( @ModelAttribute("command") BookCommand command,
                              Model model) {
@@ -67,39 +75,67 @@ public class BooksController {
         return "catalog";
     }
 
-    @PostMapping("/catalog")
-    public String postAction(@ModelAttribute("command") BookCommand command,
-                            @RequestParam(value="action", required=true) String action, 
-                            Model model) {
-        log.info( "Action: " + action);
 
-        Book cartBook = books.findByBookID(Long.valueOf(action));
+
+    @PostMapping("/catalog")
+    public ResponseEntity postAction(@RequestParam(value="bookID") String bookID,
+                             @RequestParam(value="qty") String qty) {
+        log.info( "Book ID: " + bookID);
+        log.info( "Quantity: " + qty);
+        log.info("Cart ID: " + cart.getCartId());
+
+        if(cartRepo.findByCartId(cart.getCartId()) == null) {
+            cartRepo.save(cart);
+        }
+
+        log.info("Cart ID after save: " + cart.getCartId());
+
+        Book cartBook = books.findByBookID(Long.valueOf(bookID));
         CartItem cartItem = new CartItem();
         cartItem.setCart(cart);
         cartItem.setBook(cartBook);
-        cartItem.setQuantity(Integer.valueOf(command.getQuantity(action)));
+        cartItem.setQuantity(Integer.valueOf(qty));
         itemRepo.save(cartItem);
 
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("status", HttpStatus.OK + "");
+        
+        System.out.println("Before response creation " + responseHeaders.toString());
+        ResponseEntity response = new ResponseEntity(responseHeaders, HttpStatus.OK);
+        System.out.println("after response creation " + response.getHeaders().toString());
+
         log.info("Cart Item: " + cartItem);
-        return "catalog";
+        return response;
     }
 
-    @GetMapping("/shoppingcart")
-    public String getCart( @ModelAttribute("shoppingcart") ShoppingCart cart,
+    
+    @GetMapping(value = "/shoppingcart")
+    public ResponseEntity<ArrayList<CartItem>> getCart( @ModelAttribute("shoppingcart") ShoppingCart cart,
                              Model model) {
         System.out.println("Accessing shopping cart");
         
-        List<CartItem> items = getItems(cartRepo.findByUserId(userID));
-        model.addAttribute("items", items);
+        ArrayList<CartItem> items = getItems(cartRepo.findByUserId(userID));
+        //model.addAttribute("items", items);
+
+        //ArrayList<Book> books = new ArrayList<Book>();
+        //ArrayList<Integer> qty = new ArrayList<Integer>();
+
+        //for (CartItem item : items) {
+        //    books.add(item.getBook());
+        //    qty.add(item.getQuantity());
+        //}
+        ResponseEntity<ArrayList<CartItem>> response = new ResponseEntity(items, HttpStatus.OK);
         
-        float subtotal = calculateSubtotal(cartRepo.findByUserId(userID));
-        model.addAttribute("subtotal", String.valueOf(subtotal));
+        //float subtotal = calculateSubtotal(cartRepo.findByUserId(userID));
+        //model.addAttribute("subtotal", String.valueOf(subtotal));
 
-        log.info("Cart Total: " + String.valueOf(subtotal));
+        //log.info("Cart Total: " + String.valueOf(subtotal));
+        log.info("Response: " + response.toString());
 
-        return "shoppingcart";
+        return response;
     }
 
+    // Need to Fix Below
     @PostMapping("/shoppingcart")
     public void postCart(@RequestParam(value="action", required=true) String action, 
                             Model model) {
