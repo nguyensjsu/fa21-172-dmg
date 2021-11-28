@@ -16,8 +16,8 @@ services:
   frontend:
     build: frontend
     #image: rheadash/frontend:v1
-    depends_on:
-    - users
+    #depends_on:
+    #- users
     networks:
       - network
     ports:
@@ -48,6 +48,20 @@ services:
       - network   
     ports:
       - 8081:8081
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
+    restart: always
+  books:
+    #image: rheadash/spring-users:v1
+    build: spring-books
+    depends_on:
+    - mysql    
+    volumes:
+      - /tmp:/tmp
+    networks:
+      - network   
+    ports:
+      - 8083:8083
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
     restart: always      

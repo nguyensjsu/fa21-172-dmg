@@ -1,4 +1,4 @@
-package com.example.springbooks;
+package com.example.frontend;
 
 import javax.persistence.Entity;
 import javax.persistence.CascadeType;
@@ -14,17 +14,17 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 
-@Entity
-@Table(name = "Cart_Item" )
+//@Entity
+//@Table(name = "Cart_Item" )
 @Data
 @RequiredArgsConstructor
 public class CartItem {
     private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long itemID;
     
-    @ManyToOne
+    //@ManyToOne
     private Book book;
 
-    @ManyToOne
+    //@ManyToOne
     private ShoppingCart cart;
 
     private Integer quantity;

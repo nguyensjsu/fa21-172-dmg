@@ -10,16 +10,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.validation.Errors;
+import org.springframework.beans.factory.annotation.Value;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Example;
 
 
 @Slf4j
-@Controller
-//@EnableWebMvc
+@RestController
+@RequestMapping("/")
 public class BooksController {
 
     @Autowired
@@ -36,26 +45,25 @@ public class BooksController {
     // TODO: make userId match user
     private ShoppingCart cart = new ShoppingCart(userID);
 
-    public List<CartItem> getItems(ShoppingCart cartIn) {
-        List<CartItem> items = itemRepo.findByCart(cartIn);
+    public ArrayList<CartItem> getItems(ShoppingCart cartIn) {
+        ArrayList<CartItem> items = itemRepo.findByCart(cartIn);
         return items;
     }
 
     public float calculateSubtotal(ShoppingCart cartIn) {
         List<CartItem> items = itemRepo.findByCart(cart);
-        //log.info("Shopping Cart: " + items);
-
         float subtotal = 0;
 
         for (CartItem item : items) {
-            subtotal += item.getBook().getPrice();
+            subtotal += item.getBook().getPrice() * item.getQuantity();
         }
 
         return subtotal;
     }
 
+    // Need to fix
     @GetMapping("/catalog")
-    public String getHome( @ModelAttribute("book") Book book,
+    public String getHome( @ModelAttribute("command") BookCommand command,
                              Model model) {
         System.out.println("Accessing catalog");
         
@@ -63,146 +71,90 @@ public class BooksController {
         if(cartRepo.findByCartId(cart.getCartId()) == null) {
             cartRepo.save(cart);
         }
-        
 
         return "catalog";
     }
 
+
+
     @PostMapping("/catalog")
-    public String postAction(@RequestParam(value="action", required=true) String action, 
-                            Model model) {
-        log.info( "Action: " + action);
-        
-        //Book findByISBN = new Book();
-        //findByISBN.setIsbn(action);
-        //Example<Book> findByISBNExample = Example.of(findByISBN);
-        //log.info("Book: " + findByISBNExample);
+    public ResponseEntity postAction(@RequestParam(value="bookID") String bookID,
+                             @RequestParam(value="qty") String qty) {
+        log.info( "Book ID: " + bookID);
+        log.info( "Quantity: " + qty);
+        log.info("Cart ID: " + cart.getCartId());
 
-        //log.info("Book: " + books.findByisbn(action));
+        if(cartRepo.findByCartId(cart.getCartId()) == null) {
+            cartRepo.save(cart);
+        }
 
-        Book cartBook = books.findByisbn(action);
+        log.info("Cart ID after save: " + cart.getCartId());
+
+        Book cartBook = books.findByBookID(Long.valueOf(bookID));
         CartItem cartItem = new CartItem();
         cartItem.setCart(cart);
         cartItem.setBook(cartBook);
-        cartItem.setQuantity(1);
+        cartItem.setQuantity(Integer.valueOf(qty));
         itemRepo.save(cartItem);
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("status", HttpStatus.OK + "");
         
-        //log.info("Cart Item: " + cartItem);
-        //log.info("Cart: " + cart);
+        System.out.println("Before response creation " + responseHeaders.toString());
+        ResponseEntity response = new ResponseEntity(responseHeaders, HttpStatus.OK);
+        System.out.println("after response creation " + response.getHeaders().toString());
 
-        log.info("Subtotal: " + calculateSubtotal(cart));
-        //log.info("User Cart: " + cartRepo.findByUserId(userID));
-
-        return "catalog";
+        log.info("Cart Item: " + cartItem);
+        return response;
     }
 
-    @GetMapping("/shoppingcart")
-    public String getCart( @ModelAttribute("shoppingcart") ShoppingCart cart,
+    
+    @GetMapping(value = "/shoppingcart")
+    public ResponseEntity<ArrayList<CartItem>> getCart( @ModelAttribute("shoppingcart") ShoppingCart cart,
                              Model model) {
         System.out.println("Accessing shopping cart");
         
-        List<CartItem> items = getItems(cartRepo.findByUserId(userID));
-        model.addAttribute("items", items);
+        ArrayList<CartItem> items = getItems(cartRepo.findByUserId(userID));
+        //model.addAttribute("items", items);
+
+        //ArrayList<Book> books = new ArrayList<Book>();
+        //ArrayList<Integer> qty = new ArrayList<Integer>();
+
+        //for (CartItem item : items) {
+        //    books.add(item.getBook());
+        //    qty.add(item.getQuantity());
+        //}
+        ResponseEntity<ArrayList<CartItem>> response = new ResponseEntity(items, HttpStatus.OK);
         
-        float subtotal = calculateSubtotal(cartRepo.findByUserId(userID));
-        model.addAttribute("subtotal", String.valueOf(subtotal));
+        //float subtotal = calculateSubtotal(cartRepo.findByUserId(userID));
+        //model.addAttribute("subtotal", String.valueOf(subtotal));
 
-        log.info("Cart Total: " + String.valueOf(subtotal));
+        //log.info("Cart Total: " + String.valueOf(subtotal));
+        log.info("Response: " + response.toString());
 
-        return "shoppingcart";
+        return response;
     }
 
+    // Need to Fix Below
     @PostMapping("/shoppingcart")
-    public String postCart(@RequestParam(value="action", required=true) String action, 
+    public void postCart(@RequestParam(value="action", required=true) String action, 
                             Model model) {
         
         log.info( "Action: " + action);
+        List<CartItem> items = getItems(cartRepo.findByUserId(userID));
+        
+        if(action.equals("checkout")) {
+            
+        } else if(action.equals("clear")) {
+            for (CartItem item : items) {
+                itemRepo.deleteById(item.getItemID());
+                log.info("Removed Item " + item.getItemID());
+            }
+        } else {
+            itemRepo.deleteById(Long.valueOf(action));
+        }
 
-        return "shoppingcart";
+        getCart(cart, model);
+        //return "shoppingcart";
     }
-
-    /*
-    @PostMapping
-    public String postAction(@Valid @ModelAttribute("command") GumballCommand command,  
-                            @RequestParam(value="action", required=true) String action,
-                            Errors errors, Model model, HttpServletRequest request) throws GumballServerError {
-    
-        log.info( "Action: " + action ) ;
-        log.info( "Command: " + command ) ;
-    
-        String inputHash = command.getHash();
-        String inputState = command.getState();
-        String inputTime = command.getTimestamp();
-
-        String inputText = inputState + "/" + inputTime;
-        String calculatedHash = hmac_sha256(key, inputText);
-        
-        log.info("Input Hash: " + inputHash);
-        log.info("Valid Hash: " + calculatedHash);
-        
-        
-        if(!inputHash.equals(calculatedHash)) {
-            throw new GumballServerError();
-        }
-
-        long time1 = Long.parseLong(inputTime);
-        long time2 = java.lang.System.currentTimeMillis();
-        long timeDiff = time2 - time1;
-
-        log.info("Input Timestamp: " + String.valueOf(time1));
-        log.info("Current Timestamp: " + String.valueOf(time2));
-        log.info("Timestamp Delta: " + String.valueOf(timeDiff));
-
-        
-        if((timeDiff / 1000) > 1000) {
-            throw new GumballServerError();
-        }
-
-        GumballMachine gm = new GumballMachine();
-        gm.setState(inputState);
-
-        if ( action.equals("Insert Quarter") ) {
-            gm.insertQuarter() ;
-        }
-
-        if ( action.equals("Turn Crank") ) {
-            command.setMessage("") ;
-            gm.turnCrank() ;
-        } 
-
-        String message = gm.toString();
-        String state = gm.getState().getClass().getName();
-        command.setState(state);
-
-        Long timeLong = java.lang.System.currentTimeMillis();
-        String timeString = String.valueOf(timeLong);
-        command.setTimestamp(timeString);
-
-        String text = state + "/" + timeString;
-        String hashString = hmac_sha256(key, text);
-        command.setHash(hashString);
-
-        String server_ip = "" ;
-        String host_name = "" ;
-        try { 
-            InetAddress ip = InetAddress.getLocalHost() ;
-            server_ip = ip.getHostAddress() ;
-            host_name = ip.getHostName() ;
-  
-        } catch (Exception e) { }
-  
-        model.addAttribute( "hash", hashString ) ;
-        model.addAttribute( "message", message ) ;
-        model.addAttribute( "server",  host_name + "/" + server_ip ) ;
-     
-
-        if (errors.hasErrors()) {
-            return "gumball";
-        }
-
-        return "gumball";
-    }
-    */
-
-
 }

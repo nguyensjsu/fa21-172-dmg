@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -22,11 +23,14 @@ import org.springframework.http.ResponseEntity;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.StringArraySerializer;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -40,6 +44,7 @@ public class UserController {
 	private RestTemplate restTemplate;
 
     private String SPRING_USERS_URI = "http://users:8082";
+    private String SPRING_BOOKS_URI = "http://books:8083";
 
     @Bean
     public RestTemplate restTemplate() {
@@ -229,11 +234,65 @@ public class UserController {
         }
         return map;
     }
-//    @GetMapping("/home")
-//    public String getRegister( @ModelAttribute("user") User user,
-//                               Model model) {
-//        System.out.println("Accessing register");
-//
-//        return "home";
-//    }
+
+
+// spring-books requests
+    @GetMapping("/catalog")
+    public String getCatalog (@ModelAttribute("command") BookCommand command,
+                            Model model) {
+        System.out.println("Accessing catalog");
+        return "catalog";
+    }
+
+    @PostMapping("/catalog")
+    public String addToCart(@ModelAttribute("command") BookCommand command, 
+                            @RequestParam(value="action", required=true) String action, 
+                            Model model, HttpServletRequest request) {
+        log.info( "Action: " + action);
+
+        ResponseEntity<BookCommand> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/catalog?bookID=" + action + "&qty=" + command.getQuantity(action), command, BookCommand.class);
+
+        return "catalog";
+    }
+
+    @GetMapping("/shoppingcart") 
+    public String getCart (@ModelAttribute("book") Book book, Model model) {
+        System.out.println("Accessing shopping cart");
+
+        ArrayList<CartItem> items = new ArrayList<CartItem>();
+
+        ResponseEntity<ArrayList> response = restTemplate.getForEntity(SPRING_BOOKS_URI + "/shoppingcart", ArrayList.class, items);
+        log.info("Frontend Response: " + response.toString());
+        
+        ObjectMapper mapper = new ObjectMapper();
+
+        for (Object item : response.getBody())
+            try{
+                //JsonNode jsonNode = mapper.readTree(response.getBody().toString());
+                //System.out.print("JSON: " + jsonNode);
+                CartItem newItem = new CartItem();
+
+                newItem = mapper.convertValue(item, CartItem.class);
+                items.add(newItem);
+            } catch ( Exception e ) { 
+                System.out.println( e ) ; 
+            }
+
+
+        
+        
+        float subtotal = 0;
+    
+        for (CartItem item : items) {
+            subtotal += item.getBook().getPrice() * item.getQuantity();
+        }
+
+        model.addAttribute("items", items);
+        model.addAttribute("subtotal", String.valueOf(subtotal));
+        
+
+        log.info("Frontend books: " + items.toString());
+        
+        return "shoppingcart";
+    }
 }

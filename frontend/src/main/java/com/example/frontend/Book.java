@@ -1,4 +1,4 @@
-package com.example.springbooks;
+package com.example.frontend;
 
 import javax.persistence.Entity;
 import javax.persistence.Column;
@@ -12,8 +12,8 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 
-@Entity
-@Table(name = "Books" )
+//@Entity
+//@Table(name = "Books" )
 @Data
 @RequiredArgsConstructor
 class Book {
