@@ -9,6 +9,7 @@ metadata:
     io.kompose.service: users
   name: users
 spec:
+  type: NodePort
   ports:
   - name: "8082"
     port: 8082
