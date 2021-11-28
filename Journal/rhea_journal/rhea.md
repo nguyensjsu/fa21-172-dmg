@@ -103,3 +103,13 @@ For the login, registration, and password reset functions, I added response page
 [Pswd reset commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/578ac1db2e25a3627a22b4a1cdcb7455df67b457)
 
 [ADD PICTURES LATER]
+
+### November 27
+
+deployed to gke
+
+## Week 4
+
+### November 28
+
+separate dbs for each service
