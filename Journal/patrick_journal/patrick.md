@@ -17,7 +17,7 @@ Finished ERD for spring-books database
 
 <img width="815" alt="spring-books-erd" src="https://user-images.githubusercontent.com/34024255/142553987-f475f84a-4a20-4dfa-b406-69eb1b1cf663.png">
 
-## Week 
+## Week 3
 
 ### November 23
 ![Inventory](https://user-images.githubusercontent.com/34024255/143806110-cf54f3e2-6498-43fd-93fe-ea29b7f4727b.png)
@@ -40,6 +40,9 @@ Added dockerfile/docker-compose.yaml and MySQL database initialization for sprin
 Allow catalog to pass ISBN to controller in spring-books
 
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/c2a9accb0b55e0372003530fb5d531af8cb4542c)
+
+![book_lookup](https://user-images.githubusercontent.com/34024255/143806727-e1d417eb-532c-4c79-997e-0d0976e248c9.png)
+
 
 Got shopping cart backend working, allowing multiple items to be added to cart and stored in database
 Shopping cart now functional with HTML page, updated HTML to have shopping cart link
