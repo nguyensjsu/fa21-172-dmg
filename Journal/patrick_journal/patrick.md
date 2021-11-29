@@ -33,3 +33,16 @@ Added `data.sql` file to initialize spring-books database
 Added dockerfile/docker-compose.yaml and MySQL database initialization for spring-books
 
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/2fe5c9793fb43d9c5fad81c92f92a3e4183da244)
+
+### November 24
+![cart](https://user-images.githubusercontent.com/34024255/143806404-c9f5aadb-6ed0-4ff7-be13-eb9aa5ab4c9e.png)
+
+Allow catalog to pass ISBN to controller in spring-books
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/c2a9accb0b55e0372003530fb5d531af8cb4542c)
+
+Got shopping cart backend working, allowing multiple items to be added to cart and stored in database
+Shopping cart now functional with HTML page, updated HTML to have shopping cart link
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/6b4119103c0a6c892e2c92f204cd314f979f9cad)
+
