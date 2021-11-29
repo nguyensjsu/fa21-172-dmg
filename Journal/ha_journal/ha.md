@@ -345,4 +345,19 @@ css style and no mapping to image
 ![Project Board](images/reset_pass.png)
 <p>&nbsp;</p>
 
+##### Spring RestTemplate
+* Reference from Rhea's finding: https://howtodoinjava.com/spring-boot2/resttemplate/spring-restful-client-resttemplate-example/
+* What is RestTemplate
+  * a simplified way with default behaviors for performing complex tasks
+  * RestTemplate class is a synchronous client and designed to call REST services
+  * Used to consume/access the REST APIs inside a Spring application
+  * Will be deprecated in the future versions
 
+##### Update balance after placed an order to db
+* Problem
+  * Cannot show place_order view
+  * ResponseEntity<PaymentsCommand> response = restTemp.getForEntity(SPRING_PAYMENTS_URI + "/place_order", command, PaymentsCommand.class);
+     method RestTemplate.<T#1>getForEntity(String,Class<T#1>,Object...) is not applicable
+
+![Project Board](images/getForEntity_Error.png)
+<p>&nbsp;</p>

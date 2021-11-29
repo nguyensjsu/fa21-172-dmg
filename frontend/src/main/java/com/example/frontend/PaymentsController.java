@@ -28,6 +28,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 @Slf4j
 @Controller
 @RequestMapping("/")
@@ -36,10 +41,10 @@ public class PaymentsController {
     @Autowired
     private RestTemplate restTemp;
     //run on Docker
-    private String SPRING_PAYMENTS_URI = "http://payments:8081";
+//    private String SPRING_PAYMENTS_URI = "http://payments:8081";
 
     //run locally
-//        private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+        private String SPRING_PAYMENTS_URI = "http://localhost:8081";
     @Bean
     public RestTemplate restTemp() {
         return new RestTemplate();
@@ -361,13 +366,46 @@ public class PaymentsController {
 //    public String postPlaceOrder(@Valid @ModelAttribute("command") PaymentsCommand command,
 //                             @RequestParam(value="action", required=true) String action,
 //                             Errors errors, Model model, HttpServletRequest request) {
-    @GetMapping("/place_order")
-    public String getPlaceOrder(@ModelAttribute("command") PaymentsCommand command,
-                        Model model) {
-        log.info("Command: " + command);
-        double new_balance  = balance - total;
+//    @GetMapping("/place_order")
+//    public String getPlaceOrder(@ModelAttribute("command") PaymentsCommand command,
+//                        Model model) {
+//        log.info("Command: " + command);
+//        double new_balance  = balance - total;
+//
+//
+//        model.addAttribute("firstname", fname);
+//        model.addAttribute("lastname", lname);
+//        model.addAttribute("address", address);
+//        model.addAttribute("city", city);
+//        model.addAttribute("state", state);
+//        model.addAttribute("zip", zip);
+//        model.addAttribute("phone", phone);
+//
+//        model.addAttribute("card_num", cardnum);
+//        model.addAttribute("card_balance", new_balance);
+//        model.addAttribute("exp", exp);
+//
+//        return "place_order";
+//    }
 
-
+    @PostMapping("/place_order")
+    public PaymentsCommand getPlaceOrder(@ModelAttribute("command") PaymentsCommand command, @RequestParam(value="action", required=true) String action,
+                                Model model, HttpServletRequest request) {
+        log.info("Accessing place order method " );
+//        double new_balance  = balance - total;
+//
+//        HttpEntity<PaymentsCommand> payEntity = new HttpEntity<PaymentsCommand>(command);
+        //ResponseEntity<PaymentsCommand> response = restTemp.getForEntity(SPRING_PAYMENTS_URI + "/place_order", command, PaymentsCommand.class);
+        PaymentsCommand payment = restTemp.getForObject(SPRING_PAYMENTS_URI + "/place_order", command, PaymentsCommand.class);
+//        if (response.getHeaders().getFirst("status").equals(HttpStatus.BAD_REQUEST + "Cannot process payment. Insufficient funds")) {
+//            String error = "Cannot process payment. Insufficient funds";
+//            model.addAttribute("error", error);
+//            return "place_order";
+//        }
+//        else if (response.getHeaders().getFirst("status").equals(HttpStatus.OK + "Thank you for your payment")) {
+//            balance = command.getTransactionAmount();
+//        }
+        balance = command.getTransactionAmount();
         model.addAttribute("firstname", fname);
         model.addAttribute("lastname", lname);
         model.addAttribute("address", address);
@@ -377,11 +415,19 @@ public class PaymentsController {
         model.addAttribute("phone", phone);
 
         model.addAttribute("card_num", cardnum);
-        model.addAttribute("card_balance", new_balance);
+        model.addAttribute("card_balance",balance);
         model.addAttribute("exp", exp);
+        return payment;
 
-        return "place_order";
     }
+
+
+
+
+
+
+
+
 
     @PostMapping("/creditcards")
     public PaymentsCommand postAction(@Valid @ModelAttribute("command") PaymentsCommand command,
