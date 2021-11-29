@@ -29,4 +29,5 @@ Added `data.sql` file to initialize spring-books database
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/cf4a9b10e9271c33cb93b733551e464b8501ad70)
 
 Added dockerfile/docker-compose.yaml and MySQL database initialization for spring-books
+
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/2fe5c9793fb43d9c5fad81c92f92a3e4183da244)
