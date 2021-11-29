@@ -61,7 +61,26 @@ public class BooksController {
         return subtotal;
     }
 
-    // Need to fix
+    class Ping {
+        private String test;
+
+        public Ping(String msg) {
+            this.test = msg;
+        }
+
+        public String getTest() {
+            return this.test;
+        }
+    }
+    
+    // For testing Kong 
+    @GetMapping("/ping")
+    public Ping ping() {
+        return new Ping("Spring-Books is alive!");
+    }
+
+    // May not be needed
+    // Frontend returns catalog.html
     @GetMapping("/catalog")
     public String getHome( @ModelAttribute("command") BookCommand command,
                              Model model) {
@@ -135,7 +154,7 @@ public class BooksController {
         return response;
     }
 
-    // Need to Fix Below
+    
     @PostMapping("/shoppingcart")
     public ResponseEntity<String> postCart(@RequestParam(value="action") String action, 
                             Model model) {

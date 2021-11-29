@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spring-books
+  namespace: default
+  labels:
+    name: spring-books
+spec:
+  containers:
+    - image: merrillpe/spring-books:v1
+      name: spring-books
+      ports:
+        - containerPort: 8083
+          name: http
+          protocol: TCP

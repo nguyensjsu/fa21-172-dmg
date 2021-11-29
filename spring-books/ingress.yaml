@@ -1,0 +1,10 @@
+apiVersion: "extensions/v1beta1"
+kind: "Ingress"
+metadata:
+  name: "spring-books-ingress"
+  namespace: "default"
+spec:
+  backend:
+    serviceName: "spring-books-service"
+    servicePort: 8083
+
