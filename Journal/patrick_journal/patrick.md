@@ -20,6 +20,8 @@ Finished ERD for spring-books database
 ## Week 
 
 ### November 23
+![Inventory](https://user-images.githubusercontent.com/34024255/143806110-cf54f3e2-6498-43fd-93fe-ea29b7f4727b.png)
+
 Added entities and repositories for Book, ShoppingCart, and CartItem classes
 
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/bd26593bed39d332dae21c2153a62d209b3e3f2d)
