@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mysql_init_sql
+  name: mysql-init-sql
 data:
   01.sql: |
     CREATE USER 'cmpe172'@'%' IDENTIFIED BY 'Abc@123$';
@@ -13,6 +13,7 @@ data:
     CREATE DATABASE IF NOT EXISTS `spring-books`;
     GRANT ALL ON `spring-books`.* TO 'cmpe172'@'%';
 
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -36,9 +37,9 @@ spec:
         name: mysql
     spec:
       volumes:
-        - name: mysql_init_sql
+        - name: mysql-init-sql
           configMap:
-            name: mysql_init_sql
+            name: mysql-init-sql
       containers:
       - env:
         - name: MYSQL_DATABASE
@@ -54,8 +55,8 @@ spec:
         ports:
         - containerPort: 3306
         volumeMounts:
-          - name: mysql_init_sql
-            mountPath: /docker-entrypoint-initdb.db
+          - name: mysql-init-sql
+            mountPath: /docker-entrypoint-initdb.d
         resources: {}
       restartPolicy: Always
 status: {}

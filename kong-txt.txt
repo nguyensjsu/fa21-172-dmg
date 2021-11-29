@@ -1,0 +1,13 @@
+curl http://users:8082/ping
+
+kubectl patch ingress users -p '{"metadata":{"annotations":{"konghq.com/override":"kong-strip-path"}}}'
+
+curl $KONG/users/ping
+
+kubectl patch service users -p '{"metadata":{"annotations":{"konghq.com/plugins":"kong-key-auth"}}}'
+
+export KONG=34.68.73.57
+echo $KONG
+
+curl $KONG/users/ping
+curl $KONG/users/ping --header 'apikey: Zkfokey2311'
