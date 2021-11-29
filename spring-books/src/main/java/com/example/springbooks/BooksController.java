@@ -137,11 +137,11 @@ public class BooksController {
 
     // Need to Fix Below
     @PostMapping("/shoppingcart")
-    public void postCart(@RequestParam(value="action", required=true) String action, 
+    public ResponseEntity<String> postCart(@RequestParam(value="action") String action, 
                             Model model) {
         
         log.info( "Action: " + action);
-        List<CartItem> items = getItems(cartRepo.findByUserId(userID));
+        List<CartItem> items = getItems(cartRepo.findByUserId(cart.getCartId()));
         
         if(action.equals("checkout")) {
             
@@ -154,7 +154,12 @@ public class BooksController {
             itemRepo.deleteById(Long.valueOf(action));
         }
 
-        getCart(cart, model);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("status", HttpStatus.OK + "");
+        
+        ResponseEntity<String> response = new ResponseEntity(responseHeaders, HttpStatus.OK);
+
+        return response;
         //return "shoppingcart";
     }
 }

@@ -263,7 +263,7 @@ public class UserController {
     }
 
     @GetMapping("/shoppingcart") 
-    public String getCart (@ModelAttribute("book") Book book, Model model) {
+    public String getCart (Model model) {
         System.out.println("Accessing shopping cart");
 
         ArrayList<CartItem> items = new ArrayList<CartItem>();
@@ -301,5 +301,26 @@ public class UserController {
         log.info("Frontend books: " + items.toString());
         
         return "shoppingcart";
+    }
+
+    @PostMapping("/shoppingcart")
+    public void postCart(@RequestParam(value="action", required=true) String action, 
+                        Model model) {
+        
+        log.info("Action: " + action);
+
+        ResponseEntity<String> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/shoppingcart?action=" + action, action, String.class);
+
+        getCart(model);
+        
+        /*
+        if(action.equals("checkout")) {
+            
+        } else if(action.equals("clear")) {
+            ResponseEntity<String> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/shoppingcart", action, String.class);
+        } else {
+            
+        }
+        */
     }
 }
