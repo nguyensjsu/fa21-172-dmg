@@ -106,10 +106,55 @@ For the login, registration, and password reset functions, I added response page
 
 ### November 27
 
-deployed to gke
+I deployed the frontend, database, and users (login/registration/password management) services to Kubernetes.
+
+<b>Images</b>
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/gke-a.JPG)
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/gke-b.JPG)
+
+<b>Task board</b>
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/gke-board.JPG)
+
+<b>Commits</b>
+
+[Commit 1](https://github.com/nguyensjsu/fa21-172-dmg/commit/26380c4285179fb46c62042bf83a145a88260508)
+
+[Commit 2](https://github.com/nguyensjsu/fa21-172-dmg/commit/b6e7c98eaec40c6aa8832ab39d8b009789f83dab)
 
 ## Week 4
 
 ### November 28
 
-separate dbs for each service
+I edited the docker-compose.yaml file and each service's application.properties files so that each service uses its own database. Previously, all services were creating tables in the same database. This ensures the separation of the microservices. 
+
+<b>Images </b>
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/separate-a.JPG)
+
+<b>Task board</b>
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/separate-board.JPG)
+
+<b>Commits</b>
+
+[Separate db commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/dded9efaedbe887932c3d78bf93eec140b3b5623)
+
+I connected the spring-users service to Kong API Gateway in GKE. 
+
+<b>Commits</b>
+
+[Kong commit 1](https://github.com/nguyensjsu/fa21-172-dmg/commit/0e216e914e7bdb6575c53e50ca53c8aa2e652b23)
+
+[Kong commit 2](https://github.com/nguyensjsu/fa21-172-dmg/commit/28aa4cdc1816a7fd59b816df65418e62e7cf312e)
+
+<b>Task board </b>
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/kong-board.JPG)
+
+<b>Images</b>
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/kong-a.JPG)
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/kong-b.JPG)
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/kong-c.JPG)

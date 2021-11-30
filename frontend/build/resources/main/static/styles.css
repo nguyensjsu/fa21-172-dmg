@@ -239,8 +239,8 @@
 
 /* FLIP ANIMATION */
 .container {
-  perspective: 1000px;
-} 
+  perspective: 600px;
+}
 
 .creditcard {
   width: 100%;
@@ -253,16 +253,27 @@
   transition: transform 0.6s, -webkit-transform 0.6s;
   cursor: pointer;
 }
-
-.creditcard .front,
-.creditcard .back {
+.back {
   position: absolute;
-  width: 100%;
-  max-width: 400px;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
+  right: 1px;
+  width: 50%;
+  max-width: 200px;
   color: #47525d;
+  margin: -15px;
+}
+
+.front
+ {
+  position: absolute;
+  left: 1px;
+  width: 50%;
+  max-width: 200px;
+  margin: -15px;
+  color: #47525d;
+  /*-webkit-backface-visibility: hidden;*/
+  /*backface-visibility: hidden;*/
+  /*-webkit-font-smoothing: antialiased;*/
+  /*color:  #616161;*/
 }
 
 .creditcard .back {

@@ -104,16 +104,18 @@
               <span th:text="| Total: ${total} |"> </span>
             </p>
         </div>
-<!--        <form name="form" th:object="${command}" method="post" action="">-->
+        <form name="form" th:object="${command}" method="post" action="/placeorder">
+            <input type="hidden" id="email" name="email" th:field="*{email}">
+<!--            <input type="hidden" id="ccnum" name="cardnumber"  th:field="*{cardnumber}">-->
         <div class="col-25">
-<!--            <button style="width: 200px" class="btn btn-primary" id="place_order" type="submit">-->
-<!--                Place your order-->
-<!--            </button>-->
-            <p>
-                <a  style="width: 200px" class="btn btn-primary"  th:href="@{/place_order}" role="button"> Place your order</a>
-            </p>
+            <button style="width: 200px" class="btn btn-primary" id="placeorder" type="submit" name="placeorder" value="placeorder">
+                Place your order
+            </button>
+<!--            <p>-->
+<!--                <a  style="width: 200px" class="btn btn-primary"  th:href="@{/place_order}" role="button"> Place your order</a>-->
+<!--            </p>-->
         </div>
-<!--        </form>-->
+        </form>
     </div>
 </div>
 
@@ -152,7 +154,7 @@
                    <tr>
                        <td th:text="|${card_num}|">Card Number</td>
                        <td th:text="|${card_balance}|">Balance</td>
-                       <td th:text="|${exp_month} ${exp_year} |">Expiration</td>
+                       <td th:text="|${exp} |">Expiration</td>
                    </tr>
                    </tbody>
                </table>
@@ -176,12 +178,15 @@
         </div>
 
         <div class="modal-body">
-            <form name="form" th:object="${command}" method="post" action="">
-                <div class="fcontainer">
-                    <div class="row">
+<!--            <form name="form" th:object="${command}" method="post" action="">-->
+<!--                <div class="fcontainer">-->
+            <div class="ccontainer">
+                <div class="container">
+                    <div class="row " >
                         <div class="col-50">
-                            <div class="container">
-                                <div class="creditcard">
+<!--                            <div class="container">-->
+
+<!--                                <div class="creditcard">-->
                                     <div class="front">
                                         <div id="ccsingle"></div>
                                         <svg version="1.1" id="cardfront" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -222,11 +227,12 @@
                                             <g id="Back"></g>
                                         </svg>
                                     </div>
-                                </div>
+<!--                                </div>-->
                             </div>
                         </div>
                         <div class="col-50">
-                            <div class="container">
+<!--                            <div class="container">-->
+
                                 <div class="back">
                                     <svg version="1.1" id="cardback" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                          x="0px" y="0px" viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;" xml:space="preserve">
@@ -252,13 +258,13 @@
                                     </svg>
                                 </div>
                             </div>
+
                         </div>
                     </div>
+<div>
 
-<!--                    -->
-<!--                    <div class="row">-->
-<!--                    <div class="col-75">-->
-<!--                    <div class="fcontainer">-->
+            <form name="form" th:object="${command}" method="post" action="">
+                <div class="fcontainer">
                         <div class="row">
                             <div class="col-50">
                                 <label for="fname"><i class="fa fa-user"></i> First Name</label>
@@ -356,11 +362,12 @@
                         </ul>
                     </div>
                 </div>
+
             </form>
         </div>
     </div>
 </div>
-
+</div>
 <script>
 
     var modal = document.getElementById("myModal");

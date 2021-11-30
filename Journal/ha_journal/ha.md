@@ -361,3 +361,18 @@ css style and no mapping to image
 
 ![Project Board](images/getForEntity_Error.png)
 <p>&nbsp;</p>
+
+* Solution
+  * Using hidden from to get email and send back to the backend to update the balance in db
+  
+* Initial Balance
+![Project Board](images/update_balance.png)
+<p>&nbsp;</p>
+
+* Balance after place an order
+![Project Board](images/inital_balance.png)
+<p>&nbsp;</p>
+
+* Updated balance in db
+![Project Board](images/update_balance_db.png)
+<p>&nbsp;</p>

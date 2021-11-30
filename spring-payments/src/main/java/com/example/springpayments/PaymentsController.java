@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
-//@Controller
+
 @RestController
 @RequestMapping("/")
 public class PaymentsController {
@@ -127,33 +127,6 @@ public class PaymentsController {
     int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
     String order_num = String.valueOf(random_int);
     double balance;
-//    String fname;
-//    String lname;
-//    String address;
-//    String city;
-//    String state;
-//    String zip;
-//    String cardnum;
-//    String exp;
-//    String phone;
-
-//    @PostMapping("/command")
-//    public PaymentsCommand postAction(@RequestBody final PaymentsCommand command,  @RequestParam(value="action", required=false) String action,
-//                                      Errors errors, Model model, HttpServletRequest request) {
-//        log.info( "Action: " + action ) ;
-//        log.info( "Command: " + command ) ;
-
-//    @GetMapping("/command")
-//    public PaymentsCommand getAction(@ModelAttribute("command") PaymentsCommand command,
-//                            Model model) {
-//        log.info("Command: " + command);
-//
-//
-//        model.addAttribute("order_number", order_num);
-//        model.addAttribute("total", total);
-//        return "creditcards";
-//    }
-
 
     @Getter
     @Setter
@@ -185,19 +158,21 @@ public class PaymentsController {
 
 
     @PostMapping("/command")
-    public ResponseEntity<PaymentsCommand> postAction(@RequestBody final PaymentsCommand command,
-                                                      @RequestParam(value = "action", required = false) String action, Errors errors, Model model, HttpServletRequest request) throws ServerException {
+    public PaymentsCommand postAction(@RequestBody final PaymentsCommand command,  @RequestParam(value="action", required=false) String action,
+                                      Errors errors, Model model, HttpServletRequest request) {
+//    public ResponseEntity<PaymentsCommand> postAction(@RequestBody final PaymentsCommand command,
+//                                                      @RequestParam(value = "action", required = false) String action, Errors errors, Model model, HttpServletRequest request) throws ServerException {
 
         HttpHeaders respHeaders = new HttpHeaders();
         log.info("Action: " + action);
         log.info("Command: " + command);
 
-
-        if (errors.hasErrors()) {
-            respHeaders.set("status", HttpStatus.INTERNAL_SERVER_ERROR + "");
-            ResponseEntity response = new ResponseEntity(respHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
+//
+//        if (errors.hasErrors()) {
+//            respHeaders.set("status", HttpStatus.INTERNAL_SERVER_ERROR + "");
+//            ResponseEntity response = new ResponseEntity(respHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+//            return response;
+//        }
 
         CyberSourceAPI.setHost(apiHost);
         CyberSourceAPI.setKey(merchantKeyId);
@@ -290,9 +265,9 @@ public class PaymentsController {
         if (hasErrors) {
             msgs.print();
             ArrayList<Message> error = msgs.getMessages();
-            respHeaders.set("status", String.valueOf(error));
-            ResponseEntity response = new ResponseEntity(respHeaders, HttpStatus.BAD_REQUEST);
-            return response;
+//            respHeaders.set("status", String.valueOf(error));
+//            ResponseEntity response = new ResponseEntity(respHeaders, HttpStatus.BAD_REQUEST);
+//            return response;
 //            model.addAttribute ( "messages", msgs.getMessages() ) ;
 //            return "creditcards" ;
         }
@@ -371,7 +346,7 @@ public class PaymentsController {
 //        city = command.getCity();
 //        state = command.getState();
 //        zip = command.getZip();
-//        balance = command.getTransactionAmount();
+        balance = command.getTransactionAmount();
 //        cardnum = command.getCardnumber();
 //        exp = command.getExpmonth();
 //        exp = exp + "/";
@@ -380,72 +355,33 @@ public class PaymentsController {
 
 
         }
-        repository.save(command);
-        respHeaders.set("status", HttpStatus.OK + "");
-        ResponseEntity response = new ResponseEntity(respHeaders, HttpStatus.OK);
-        return response;
+        ;
+//        respHeaders.set("status", HttpStatus.OK + "");
+//        ResponseEntity response = new ResponseEntity(respHeaders, HttpStatus.OK);
+        return repository.save(command);
 
 //        return repository.save(command);
     }
 
 
-//    @GetMapping("/place_order")
-//    public String getPlaceOrder(@ModelAttribute("command") PaymentsCommand command,
-//                        Model model) {
 
 
-//public PaymentsCommand postAction(@RequestBody final PaymentsCommand command,  @RequestParam(value="action", required=false) String action,
-//                         Errors errors, Model model, HttpServletRequest request) {
-//@GetMapping(value ="/place_order")
-//public ResponseEntity<PaymentsCommand> getPlaceOrder( @ModelAttribute("place_order")PaymentsCommand command, Model model){
-//
-//
-//        log.info("Accessing get place order method " );
-//        if(balance < total){
-//            System.out.println("Cannot process payment. Insufficient funds");
-//            String error = "Cannot process payment. Insufficient funds";
-//            ResponseEntity response = new ResponseEntity(error, HttpStatus.OK);
-//            return response;
-//        }
-//        double new_balance  = balance - total;
-//        command.setTransactionAmount(new_balance);
-//        repository.save(command);
-//        ResponseEntity response = new ResponseEntity(new_balance, HttpStatus.OK);
+    @PostMapping("/placeorder")
+    public PaymentsCommand placeOrder( @RequestBody PaymentsCommand command, @RequestParam(value="email") String email, @RequestParam(value="placeorder", required=false) String placeorder) throws ServerException{
+//   public ResponseEntity<String> placeOrder(@RequestParam(value="email") String email) throws ServerException{
 
-//        HttpHeaders respHeaders = new HttpHeaders();
-//        log.info("Accessing get place order method " );
-//        if(balance < total){
-//            System.out.println("Cannot process payment. Insufficient funds");
-//            respHeaders.set("status", HttpStatus.BAD_REQUEST + "Cannot process payment. Insufficient funds");
-//            ResponseEntity response = new ResponseEntity(respHeaders, HttpStatus.BAD_REQUEST);
-//            return response;
-//        }
-//        double new_balance  = balance - total;
-//        command.setTransactionAmount(new_balance);
-//        repository.save(command);
-//        respHeaders.set("status", HttpStatus.OK + "Thank you for your payment");
-//        ResponseEntity response = new ResponseEntity(respHeaders, HttpStatus.OK);
-//        return response;
-//    return response;
-//
-//    }
-
-    @PostMapping("/place_order")
-    public ResponseEntity<PaymentsCommand> postOrder(@RequestBody final PaymentsCommand command,
-                                                      @RequestParam(value = "action", required = false) String action, Errors errors, Model model, HttpServletRequest request) throws ServerException {
-
-        log.info("Accessing get place order method ");
+        HttpHeaders respHeaders = new HttpHeaders();
+        log.info("Accessing place order method ");
+        log.info("Action: " + placeorder);
+         command = repository.findByEmail(email);
         if (balance < total) {
             System.out.println("Cannot process payment. Insufficient funds");
-            String error = "Cannot process payment. Insufficient funds";
-            ResponseEntity response = new ResponseEntity(error, HttpStatus.OK);
-            return response;
+
         }
         double new_balance = balance - total;
         command.setTransactionAmount(new_balance);
-        repository.save(command);
-        ResponseEntity response = new ResponseEntity(new_balance, HttpStatus.OK);
-        return response;
+
+        return  repository.save(command);
 
     }
 }

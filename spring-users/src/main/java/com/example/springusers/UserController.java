@@ -38,8 +38,6 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
-    
-
     @GetMapping("/users")
     public ResponseEntity<User> getUser(@RequestParam(value = "email") String email, @RequestParam(value = "password") String password) throws ServerException {
         
