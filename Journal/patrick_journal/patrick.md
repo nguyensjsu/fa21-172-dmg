@@ -49,3 +49,20 @@ Shopping cart now functional with HTML page, updated HTML to have shopping cart 
 
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/6b4119103c0a6c892e2c92f204cd314f979f9cad)
 
+### November 25
+![unknown](https://user-images.githubusercontent.com/34024255/143996251-a6cfe44f-77ce-4750-9b9a-4f37e605e744.png)
+
+Added ability to delete items from shopping cart 
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/e82560e74830ca0f6aa41a53294637989e51aec6)
+
+![unknown](https://user-images.githubusercontent.com/34024255/143997169-22d9eedd-87e6-4d76-8eec-57fb08f36d9c.png)
+![unknown](https://user-images.githubusercontent.com/34024255/143997180-e2f48d3c-8e90-4769-989f-748809e484c9.png)
+
+Fixed POST request issue with shopping cart, allowed clearing of shopping cart
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/e62c96deef9f6568e9357fa81d09833332ec9163) 
+
+
+
+
