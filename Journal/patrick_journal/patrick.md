@@ -63,6 +63,15 @@ Fixed POST request issue with shopping cart, allowed clearing of shopping cart
 
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/e62c96deef9f6568e9357fa81d09833332ec9163) 
 
+### November 27
+
+![unknown](https://user-images.githubusercontent.com/34024255/144019935-f822b00d-a711-436b-bbed-3b7db7eb2f1b.png)
+
+Added quantity fields to catalog page that adds quantity of selected item
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/bf43c6d2137fc6ded5d7b836bcb27c1cdb55ae0e)
+
+![image](https://user-images.githubusercontent.com/34024255/144019765-2e205da2-7949-4d9e-bc6d-423a0df8950e.png)
 
 
 
