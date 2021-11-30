@@ -26,6 +26,7 @@ spec:
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://mysql:3306/cmpe172
         image: rheadash/spring-users:v1
+        imagePullPolicy: Always
         name: users
         ports:
         - containerPort: 8082
