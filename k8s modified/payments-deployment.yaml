@@ -23,6 +23,7 @@ spec:
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://mysql:3306/cmpe172
         image: rheadash/spring-payments:v1
+        imagePullPolicy: Always
         name: payments
         ports:
         - containerPort: 8081

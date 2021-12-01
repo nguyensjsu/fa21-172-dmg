@@ -36,6 +36,7 @@ docker-shell:
 	docker exec -it frontend bash 
 
 docker-push:
+	gradle build
 	docker login
 	docker build -t rheadash/frontend:v1 .
 	docker push rheadash/frontend:v1 

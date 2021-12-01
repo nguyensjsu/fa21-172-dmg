@@ -36,6 +36,7 @@ docker-shell:
 	docker exec -it spring-books bash 
 
 docker-push:
+	gradle build
 	docker login
 	docker build -t rheadash/spring-books:v1 -t rheadash/spring-books:v1 .
 	docker push rheadash/spring-books:v1 
