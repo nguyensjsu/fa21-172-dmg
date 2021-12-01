@@ -376,3 +376,24 @@ css style and no mapping to image
 * Updated balance in db
 ![Project Board](images/update_balance_db.png)
 <p>&nbsp;</p>
+
+### Day : 11/29/2022
+* Task done and pick up new task
+
+  ![Project Board](images/week4.png)
+<p>&nbsp;</p>
+
+
+### Day : 11/30/2022
+* Task done and change task
+![Project Board](images/getmapping_task.png)
+<p>&nbsp;</p>
+
+#### RabbitMQ 
+
+* Sending a payment confirmation to RabbitMQ for spring-books
+![Project Board](images/send_message_to_RabbitMQ.png)
+<p>&nbsp;</p>
+
+![Project Board](images/send_message_to_RabbitMQ_1.png)
+<p>&nbsp;</p>

@@ -72,7 +72,7 @@ public class PaymentsController {
     public String getAction(@ModelAttribute("command") PaymentsCommand command,
                             Model model) {
         log.info("Command: " + command);
-
+//        PaymentsCommand paym = restTemp.getForObject(SPRING_PAYMENTS_URI + "/creditcards", command, PaymentsCommand.class);
 
         model.addAttribute("order_number", order_num);
         model.addAttribute("total", total);

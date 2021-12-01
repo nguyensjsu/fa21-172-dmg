@@ -55,3 +55,19 @@
 
 * On rhea branch, frontend (html pages & controllers) separated from backend code. Rhea's service (login/registration) can communicate with frontend via REST API calls. Frontend and spring-users services can be deployed to Docker on separate ports and communicate. 
 * Main branch still has frontend and backend code together for now.
+
+
+## Week 4 : 11/29/2021
+* Discussion
+  * Spring-books send a request(contain cartId and subtotal) to spring-payments for payment processing.
+  * Spring-payments send a payment confirmation to RabbitMQ for spring-books to clear the shopping cart
+  * Need separated frontend portals and back office
+    * Back office support:
+      * Reset password 
+      * Refund - Optional
+      * Add more book to catalog - Optional
+
+* Team members pick up tasks
+
+![Project Board](images/project_board_week4.png)
+<p>&nbsp;</p>

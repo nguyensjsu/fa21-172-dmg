@@ -7,6 +7,7 @@ import java.rmi.ServerException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 import com.example.springcybersource.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,8 +33,17 @@ public class PaymentsController {
     @Autowired
     private PaymentsCommandRepository repository;
 
+
+    private RabbitMqSender rabbitMqSender;
+
+    @Autowired
+    public PaymentsController(RabbitMqSender rabbitMqSender) {
+        this.rabbitMqSender = rabbitMqSender;
+    }
+
     PaymentsController(PaymentsCommandRepository repository) {
         this.repository = repository;
+
     }
 
     private static boolean DEBUG = true;
@@ -121,12 +131,17 @@ public class PaymentsController {
 
     }
 
-    double total = 25;
+
     int min = 1239871;
     int max = 9999999;
     int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
     String order_num = String.valueOf(random_int);
     double balance;
+
+
+
+
+
 
     @Getter
     @Setter
@@ -155,6 +170,23 @@ public class PaymentsController {
             }
         }
     }
+
+
+    String cartId ;
+    double subtotal;
+    @GetMapping("/creditcards")
+    public String getAction(PaymentsCommand command) {
+        log.info("Command: " + command);
+         command.setCartId(" 014523");
+         command.setSubtotal(89.79);
+        cartId = command.getCartId();
+        subtotal = command.getSubtotal();
+        repository.save(command);
+        String smg =" Got shopping cart Info";
+        System.out.println(smg);
+       return  smg;
+    }
+
 
 
     @PostMapping("/command")
@@ -360,7 +392,7 @@ public class PaymentsController {
 //        ResponseEntity response = new ResponseEntity(respHeaders, HttpStatus.OK);
         return repository.save(command);
 
-//        return repository.save(command);
+
     }
 
 
@@ -374,16 +406,30 @@ public class PaymentsController {
         log.info("Accessing place order method ");
         log.info("Action: " + placeorder);
          command = repository.findByEmail(email);
-        if (balance < total) {
+        if (balance < subtotal) {
             System.out.println("Cannot process payment. Insufficient funds");
 
         }
-        double new_balance = balance - total;
+        double new_balance = balance - subtotal;
         command.setTransactionAmount(new_balance);
+
+        String msg = "Payment Successful for cartId:" + cartId + " and subtotal:" + subtotal ;
+        rabbitMqSender.send(msg);
+        String ms= "Message has been sent Successfully to paymentConfirmation queue";
+        System.out.println(ms);
 
         return  repository.save(command);
 
     }
+
+//    @PostMapping(value = "paymentConfirmation")
+//    public String publishUserDetails() {
+//        String msg = "Payment Successful for cartId:" + cartId + " and subtotal :" + subtotal ;
+//        rabbitMqSender.send(msg);
+//        String ms= "Message has been sent Successfully to paymentConfirmation queue";
+//        System.out.println(ms);
+//        return ms;
+//    }
 }
 
 
