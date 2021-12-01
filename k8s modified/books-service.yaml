@@ -6,14 +6,14 @@ metadata:
     kompose.version: 1.17.0 (a74acad)
   creationTimestamp: null
   labels:
-    io.kompose.service: payments
-  name: payments
+    io.kompose.service: books
+  name: books
 spec:
   ports:
-  - name: "8081"
-    port: 8081
-    targetPort: 8081
+  - name: "8083"
+    port: 8083
+    targetPort: 8083
   selector:
-    name: payments
+    name: books
 status:
   loadBalancer: {}
