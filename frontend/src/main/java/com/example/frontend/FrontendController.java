@@ -49,9 +49,9 @@ public class FrontendController {
     private String SPRING_BOOKS_URI = "http://books:8083";
 
     //run locally
-//    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
-//    private String SPRING_USERS_URI = "http://localhost:8082";
-//    private String SPRING_BOOKS_URI = "http://localhost:8083";
+    //private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+    //private String SPRING_USERS_URI = "http://localhost:8082";
+    //private String SPRING_BOOKS_URI = "http://localhost:8083";
 
 
 
@@ -154,7 +154,7 @@ public class FrontendController {
             Errors errors, Model model, HttpServletRequest request) 
             throws RestClientException, Exception {
         log.info(" User : " + user) ;
-        System.out.println("frontend/UserController.java");
+        System.out.println("frontend/FrontendController.java");
         System.out.println("Email = " + user.getEmail() + ", Password = " + user.getPassword());
         ResponseEntity<User> response = restTemplate.getForEntity(SPRING_USERS_URI + "/users?email=" + user.getEmail() + "&password=" + user.getPassword(), User.class, user);
         //User existingUser = restTemplate.getForObject(SPRING_USERS_URI + "/users/" + user.getEmail(), User.class, toMap(user));
@@ -170,6 +170,7 @@ public class FrontendController {
             return "login_inc";
         }
         else if (response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+            model.addAttribute("email", user.getEmail());
             return "login_suc";
         }
         else {
@@ -217,7 +218,8 @@ public class FrontendController {
     }
 
     @PostMapping("/passwordreset")
-    public String resetPassword(@Valid @ModelAttribute("user") User user,  
+    public String resetPassword(@Valid @ModelAttribute("user") User user, 
+        @ModelAttribute("command") UserCommand command, 
         @RequestParam(value="action", required=false) String action, 
         Errors errors, Model model, HttpServletRequest request) {
         
