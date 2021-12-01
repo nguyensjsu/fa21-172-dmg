@@ -91,7 +91,9 @@ Pushed fix to allow deletion of cart items and clearing of shopping cart from se
 
 ![unknown](https://cdn.discordapp.com/attachments/825238290797953027/914782789390446613/unknown.png)
 
+
 Implemented Kong API gateway with spring-books in Docker, tested using Postman
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/f5b914ba155f0b58ea1fe20fe68e0b033506c566)
 
 ![unknown](https://cdn.discordapp.com/attachments/825238290797953027/914776610840920074/unknown.png)
 * Pinging spring-books
