@@ -89,4 +89,18 @@ Pushed fix to allow deletion of cart items and clearing of shopping cart from se
 
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/f26f7621f51b68cd092441dc6930973291d56246)
 
+![unknown](https://cdn.discordapp.com/attachments/825238290797953027/914782789390446613/unknown.png)
 
+Implemented Kong API gateway with spring-books in Docker, tested using Postman
+
+![unknown](https://cdn.discordapp.com/attachments/825238290797953027/914776610840920074/unknown.png)
+* Pinging spring-books
+
+![unknown](https://cdn.discordapp.com/attachments/825238290797953027/914780674144231464/unknown.png)
+* Post request to add item to cart
+
+![unkown](https://cdn.discordapp.com/attachments/825238290797953027/914780751214542858/unknown.png)
+* Getting shopping cart information
+
+![unkown](https://cdn.discordapp.com/attachments/825238290797953027/914782245942865930/unknown.png)
+* Clearing cart
