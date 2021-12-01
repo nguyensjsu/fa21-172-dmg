@@ -1,0 +1,129 @@
+
+<!-- 
+    https://codepen.io/quinlo/pen/YONMEa 
+    https://www.w3schools.com/howto/howto_css_checkout_form.asp
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_labels
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_form_on_image
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>Back office</title>
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+<!--&lt;!&ndash;    <link rel="stylesheet" th:href="@{/styles.css}" />&ndash;&gt;-->
+    <meta  charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Credit Cards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .bg-img {
+            background-image: url("http://localhost:8080/images/bookstore.jpg");
+            min-height: 700px;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+
+        }
+        .container {
+            position: absolute;
+            left:80px;
+            margin-top:110px;
+            max-width: 400px;
+            max-height: 450px;
+            height: 700px;
+            padding: 16px 20px;
+            background-color: #f2f2f2;
+
+        }
+        input[type=text], input[type=password] {
+            width: 90%;
+            padding: 16px 20px;
+            margin: 5px 0 22px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #f1f1f1;
+            resize: vertical;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+        .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            max-width: 320px;
+            opacity: 0.9;
+            margin: 5px 0 22px 0;
+        }
+        .btn:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+<div  th:insert="navigation :: navigation"></div>
+    <div class="bg-img">
+        <div class="container" >
+            <form th:object="${user}" method="post">
+                <div th:if="${param.error}">
+                 <div class="alert alert-danger">Invalid email or
+                  password.</div>
+                </div>
+                <div th:if="${param.logout}">
+                 <div class="alert alert-info">You have been logged out.</div>
+                </div>
+                <div class="form-group">
+                 <label for="email">Email</label>: <input type="text"
+                  id="email" name="email" class="form-control"
+                  autofocus="autofocus" placeholder="email" th:field="*{email}"/>
+                </div>
+                <div class="form-group">
+                 <label for="password">Password</label>: <input type="password"
+                  id="password" name="password" class="form-control" th:field="*{password}"
+                  placeholder="Password" />
+                </div>
+                <div class="form-group">
+                 <div class="row">
+                  <div class="col-sm-6 col-sm-offset-3">
+                   <input  type="submit" name="login-submit" id="login-submit"
+                    class="btn" value="Log In" />
+                  </div>
+                 </div>
+                </div>
+               </form>
+
+            <div style="margin-top: 30px">
+                <span>New user?
+                    <a  th:href="@{/register}">Register here</a></span>
+                <br>
+                <br>
+
+                <span>Forgot password?
+                    <a  th:href="@{/passwordreset}">Reset here</a></span>
+                <br>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

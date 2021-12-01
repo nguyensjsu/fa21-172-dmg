@@ -1,0 +1,63 @@
+
+<!-- 
+    https://codepen.io/quinlo/pen/YONMEa 
+    https://www.w3schools.com/howto/howto_css_checkout_form.asp
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_labels
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+<div  th:insert="navigation :: navigation"></div>
+<div class="container">
+<div class="ccontainer">
+  <form name="form" th:object="${user}" method="post" action="">
+
+      <h1>Register</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+
+      <label for="firstName"><b>First Name</b></label>
+      <input type="text" placeholder="Enter first name" name="firstName" id="firstName" th:field="*{firstName}" required>
+
+      <label for="lastName"><b>Last Name</b></label>
+      <input type="text" placeholder="Enter last name" name="lastName" id="lastName" th:field="*{lastName}" required>
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" id="email" th:field="*{email}" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" th:field="*{password}"  required>
+  
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+  
+<!--      <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>-->
+      <button type="submit" class="btn">Register</button>
+
+
+  </form>
+<!--    this one need to be out of form-->
+    <div style=" margin-top: 30px" >
+        <p>Already have an account?
+        <span></span><a th:href="@{/}" role="button"> Login </a>here</span>
+        </p>
+    </div>
+</div>
+
+</div>
+<!--<p>Already have an account? <button>Login</button>.</p>-->
+
+
+</body>
+</html>
+

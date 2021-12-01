@@ -1,0 +1,44 @@
+
+<!-- 
+    https://codepen.io/quinlo/pen/YONMEa 
+    https://www.w3schools.com/howto/howto_css_checkout_form.asp
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_labels
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_form_on_image
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>Employee logged in!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!--    <link rel="stylesheet" th:href="@{/styles.css}" />-->
+    <style>
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+.container{
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+
+<body>
+    <p hidden th:text="${email}"></p>
+<div  th:insert="navigation :: navigation"></div>
+    <h1 style="margin-left: 100px">Success!</h1>
+<div class="container">
+     <p>You have logged in and can now access employee-only functions.</p>
+
+     <span>Authorize <a th:href="@{/passwordreset}">password resets</a> here</span>
+     <span>Authorize <a th:href="@{/refund}">refunds</a> here</span>
+</div>
+</body>
+</html>
+

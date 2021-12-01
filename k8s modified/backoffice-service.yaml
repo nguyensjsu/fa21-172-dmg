@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yaml
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: backoffice
+  name: backoffice
+spec:
+  ports:
+  - name: "8084"
+    port: 8084
+    targetPort: 8084
+  type: LoadBalancer
+  selector:
+    name: backoffice
+status:
+  loadBalancer: {}

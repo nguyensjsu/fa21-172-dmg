@@ -25,6 +25,16 @@ services:
     ports:
       - 8080:8080
     restart: always
+  backoffice:
+    build: backoffice
+    #image: rheadash/frontend:v1
+    #depends_on:
+    #- users
+    networks:
+      - network
+    ports:
+      - 8084:8084
+    restart: always
   users:
     #image: rheadash/spring-users:v1
     build: spring-users
@@ -37,7 +47,7 @@ services:
     ports:
       - 8082:8082
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/springusers
     restart: always 
   payments:
     #image: rheadash/spring-users:v1
@@ -51,7 +61,7 @@ services:
     ports:
       - 8081:8081
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/springpayments
     restart: always
   books:
     #image: rheadash/spring-users:v1
@@ -65,7 +75,7 @@ services:
     ports:
       - 8083:8083
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cmpe172
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/springbooks
     restart: always      
   # lb:
   #   image: eeacms/haproxy
