@@ -37,3 +37,15 @@
   * provides load balancing to ensure even or weighted distribution of incoming requests across the available instances of service.
 
 * If the system serves multiple types of clients, it may be appropriate to provide multiple API gateways based on those types
+
+#### RabbitMQ
+* Reference:https://springframework.guru/spring-boot-messaging-with-rabbitmq/
+* RabbitMQ is a common messaging broker which allows applications to connect and communicate
+* RabbitMQ is a common services in microservices-based systems to communicate asynchronously through messaging.
+  * to send and receive message for inter-service communication.
+* A message sender sends a message to the message broker.
+* The broker stores the message until a message receiver application connects and consume the message.
+* This image shows how messages are communicated in RabbitMQ
+
+![Project DMG](images/RabbitMQ.png)
+<p>&nbsp;</p>
