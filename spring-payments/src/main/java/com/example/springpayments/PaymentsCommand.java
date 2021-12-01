@@ -26,7 +26,10 @@ public class PaymentsCommand {
  private String expyear ;
  private String cvv ;
  private String email ;
+ private String cartId ;
+ private double subtotal;
 // private String notes ;
+
 
 // private String orderNumber;
  private double transactionAmount;

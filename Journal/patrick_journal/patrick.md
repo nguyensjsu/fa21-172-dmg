@@ -49,3 +49,60 @@ Shopping cart now functional with HTML page, updated HTML to have shopping cart 
 
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/6b4119103c0a6c892e2c92f204cd314f979f9cad)
 
+### November 25
+![unknown](https://user-images.githubusercontent.com/34024255/143996251-a6cfe44f-77ce-4750-9b9a-4f37e605e744.png)
+
+Added ability to delete items from shopping cart 
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/e82560e74830ca0f6aa41a53294637989e51aec6)
+
+![unknown](https://user-images.githubusercontent.com/34024255/143997169-22d9eedd-87e6-4d76-8eec-57fb08f36d9c.png)
+![unknown](https://user-images.githubusercontent.com/34024255/143997180-e2f48d3c-8e90-4769-989f-748809e484c9.png)
+
+Fixed POST request issue with shopping cart, allowed clearing of shopping cart
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/e62c96deef9f6568e9357fa81d09833332ec9163) 
+
+### November 27
+
+![unknown](https://user-images.githubusercontent.com/34024255/144019935-f822b00d-a711-436b-bbed-3b7db7eb2f1b.png)
+
+Added quantity fields to catalog page that adds quantity of selected item
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/bf43c6d2137fc6ded5d7b836bcb27c1cdb55ae0e)
+
+![image](https://user-images.githubusercontent.com/34024255/144019765-2e205da2-7949-4d9e-bc6d-423a0df8950e.png)
+
+## Week 4
+
+### Novemeber 28
+
+![unkown](https://cdn.discordapp.com/attachments/825238290797953027/914456887678881802/unknown.png)
+
+Separated frontend from backend of spring-books making `BookController.java` a rest controller in spring-books
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/d0a12d23619d02bf4d26c3595d8369158b5266ee)
+
+![unknown](https://cdn.discordapp.com/attachments/825238290797953027/914457155711668284/unknown.png)
+
+Pushed fix to allow deletion of cart items and clearing of shopping cart from separated frontend
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/f26f7621f51b68cd092441dc6930973291d56246)
+
+![unknown](https://cdn.discordapp.com/attachments/825238290797953027/914782789390446613/unknown.png)
+
+
+Implemented Kong API gateway with spring-books in Docker, tested using Postman
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/f5b914ba155f0b58ea1fe20fe68e0b033506c566)
+
+![unknown](https://cdn.discordapp.com/attachments/825238290797953027/914776610840920074/unknown.png)
+* Pinging spring-books
+
+![unknown](https://cdn.discordapp.com/attachments/825238290797953027/914780674144231464/unknown.png)
+* Post request to add item to cart
+
+![unkown](https://cdn.discordapp.com/attachments/825238290797953027/914780751214542858/unknown.png)
+* Getting shopping cart information
+
+![unkown](https://cdn.discordapp.com/attachments/825238290797953027/914782245942865930/unknown.png)
+* Clearing cart

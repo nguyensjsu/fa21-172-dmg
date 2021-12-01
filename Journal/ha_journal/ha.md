@@ -345,4 +345,55 @@ css style and no mapping to image
 ![Project Board](images/reset_pass.png)
 <p>&nbsp;</p>
 
+##### Spring RestTemplate
+* Reference from Rhea's finding: https://howtodoinjava.com/spring-boot2/resttemplate/spring-restful-client-resttemplate-example/
+* What is RestTemplate
+  * a simplified way with default behaviors for performing complex tasks
+  * RestTemplate class is a synchronous client and designed to call REST services
+  * Used to consume/access the REST APIs inside a Spring application
+  * Will be deprecated in the future versions
 
+##### Update balance after placed an order to db
+* Problem
+  * Cannot show place_order view
+  * ResponseEntity<PaymentsCommand> response = restTemp.getForEntity(SPRING_PAYMENTS_URI + "/place_order", command, PaymentsCommand.class);
+     method RestTemplate.<T#1>getForEntity(String,Class<T#1>,Object...) is not applicable
+
+![Project Board](images/getForEntity_Error.png)
+<p>&nbsp;</p>
+
+* Solution
+  * Using hidden from to get email and send back to the backend to update the balance in db
+  
+* Initial Balance
+![Project Board](images/update_balance.png)
+<p>&nbsp;</p>
+
+* Balance after place an order
+![Project Board](images/inital_balance.png)
+<p>&nbsp;</p>
+
+* Updated balance in db
+![Project Board](images/update_balance_db.png)
+<p>&nbsp;</p>
+
+### Day : 11/29/2022
+* Task done and pick up new task
+
+  ![Project Board](images/week4.png)
+<p>&nbsp;</p>
+
+
+### Day : 11/30/2022
+* Task done and change task
+![Project Board](images/getmapping_task.png)
+<p>&nbsp;</p>
+
+#### RabbitMQ 
+
+* Sending a payment confirmation to RabbitMQ for spring-books
+![Project Board](images/send_message_to_RabbitMQ.png)
+<p>&nbsp;</p>
+
+![Project Board](images/send_message_to_RabbitMQ_1.png)
+<p>&nbsp;</p>

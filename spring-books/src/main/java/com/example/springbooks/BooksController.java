@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.validation.Errors;
 import org.springframework.beans.factory.annotation.Value;
-
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,6 +33,14 @@ import org.springframework.data.domain.Example;
 public class BooksController {
 
     @Autowired
+	private RestTemplate restTemplate;
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
+    @Autowired
     private BooksRepository books;
 
     @Autowired 
@@ -40,6 +49,8 @@ public class BooksController {
     private CartItemRepository itemRepo;
 
     private Long userID = Long.valueOf(1);
+
+    private String SPRING_PAYMENTS_URI = "http://payments:8081";
 
     // Initialize shopping cart
     // TODO: make userId match user
@@ -163,7 +174,8 @@ public class BooksController {
         List<CartItem> items = getItems(cartRepo.findByUserId(cart.getCartId()));
         
         if(action.equals("checkout")) {
-            
+            String subtotal = String.valueOf(calculateSubtotal(cart));
+            ResponseEntity<String> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/shoppingcart?userID=" + userID.toString() + "&total=" + subtotal, action, String.class);
         } else if(action.equals("clear")) {
             for (CartItem item : items) {
                 itemRepo.deleteById(item.getItemID());
