@@ -158,3 +158,25 @@ I connected the spring-users service to Kong API Gateway in GKE.
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/kong-a.JPG)
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/kong-b.JPG)
 ![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/kong-c.JPG)
+
+### December 1
+
+I created a new service for the back office, which will handle employee-only functions such as password reset and refunds. I moved the password reset function from the frontend to the backoffice, and removed it from the frontend. I also updated each service's properties so that each one uses a different database and a different username+password to access the database, as well as the mysql Kubernetes deployment file.
+
+<b>Images </b>
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/dec-1-a.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/dec-1-b.JPG)
+
+<b>Task board</b>
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/images/dec-1-board.JPG)
+
+<b>Commits</b>
+
+[Commit 1](https://github.com/nguyensjsu/fa21-172-dmg/commit/530b959b6ba2b1166299e437348932cae19fe801)
+
+[Commit 2](https://github.com/nguyensjsu/fa21-172-dmg/commit/6f33ace8bf0967d01f0817430aeedc229d97569f)
+
+[Commit 3](https://github.com/nguyensjsu/fa21-172-dmg/commit/515613c1042b450a108aa642ef575a6cf1a99969)
