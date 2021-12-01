@@ -73,5 +73,18 @@ Added quantity fields to catalog page that adds quantity of selected item
 
 ![image](https://user-images.githubusercontent.com/34024255/144019765-2e205da2-7949-4d9e-bc6d-423a0df8950e.png)
 
+### Novemeber 28
+
+![unkown](https://cdn.discordapp.com/attachments/825238290797953027/914456887678881802/unknown.png)
+
+Separated frontend from backend of spring-books making `BookController.java` a rest controller in spring-books
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/d0a12d23619d02bf4d26c3595d8369158b5266ee)
+
+![unknown](https://cdn.discordapp.com/attachments/825238290797953027/914457155711668284/unknown.png)
+
+Pushed fix to allow deletion of cart items and clearing of shopping cart from separated frontend
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/f26f7621f51b68cd092441dc6930973291d56246)
 
 
