@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
@@ -12,28 +12,25 @@ spec:
   replicas: 1
   strategy:
     type: Recreate
+  selector:
+    matchLabels:
+      name: payments
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: payments
+        name: payments
     spec:
       containers:
       - env:
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:mysql://mysql:3306/cmpe172
+          value: jdbc:mysql://mysql:3306/springpayments
         image: rheadash/spring-payments:v1
         imagePullPolicy: Always
         name: payments
         ports:
         - containerPort: 8081
         resources: {}
-        volumeMounts:
-        - mountPath: /tmp
-          name: payments-claim0
       restartPolicy: Always
-      volumes:
-      - name: payments-claim0
-        persistentVolumeClaim:
-          claimName: payments-claim0
+      
 status: {}

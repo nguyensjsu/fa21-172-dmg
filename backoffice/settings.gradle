@@ -1,4 +1,4 @@
-rootProject.name = 'frontend'
+rootProject.name = 'backoffice'
 
 include 'spring-users'
 // include 'service-b'

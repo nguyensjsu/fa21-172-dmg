@@ -6,30 +6,30 @@ metadata:
     kompose.version: 1.17.0 (a74acad)
   creationTimestamp: null
   labels:
-    io.kompose.service: users
-  name: users
+    io.kompose.service: books
+  name: books
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      name: users
+      name: books
   template:
     metadata:
       creationTimestamp: null
       labels:
-        name: users
+        name: books
     spec:
       containers:
       - env:
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:mysql://mysql:3306/springusers
-        image: rheadash/spring-users:v1
+          value: jdbc:mysql://mysql:3306/springbooks
+        image: rheadash/spring-books:v1
         imagePullPolicy: Always
-        name: users
+        name: books
         ports:
-        - containerPort: 8082
+        - containerPort: 8083
         resources: {}
       restartPolicy: Always
 status: {}

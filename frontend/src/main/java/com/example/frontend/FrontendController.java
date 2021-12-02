@@ -80,7 +80,7 @@ public class FrontendController {
                            Model model) {
         System.out.println("Accessing home");
         System.out.println("frontend changed.");
-        System.out.println("latest edit 11/26/2021 11:44am");
+        System.out.println("latest edit 12/1/2021 9:20am");
         return "home";
     }
 
@@ -115,30 +115,38 @@ public class FrontendController {
         System.out.println("Accessing register_null");
         return "register_null";
     }
-    
-    @GetMapping("/reset_dne")
-    public String resetDNE(@ModelAttribute("user") User user,
-    Model model)  {
-        
-        System.out.println("Accessing reset_dne");
-        return "reset_dne";
-    }
 
-    @GetMapping("/reset_inc")
-    public String resetInc(@ModelAttribute("user") User user,
+    @GetMapping("/register_alr")
+    public String registerAlready(@ModelAttribute("user") User user,
     Model model)  {
         
-        System.out.println("Accessing reset_inc");
-        return "reset_inc";
+        System.out.println("Accessing register_alr");
+        return "register_alr";
     }
     
-    @GetMapping("/reset_suc")
-    public String registrationSuccessful(@ModelAttribute("user") User user,
-    Model model)  {
+    // @GetMapping("/reset_dne")
+    // public String resetDNE(@ModelAttribute("user") User user,
+    // Model model)  {
         
-        System.out.println("Accessing reset_suc");
-        return "reset_suc";
-    }
+    //     System.out.println("Accessing reset_dne");
+    //     return "reset_dne";
+    // }
+
+    // @GetMapping("/reset_inc")
+    // public String resetInc(@ModelAttribute("user") User user,
+    // Model model)  {
+        
+    //     System.out.println("Accessing reset_inc");
+    //     return "reset_inc";
+    // }
+    
+    // @GetMapping("/reset_suc")
+    // public String registrationSuccessful(@ModelAttribute("user") User user,
+    // Model model)  {
+        
+    //     System.out.println("Accessing reset_suc");
+    //     return "reset_suc";
+    // }
 
     @GetMapping("/register_suc")
     public String registerSucceeded(@ModelAttribute("user") User user,
@@ -210,45 +218,45 @@ public class FrontendController {
         }          
     }
 
-    @GetMapping("/passwordreset")
-    public String getResetPassword( @ModelAttribute("user") User user,
-                           Model model) {
-        System.out.println("Accessing password reset");
-        return "passwordreset";
-    }
+    // @GetMapping("/passwordreset")
+    // public String getResetPassword( @ModelAttribute("user") User user,
+    //                        Model model) {
+    //     System.out.println("Accessing password reset");
+    //     return "passwordreset";
+    // }
 
-    @PostMapping("/passwordreset")
-    public String resetPassword(@Valid @ModelAttribute("user") User user, 
-        @ModelAttribute("command") UserCommand command, 
-        @RequestParam(value="action", required=false) String action, 
-        Errors errors, Model model, HttpServletRequest request) {
+    // @PostMapping("/passwordreset")
+    // public String resetPassword(@Valid @ModelAttribute("user") User user, 
+    //     @ModelAttribute("command") UserCommand command, 
+    //     @RequestParam(value="action", required=false) String action, 
+    //     Errors errors, Model model, HttpServletRequest request) {
         
-        String uri_path = SPRING_USERS_URI + "/passwordreset?email=" + user.getEmail() + 
-        "&oldPassword=" + user.getPassword() + "&newPassword=" + user.getNewPassword();
-        System.out.println("frontend/passwordreset");
-       // System.out.println(uri_path);
-        HttpEntity<User> userEntity = new HttpEntity<User>(user);
-        ResponseEntity<User> response = restTemplate.postForEntity(
-            uri_path, 
-            user, User.class);
+    //     String uri_path = SPRING_USERS_URI + "/passwordreset?email=" + user.getEmail() + 
+    //     "&oldPassword=" + user.getPassword() + "&newPassword=" + user.getNewPassword();
+    //     System.out.println("frontend/passwordreset");
+    //    // System.out.println(uri_path);
+    //     HttpEntity<User> userEntity = new HttpEntity<User>(user);
+    //     ResponseEntity<User> response = restTemplate.postForEntity(
+    //         uri_path, 
+    //         user, User.class);
 
-        System.out.println("header = " + response.getHeaders().getFirst("status"));    
-        if (response.getHeaders().getFirst("status").equals(HttpStatus.INTERNAL_SERVER_ERROR + "")) {
-            System.out.println("Email address not registered.");
-            return "reset_dne";
-        }
+    //     System.out.println("header = " + response.getHeaders().getFirst("status"));    
+    //     if (response.getHeaders().getFirst("status").equals(HttpStatus.INTERNAL_SERVER_ERROR + "")) {
+    //         System.out.println("Email address not registered.");
+    //         return "reset_dne";
+    //     }
 
-        else if (response.getHeaders().getFirst("status").equals(HttpStatus.CONFLICT + "")) {
-            System.out.println("Email address not registered.");
-            return "reset_inc";
-        }
-        else if (response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
-            return "reset_suc";
-        }
-        else {
-            return "register";
-        }
-    }
+    //     else if (response.getHeaders().getFirst("status").equals(HttpStatus.CONFLICT + "")) {
+    //         System.out.println("Email address not registered.");
+    //         return "reset_inc";
+    //     }
+    //     else if (response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+    //         return "reset_suc";
+    //     }
+    //     else {
+    //         return "register";
+    //     }
+    // }
 
 
     /*
@@ -259,6 +267,7 @@ public class FrontendController {
     public String getCatalog (@ModelAttribute("command") BookCommand command,
                             Model model) {
         System.out.println("Accessing catalog");
+        System.out.println("Email: " + model.getAttribute("email"));
         return "catalog";
     }
 
