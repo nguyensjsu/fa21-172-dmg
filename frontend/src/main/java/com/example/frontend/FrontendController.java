@@ -44,14 +44,14 @@ public class FrontendController {
 	private RestTemplate restTemplate;
 
     //run on docker
-//    private String SPRING_PAYMENTS_URI = "http://payments:8081";
-//    private String SPRING_USERS_URI = "http://users:8082";
-//    private String SPRING_BOOKS_URI = "http://books:8083";
+    private String SPRING_PAYMENTS_URI = "http://payments:8081";
+    private String SPRING_USERS_URI = "http://users:8082";
+    private String SPRING_BOOKS_URI = "http://books:8083";
 
     //run locally
-    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
-    private String SPRING_USERS_URI = "http://localhost:8082";
-    private String SPRING_BOOKS_URI = "http://localhost:8083";
+    //private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+    //private String SPRING_USERS_URI = "http://localhost:8082";
+    //private String SPRING_BOOKS_URI = "http://localhost:8083";
 
 
 
@@ -102,9 +102,11 @@ public class FrontendController {
 
     @GetMapping("/login_suc")
     public String loginSuccessful(@ModelAttribute("user") User user,
-    Model model)  {
+                                @ModelAttribute("command") BookCommand command,
+                                Model model)  {
         
-        System.out.println("Accessing login_suc");
+        command.setEmail(user.getEmail());
+        System.out.println("Accessing login_suc " + command.getEmail());
         return "login_suc";
     }
 
@@ -156,14 +158,17 @@ public class FrontendController {
         return "register_suc";
     }
 
-    @PostMapping
+    @PostMapping("/")
     public String login(@Valid @ModelAttribute("user") User user,  
             @RequestParam(value="action", required=false) String action, 
+            @ModelAttribute("command") BookCommand command,
             Errors errors, Model model, HttpServletRequest request) 
             throws RestClientException, Exception {
+
         log.info(" User : " + user) ;
         System.out.println("frontend/FrontendController.java");
         System.out.println("Email = " + user.getEmail() + ", Password = " + user.getPassword());
+
         ResponseEntity<User> response = restTemplate.getForEntity(SPRING_USERS_URI + "/users?email=" + user.getEmail() + "&password=" + user.getPassword(), User.class, user);
         //User existingUser = restTemplate.getForObject(SPRING_USERS_URI + "/users/" + user.getEmail(), User.class, toMap(user));
         //User existingUser = repository.findByEmail(user.getEmail());
@@ -171,21 +176,29 @@ public class FrontendController {
         System.out.println("response " + response.toString());
         System.out.println("Headers " + response.getHeaders());
         if (response.getHeaders().getFirst("status").equals(HttpStatus.BAD_REQUEST + "")) {
-            return "login_dne";
+            //return "login_dne";
+            return userDoesNotExist(user, model);
         }
 
         else if (response.getHeaders().getFirst("status").equals(HttpStatus.UNAUTHORIZED + "")) {
-            return "login_inc";
+            //return "login_inc";
+            return incorrectPassword(user, model);
         }
         else if (response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
             model.addAttribute("email", user.getEmail());
-            return "login_suc";
+            //log.info("Login email: ", command.getEmail());
+
+            
+
+            return loginSuccessful(user, command, model);
+            //return "login_suc";
         }
         else {
-            return "home";
+            //return "home";
+            return getHome(user, model);
         }
     }
-
+    
     @GetMapping("/register")
     public String getRegister( @ModelAttribute("user") User user,
                            Model model) {
@@ -264,10 +277,13 @@ public class FrontendController {
     */
 
     @GetMapping("/catalog")
-    public String getCatalog (@ModelAttribute("command") BookCommand command,
+    public String getCatalog (@ModelAttribute("user") User user,
+                            @RequestParam(value="email") String email,
+                            @ModelAttribute("command") BookCommand command,
                             Model model) {
+
         System.out.println("Accessing catalog");
-        System.out.println("Email: " + model.getAttribute("email"));
+        System.out.println("Email: " + email);
         return "catalog";
     }
 

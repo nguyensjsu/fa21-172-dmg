@@ -30,13 +30,17 @@
 </head>
 
 <body>
-    <p hidden th:text="${email}"></p>
+<!--<form name="form" th:object="${command}" method="post" action="">
+    <input type="hidden" name="email" id="email" th:field="*{email}" />-->
+
+<p hidden th:text=${email}></p>
 <div  th:insert="navigation :: navigation"></div>
     <h1 style="margin-left: 100px">Success!</h1>
 <div class="container">
      <p>You have logged in.</p>
-     <span>Find your favorite <a th:href="@{/catalog}">Books</a> here</span>
+     <span>Find your favorite <a th:href="@{/catalog?email={user}(user=${email})}">Books</a> here</span>
 </div>
+</form>
 </body>
 </html>
 

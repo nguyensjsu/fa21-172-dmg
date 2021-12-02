@@ -26,6 +26,7 @@ class BookCommand {
     //private @Id @GeneratedValue Long id;
 
     //transient private String action ;
+    private String email;
     private String quantity1 ;
     private String quantity2 ;
     private String quantity3;
