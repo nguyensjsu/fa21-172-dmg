@@ -267,6 +267,7 @@ public class FrontendController {
     public String getCatalog (@ModelAttribute("command") BookCommand command,
                             Model model) {
         System.out.println("Accessing catalog");
+        System.out.println("Email: " + model.getAttribute("email"));
         return "catalog";
     }
 
