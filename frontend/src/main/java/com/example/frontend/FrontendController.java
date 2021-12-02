@@ -105,8 +105,8 @@ public class FrontendController {
                                 @ModelAttribute("command") BookCommand command,
                                 Model model)  {
         
-        command.setEmail(user.getEmail());
-        System.out.println("Accessing login_suc " + command.getEmail());
+        command.setUser(user.getEmail());
+        //System.out.println("Accessing login_suc " + command.getEmail());
         return "login_suc";
     }
 
@@ -283,6 +283,8 @@ public class FrontendController {
 
         System.out.println("Accessing catalog");
         System.out.println("Email: " + email);
+        //command.setEmail("");
+        command.setUser(email);
         return "catalog";
     }
 
@@ -291,8 +293,11 @@ public class FrontendController {
                             @RequestParam(value="action", required=true) String action, 
                             Model model, HttpServletRequest request) {
         log.info( "Action: " + action);
+        System.out.println("Command: " + command.getUser());
+        String email = command.getUser();
+        System.out.println(email);
 
-        ResponseEntity<BookCommand> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/catalog?bookID=" + action + "&qty=" + command.getQuantity(action), command, BookCommand.class);
+        ResponseEntity<BookCommand> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/catalog?bookID=" + action + "&qty=" + command.getQuantity(action) + "&email=" + email, command, BookCommand.class);
 
         return getCatalog(email, command, model);
     }

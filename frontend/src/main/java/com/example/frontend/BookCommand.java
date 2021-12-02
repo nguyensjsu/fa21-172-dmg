@@ -26,7 +26,7 @@ class BookCommand {
     //private @Id @GeneratedValue Long id;
 
     //transient private String action ;
-    private String email;
+    private String user;
     private String quantity1 ;
     private String quantity2 ;
     private String quantity3;
@@ -39,6 +39,7 @@ class BookCommand {
     private String quantity10;
 
     public BookCommand () {
+        this.user = "";
         this.quantity1 = String.valueOf(1);
         this.quantity2 = String.valueOf(1);
         this.quantity3 = String.valueOf(1);
