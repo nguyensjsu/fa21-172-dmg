@@ -174,17 +174,34 @@ public class PaymentsController {
 
     String cartId ;
     double subtotal;
+//    @GetMapping("/creditcards")
+//    public String getAction(PaymentsCommand command) {
+//        log.info("Command: " + command);
+//         command.setCartId(" 014523");
+//         command.setSubtotal(89.79);
+//        cartId = command.getCartId();
+//        subtotal = command.getSubtotal();
+//        repository.save(command);
+//        String smg =" Got shopping cart Info";
+//        System.out.println(smg);
+//       return  smg;
+//    }
+
+
     @GetMapping("/creditcards")
-    public String getAction(PaymentsCommand command) {
-        log.info("Command: " + command);
-         command.setCartId(" 014523");
-         command.setSubtotal(89.79);
-        cartId = command.getCartId();
-        subtotal = command.getSubtotal();
+    public ResponseEntity<PaymentsCommand> getCard() {
+        System.out.println("Assessing get creditcards");
+        PaymentsCommand command = new PaymentsCommand();
+
+        command.setCartId(" 014523");
+        command.setSubtotal(89.79);
+//        cartId = command.getCartId();
+//        subtotal = command.getSubtotal();
         repository.save(command);
         String smg =" Got shopping cart Info";
         System.out.println(smg);
-       return  smg;
+        log.info("Command: " + command);
+        return  ResponseEntity.accepted().body(command);
     }
 
 

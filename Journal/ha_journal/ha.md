@@ -391,9 +391,101 @@ css style and no mapping to image
 
 #### RabbitMQ 
 
+* Create a docker network: docker network create --driver bridge springdemo
+* Run RabbitMQ: docker run --name rabbitmq --network springdemo -p 8088:15672 -p 4369:4369 \
+  -p 5672:5672 -d rabbitmq:3-management
+* Create a sender message in spring-payments: RabbitMqSender.java
+
 * Sending a payment confirmation to RabbitMQ for spring-books
 ![Project Board](images/send_message_to_RabbitMQ.png)
 <p>&nbsp;</p>
 
 ![Project Board](images/send_message_to_RabbitMQ_1.png)
 <p>&nbsp;</p>
+
+
+
+### Day : 12/1/2022
+
+##### REST APIs
+* Reference: https://idratherbewriting.com/learnapidoc/docapis_introtoapis.html
+* REST APIs consist of requests to and responses from a web server.
+* A web service is a web-based application that provides resources in a format consumable by other computers
+  * Web services are basically request-and-response interactions between clients and servers
+    * A computer- the client- requests a resource
+    * The web service- the API server- responds to the request
+* All APIs that use HTTP protocol as the transport format for request and responds are considered web services
+* Each programming language that makes the request will have a different way of submitting a web request and parsing the response in its language.
+* REST is a style not a standard protocol
+* Most REST APIs use JSON as the default message format.
+* REST focus on resources and way to access the resources through URLs rather than actions
+* The endpoint shows the whole path to the resource
+  * A URL usually contains three parts:
+    * The **base path** or base URL or host. EX: http://localhost:8080
+    * The **endpoint** refers to the end path of the endpoint: EX: http://localhost:8080/home
+      * /home is the endpoint
+    * The **query parameters** for the endpoint.
+      * The query parameters specify more details about the representation of the resource you want to see
+      * EX: http://localhost:8080/home{home id }
+  * What is transferred back from the server to the client is the representation of the resource
+* Usually, you use HTTP protocol-http://- to submit a GET request to the resource available on a web server.
+  * The response from the server sends the content at this resource back to you using HTTP.
+  * Your browser is just a client that makes the message response look pretty.
+* REST APIs are stateless and cacheable
+  * Cacheable: If the browser's cache already contains the information asked for in the request,
+    the browser can just return the information from the cache instead of getting the resource from the server again.
+
+<p>&nbsp;</p>
+* Sample requests through Postman: https://idratherbewriting.com/learnapidoc/docapis_postman.html
+*  For example, if an endpoint looks like this: https://api.openweathermap.org/data/2.5/weather?zip=95050&units=imperial&appid=APIKEY 
+    * Query string parameters appear after the question mark ? symbol and are separated by ampersands &.
+    * The order of query string parameters doesn't matter.
+<p>&nbsp;</p>
+
+* JSON is the most common format for responses from REST APIs and
+  fits much better into the existing JavaScript, HTML, css when parsing through the response
+* JSON has two types of basic structures: objects and arrays
+  * Object is a collection of key-value pairs, surrounded by curly braces
+  * Array is a list of items, surrounded by brackets
+
+##### Getting a specific property from a JSON response object
+* Select the exact property you want and pull that out through dot notation
+  * The dot(.) after the name of the JSON payload
+
+* Type of parameters:
+    * header parameters: included in the request header, usually related to authorization
+    * path parameters: parameters within the path of the endpoint, before the query string(?)
+      * Usually set off with curly braces, colon or a different syntax
+    * query string parameters: parameters in the query string of the endpoint, after the (?)
+    * body parameters
+  
+* Request bodies
+  * With POST requests-where you're creating something- you submit a JSON object in request body
+
+  
+------------------------------------------
+* Using Spring ResponseEntity to manipulate the HTTP Response
+* Reference: https://www.baeldung.com/spring-response-entity
+* ResponseEntity represents the whole HTTP response: status code, headers, and body.
+  * We can use ResponseEntity to configure the HTTP response
+
+--------------------------------
+* Deploy the app to Docker
+* Pull mysql image
+  * docker run -d --name mysql -td -p 3306:3306 -e MYSQL_ROOT_PASSWORD=cmpe172 mysql:8.0 
+* Access mysql container
+  * docker exec -it mysql bash
+  * mysql --password
+  * cmpe172
+* Create three databases:
+  * create database springusers; 
+  * create database springbooks;
+  * create database springpayments;
+* Create user:
+  * create user 'springuser'@'%' identified by 'ThePassword'; 
+* Gives all privileges
+    * grant all on springusers.* to 'springuser'@'%';
+    * grant all on springbooks.* to 'springuser'@'%';
+    * grant all on springpayments.* to 'springuser'@'%';
+
+

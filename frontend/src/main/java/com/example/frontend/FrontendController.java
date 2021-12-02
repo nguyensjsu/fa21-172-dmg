@@ -44,14 +44,14 @@ public class FrontendController {
 	private RestTemplate restTemplate;
 
     //run on docker
-    private String SPRING_PAYMENTS_URI = "http://payments:8081";
-    private String SPRING_USERS_URI = "http://users:8082";
-    private String SPRING_BOOKS_URI = "http://books:8083";
+//    private String SPRING_PAYMENTS_URI = "http://payments:8081";
+//    private String SPRING_USERS_URI = "http://users:8082";
+//    private String SPRING_BOOKS_URI = "http://books:8083";
 
     //run locally
-    //private String SPRING_PAYMENTS_URI = "http://localhost:8081";
-    //private String SPRING_USERS_URI = "http://localhost:8082";
-    //private String SPRING_BOOKS_URI = "http://localhost:8083";
+    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+    private String SPRING_USERS_URI = "http://localhost:8082";
+    private String SPRING_BOOKS_URI = "http://localhost:8083";
 
 
 
@@ -336,7 +336,7 @@ public class FrontendController {
     Spring Payments
     */
 
-    double total = 25;
+    double subtotal = 0;
     int min = 1239871 ;
     int max = 9999999 ;
     int random_int = (int) Math.floor(Math.random()*(max-min+1)+min) ;
@@ -352,16 +352,24 @@ public class FrontendController {
     String exp;
     String phone;
     String email;
+    String userId;
 
 
     @GetMapping("/creditcards")
     public String getAction(@ModelAttribute("command") PaymentsCommand command,
                             Model model) {
-        log.info("Command: " + command);
-//        PaymentsCommand paym = restTemp.getForObject(SPRING_PAYMENTS_URI + "/creditcards", command, PaymentsCommand.class);
+        System.out.println("Accessing get request for creditcards");
 
-        model.addAttribute("order_number", order_num);
-        model.addAttribute("total", total);
+        ResponseEntity<PaymentsCommand> response = restTemplate.getForEntity(SPRING_PAYMENTS_URI + "/creditcards", PaymentsCommand.class);
+        log.info("Frontend Response: " + response.toString());
+
+        command = response.getBody();
+         userId= command.getCartId();
+         subtotal = command.getSubtotal();
+
+
+        model.addAttribute("order_number", userId);
+        model.addAttribute("total", subtotal);
         model.addAttribute("fname", fname);
         model.addAttribute("lname", lname);
         model.addAttribute("address", address);
@@ -374,6 +382,8 @@ public class FrontendController {
         model.addAttribute("card_balance",balance);
         model.addAttribute("exp", exp);
         model.addAttribute("email", email);
+
+        log.info("Command: " + command);
         return "creditcards";
     }
     @PostMapping("/creditcards")
