@@ -277,8 +277,7 @@ public class FrontendController {
     */
 
     @GetMapping("/catalog")
-    public String getCatalog (@ModelAttribute("user") User user,
-                            @RequestParam(value="email") String email,
+    public String getCatalog (@RequestParam(value="email") String email,
                             @ModelAttribute("command") BookCommand command,
                             Model model) {
 
@@ -295,7 +294,7 @@ public class FrontendController {
 
         ResponseEntity<BookCommand> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/catalog?bookID=" + action + "&qty=" + command.getQuantity(action), command, BookCommand.class);
 
-        return "catalog";
+        return getCatalog(email, command, model);
     }
 
     @GetMapping("/shoppingcart") 
@@ -435,7 +434,7 @@ public class FrontendController {
         email = command.getEmail();
 
         model.addAttribute("order_number", order_num);
-        model.addAttribute("total", total);
+        model.addAttribute("total", subtotal);
         model.addAttribute("fname", command.getFirstname() );
         model.addAttribute("lname", command.getLastname());
         model.addAttribute("address", command.getAddress() );
@@ -515,7 +514,7 @@ public class FrontendController {
 //        ResponseEntity<PaymentsCommand> res = restTemp.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command, PaymentsCommand.class);
 
         PaymentsCommand pay = restTemplate.postForObject(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command, PaymentsCommand.class);
-        balance = balance - total;
+        balance = balance - subtotal;
         model.addAttribute("firstname", fname);
         model.addAttribute("lastname", lname);
         model.addAttribute("address", address);

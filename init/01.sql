@@ -11,4 +11,4 @@ GRANT ALL PRIVILEGES ON `springusers`.* TO 'cmpe172'@'%';
 GRANT ALL PRIVILEGES ON `springusers`.* TO 'springuser'@'%';
 CREATE DATABASE IF NOT EXISTS `springbooks`;
 GRANT ALL PRIVILEGES ON `springbooks`.* TO 'cmpe172'@'%';
-GRANT ALL PRIVILEGES ON `springusers`.* TO 'springuser'@'%';
+GRANT ALL PRIVILEGES ON `springbooks`.* TO 'springbooks'@'%';
