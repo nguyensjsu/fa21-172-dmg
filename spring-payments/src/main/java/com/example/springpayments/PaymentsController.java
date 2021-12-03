@@ -137,6 +137,11 @@ public class PaymentsController {
     int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
     String order_num = String.valueOf(random_int);
     double balance;
+    String userId ;
+    double total;
+    String tempemail;
+    String temptotal;
+
 
 
 
@@ -172,8 +177,17 @@ public class PaymentsController {
     }
 
 
-    String userId ;
-    double total;
+    @PostMapping("/shoppingcart")
+    public ResponseEntity<PaymentsCommand> shoppingCart(@RequestParam(value="email") String email,
+                                                        @RequestParam(value="total") String total) throws ServerException {
+
+        tempemail = email;
+        temptotal = total;
+        log.info("Params from spring-books: Email = " + tempemail + "Total= " + temptotal);
+        return new ResponseEntity("Received", HttpStatus.OK) ;
+    }
+
+
 
 
     @GetMapping("/creditcards")
@@ -182,8 +196,10 @@ public class PaymentsController {
         PaymentsCommand command = new PaymentsCommand();
 
         //get email and total from springbook here
-//        String userEmail= ;
-//        double subtotal =;
+//        double subtotal = Double.parseDouble(temptotal);
+//        command.setUserId(tempemail);
+//        command.setTotal(subtotal);
+
 
         command.setUserId("jonh@gmail.com");
         command.setTotal(89.79);
@@ -398,6 +414,7 @@ public class PaymentsController {
       }
 
 
+
     //this method used to test RabbitMQ using Postman
 //    @PostMapping(value = "paymentConfirmation")
 //    public String publishUserDetails() {
@@ -407,6 +424,8 @@ public class PaymentsController {
 //        System.out.println(ms);
 //        return ms;
 //    }
+
+
 }
 
 
