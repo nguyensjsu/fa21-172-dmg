@@ -115,3 +115,23 @@ Implemented Kong API gateway with spring-books in Docker, tested using Postman
 Added initial API request to send cart information to spring-payments, need to continue work on spring-payments accepting values
 
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/526611b1fac1e2b90784f05b261e494e5584d924) 
+
+
+### November 30
+
+![task](https://cdn.discordapp.com/attachments/825238290797953027/915785109393801296/unknown.png)
+
+Consolidated UserController and PaymentsController on frontend into FrontendController
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/53774f62eb62bf927190cad130967cdff90a518a)
+
+
+### December 1
+
+Added hidden fields to html pages to assist in tracking logged in user's email for use with shopping cart
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/ee243e9d8316cba6e3e5b870df35f5dfbbf20986)
+
+User's email is now passed to catalog and shopping cart after login
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/e4ce7724dd815d41119998c51e1289c612f03f84) 
