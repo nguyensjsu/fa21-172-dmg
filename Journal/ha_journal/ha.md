@@ -499,7 +499,52 @@ css style and no mapping to image
 ![Project Payments](images/placeorder_response.png)
 <p>&nbsp;</p>
 
+--------------------------------
+#### Test with curl
+* Ping 
+  * curl --location --request GET 'http://localhost:8081/ping'
+  * curl --location --request GET 'http://localhost:8081/creditcards?email=mary@gmail.com'
+  * curl --location --request POST 'http://localhost:8081/command' \
+> --header 'Content-Type: application/json' \
+> --data-raw '{
+>     "id": null,
+>     "action": "Save",
+>     "firstname": "Kim",
+>     "lastname": "Daisy",
+>     "address": "789 Rose st",
+>     "city": "Fremont",
+>     "state": "CA",
+>     "zip": "95111",
+>     "phone": "(408)-123-4569",
+>     "cardnumber": "4622-9431-2701-3747",
+>     "expmonth": "December",
+>     "expyear": "2022",
+>     "cvv": "370",
+>     "email": "daisy.brown@sjsu.edu",
+>     "cartId": " null",
+>     "subtotal": 0.0,
+>     "transactionAmount": 0.0,
+>     "transactionCurrency": null,
+>     "authId": null,
+>     "authStatus": null,
+>     "captureId": null,
+>     "captureStatus": null
+> }'
 
+![Project Payments](images/curl_test.png)
+<p>&nbsp;</p>
+
+* curl --location --request POST 'http://localhost:8081/placeorder?email=mary@gmail.com&placeorder=null'
+
+ ![Project Payments](images/curl_test_1.png)
+  <p>&nbsp;</p>
+
+curl_test_1
+
+
+
+
+-------------------------
 
 * Deploy the app to Docker
 * Pull mysql image

@@ -176,6 +176,16 @@ public class PaymentsController {
         }
     }
 
+    @GetMapping("/ping")
+    public ResponseEntity<PaymentsCommand> ping() {
+        String msg = "Spring-Payments is alive!";
+        log.info("Ping: " + msg);
+        return new ResponseEntity(msg, HttpStatus.OK) ;
+    }
+
+
+
+
 
     @PostMapping("/shoppingcart")
     public ResponseEntity<PaymentsCommand> shoppingCart(@RequestParam(value="email") String email,
@@ -388,13 +398,17 @@ public class PaymentsController {
     }
 
 
-      @PostMapping("/placeorder")
-      public ResponseEntity<PaymentsCommand> placeOrder( @RequestBody PaymentsCommand command, @RequestParam(value="email") String email,
-                                                         @RequestParam(value="placeorder", required=false) String placeorder) throws ServerException{
+//      @PostMapping("/placeorder")
+//      public ResponseEntity<PaymentsCommand> placeOrder( @RequestBody PaymentsCommand command, @RequestParam(value="email") String email,
+//                                                         @RequestParam(value="placeorder", required=false) String placeorder) throws ServerException{
 
+    @PostMapping("/placeorder")
+    public ResponseEntity<PaymentsCommand> placeOrder(PaymentsCommand command, @RequestParam(value="email") String email,
+                                                       @RequestParam(value="placeorder", required=false) String placeorder) throws ServerException{
           log.info("Accessing place order method ");
 
           command = repository.findByEmail(email);
+          balance = command.getTransactionAmount();
           if (balance < total) {
               System.out.println("Cannot process payment. Insufficient funds");
               return new ResponseEntity("Cannot process payment. Insufficient funds", HttpStatus.BAD_REQUEST) ;
