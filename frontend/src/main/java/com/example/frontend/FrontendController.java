@@ -285,6 +285,7 @@ public class FrontendController {
         System.out.println("Email: " + email);
         //command.setEmail("");
         command.setUser(email);
+        model.addAttribute("email", email);
         return "catalog";
     }
 
@@ -296,19 +297,21 @@ public class FrontendController {
         System.out.println("Command: " + command.getUser());
         String email = command.getUser();
         System.out.println(email);
-
+        
+        // TODO: Response should check for cart
         ResponseEntity<BookCommand> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/catalog?bookID=" + action + "&qty=" + command.getQuantity(action) + "&email=" + email, command, BookCommand.class);
 
         return getCatalog(email, command, model);
     }
 
     @GetMapping("/shoppingcart") 
-    public String getCart (Model model) {
+    public String getCart (@RequestParam(value="email") String email, Model model) {
         System.out.println("Accessing shopping cart");
 
         ArrayList<CartItem> items = new ArrayList<CartItem>();
 
-        ResponseEntity<ArrayList> response = restTemplate.getForEntity(SPRING_BOOKS_URI + "/shoppingcart", ArrayList.class, items);
+        // TODO: Pass email as parameter
+        ResponseEntity<ArrayList> response = restTemplate.getForEntity(SPRING_BOOKS_URI + "/shoppingcart?email=" + email, ArrayList.class, items);
         log.info("Frontend Response: " + response.toString());
         
         ObjectMapper mapper = new ObjectMapper();
@@ -341,14 +344,14 @@ public class FrontendController {
     }
 
     @PostMapping("/shoppingcart")
-    public void postCart(@RequestParam(value="action", required=true) String action, 
+    public void postCart(@RequestParam(value="email") String email, @RequestParam(value="action", required=true) String action, 
                         Model model) {
         
         log.info("Action: " + action);
 
-        ResponseEntity<String> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/shoppingcart?action=" + action, action, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/shoppingcart?action=" + action + "&email=" + email, action, String.class);
 
-        getCart(model);
+        getCart(email, model);
         
         /*
         if(action.equals("checkout")) {

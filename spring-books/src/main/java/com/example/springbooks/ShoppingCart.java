@@ -21,5 +21,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ShoppingCart {
     private @GeneratedValue(strategy=GenerationType.IDENTITY) @Id Long cartId;
-    private @NonNull Long userId ;
+    private @NonNull String email ;
 }
