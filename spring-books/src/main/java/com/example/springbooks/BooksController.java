@@ -48,6 +48,7 @@ public class BooksController {
     @Autowired
     private CartItemRepository itemRepo;
 
+    // TODO: Remove
     private Long userID = Long.valueOf(1);
 
     //run on docker
@@ -113,11 +114,12 @@ public class BooksController {
 
     @PostMapping("/catalog")
     public ResponseEntity postAction(@RequestParam(value="bookID") String bookID,
-                             @RequestParam(value="qty") String qty) {
+                             @RequestParam(value="qty") String qty, @RequestParam(value="email") String email) {
         log.info( "Book ID: " + bookID);
         log.info( "Quantity: " + qty);
         log.info("Cart ID: " + cart.getCartId());
-
+        
+        // TODO: Find by email and initialize if doesn't exist
         if(cartRepo.findByCartId(cart.getCartId()) == null) {
             cartRepo.save(cart);
         }
