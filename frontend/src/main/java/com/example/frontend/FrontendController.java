@@ -44,14 +44,14 @@ public class FrontendController {
 	private RestTemplate restTemplate;
 
     //run on docker
-//    private String SPRING_PAYMENTS_URI = "http://payments:8081";
-//    private String SPRING_USERS_URI = "http://users:8082";
-//    private String SPRING_BOOKS_URI = "http://books:8083";
+    private String SPRING_PAYMENTS_URI = "http://payments:8081";
+    private String SPRING_USERS_URI = "http://users:8082";
+    private String SPRING_BOOKS_URI = "http://books:8083";
 
     //run locally
-    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
-    private String SPRING_USERS_URI = "http://localhost:8082";
-    private String SPRING_BOOKS_URI = "http://localhost:8083";
+    //private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+    //private String SPRING_USERS_URI = "http://localhost:8082";
+    //private String SPRING_BOOKS_URI = "http://localhost:8083";
 
 
 
@@ -383,7 +383,7 @@ public class FrontendController {
     String phone;
     String email;
     String userId;
-    double total = 0;
+    double total;
 
     @GetMapping("/creditcards")
 //    public String getAction(@ModelAttribute("command") PaymentsCommand command, Model model) {
@@ -409,7 +409,7 @@ public class FrontendController {
                 System.out.println( e ) ;
             }
 
-//        double total = 0;
+        double total = 0;
 
         for (CartItem item : items) {
             total += item.getBook().getPrice() * item.getQuantity();
