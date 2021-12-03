@@ -48,7 +48,8 @@ public class BooksController {
     @Autowired
     private CartItemRepository itemRepo;
 
-    private Long userID = Long.valueOf(1);
+    // TODO: Remove
+    //private Long userID = Long.valueOf(1);
 
     //run on docker
     private String SPRING_PAYMENTS_URI = "http://payments:8081";
@@ -58,7 +59,7 @@ public class BooksController {
 
     // Initialize shopping cart
     // TODO: make userId match user
-    private ShoppingCart cart = new ShoppingCart(userID);
+    //private ShoppingCart cart = new ShoppingCart(userID);
 
     public ArrayList<CartItem> getItems(ShoppingCart cartIn) {
         ArrayList<CartItem> items = itemRepo.findByCart(cartIn);
@@ -66,7 +67,7 @@ public class BooksController {
     }
 
     public float calculateSubtotal(ShoppingCart cartIn) {
-        List<CartItem> items = itemRepo.findByCart(cart);
+        List<CartItem> items = itemRepo.findByCart(cartIn);
         float subtotal = 0;
 
         for (CartItem item : items) {
@@ -96,6 +97,7 @@ public class BooksController {
 
     // May not be needed
     // Frontend returns catalog.html
+    /*
     @GetMapping("/catalog")
     public String getHome( @ModelAttribute("command") BookCommand command,
                              Model model) {
@@ -108,18 +110,25 @@ public class BooksController {
 
         return "catalog";
     }
+    */
 
 
 
     @PostMapping("/catalog")
     public ResponseEntity postAction(@RequestParam(value="bookID") String bookID,
-                             @RequestParam(value="qty") String qty) {
+                             @RequestParam(value="qty") String qty, @RequestParam(value="email") String email) {
         log.info( "Book ID: " + bookID);
         log.info( "Quantity: " + qty);
-        log.info("Cart ID: " + cart.getCartId());
+        //log.info("Cart ID: " + cart.getCartId());
 
-        if(cartRepo.findByCartId(cart.getCartId()) == null) {
+        ShoppingCart cart = new ShoppingCart();
+        
+        // TODO: Find by email and initialize if doesn't exist
+        if(cartRepo.findByEmail(email) == null) {
+            cart = new ShoppingCart(email);
             cartRepo.save(cart);
+        } else {
+            cart = cartRepo.findByEmail(email);
         }
 
         log.info("Cart ID after save: " + cart.getCartId());
@@ -144,11 +153,11 @@ public class BooksController {
 
     
     @GetMapping(value = "/shoppingcart")
-    public ResponseEntity<ArrayList<CartItem>> getCart( @ModelAttribute("shoppingcart") ShoppingCart cart,
+    public ResponseEntity<ArrayList<CartItem>> getCart(@RequestParam(value="email") String email, @ModelAttribute("shoppingcart") ShoppingCart cart,
                              Model model) {
         System.out.println("Accessing shopping cart");
         
-        ArrayList<CartItem> items = getItems(cartRepo.findByUserId(userID));
+        ArrayList<CartItem> items = getItems(cartRepo.findByEmail(email));
         //model.addAttribute("items", items);
 
         //ArrayList<Book> books = new ArrayList<Book>();
@@ -171,15 +180,16 @@ public class BooksController {
 
     
     @PostMapping("/shoppingcart")
-    public ResponseEntity<String> postCart(@RequestParam(value="action") String action, 
+    public ResponseEntity<String> postCart(@RequestParam(value="action") String action,
+                            @RequestParam(value="email") String email, 
                             Model model) {
         
         log.info( "Action: " + action);
-        List<CartItem> items = getItems(cartRepo.findByUserId(cart.getCartId()));
+        List<CartItem> items = getItems(cartRepo.findByEmail(email));
         
         if(action.equals("checkout")) {
-            String subtotal = String.valueOf(calculateSubtotal(cart));
-            ResponseEntity<String> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/shoppingcart?userID=" + userID.toString() + "&total=" + subtotal, action, String.class);
+            String subtotal = String.valueOf(cartRepo.findByEmail(email));
+            ResponseEntity<String> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/shoppingcart?email=" + email.toString() + "&total=" + subtotal, action, String.class);
         } else if(action.equals("clear")) {
             for (CartItem item : items) {
                 itemRepo.deleteById(item.getItemID());

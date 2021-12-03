@@ -105,7 +105,7 @@
             </p>
         </div>
         <form name="form" th:object="${command}" method="post" action="/placeorder">
-            <input type="hidden" id="email" name="email" th:field="*{email}">
+            <input type="hidden" id="uemail" name="email" th:field="*{email}">
         <div class="col-25">
             <button style="width: 200px" class="btn btn-primary" id="placeorder" type="submit" name="placeorder" value="placeorder">
                 Place your order
