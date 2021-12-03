@@ -44,14 +44,14 @@ public class FrontendController {
 	private RestTemplate restTemplate;
 
     //run on docker
-//    private String SPRING_PAYMENTS_URI = "http://payments:8081";
-//    private String SPRING_USERS_URI = "http://users:8082";
-//    private String SPRING_BOOKS_URI = "http://books:8083";
+    private String SPRING_PAYMENTS_URI = "http://payments:8081";
+    private String SPRING_USERS_URI = "http://users:8082";
+    private String SPRING_BOOKS_URI = "http://books:8083";
 
     //run locally
-    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
-    private String SPRING_USERS_URI = "http://localhost:8082";
-    private String SPRING_BOOKS_URI = "http://localhost:8083";
+//    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+//    private String SPRING_USERS_URI = "http://localhost:8082";
+//    private String SPRING_BOOKS_URI = "http://localhost:8083";
 
 
 
