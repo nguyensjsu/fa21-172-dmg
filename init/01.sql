@@ -5,7 +5,7 @@ CREATE USER IF NOT EXISTS 'springpayment'@'%' IDENTIFIED BY 'ThePassword';
 GRANT ALL PRIVILEGES ON `cmpe172`.* to 'cmpe172'@'%';
 CREATE DATABASE IF NOT EXISTS `springpayments`;
 GRANT ALL PRIVILEGES ON `springpayments`.* TO 'cmpe172'@'%';
-GRANT ALL PRIVILEGES ON `springpayments`.* TO 'springuser'@'%';
+GRANT ALL PRIVILEGES ON `springpayments`.* TO 'springpayment'@'%';
 CREATE DATABASE IF NOT EXISTS `springusers`;
 GRANT ALL PRIVILEGES ON `springusers`.* TO 'cmpe172'@'%';
 GRANT ALL PRIVILEGES ON `springusers`.* TO 'springuser'@'%';
