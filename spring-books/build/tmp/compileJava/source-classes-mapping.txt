@@ -8,12 +8,12 @@ com/example/springbooks/SpringBooksApplication.java
  com.example.springbooks.SpringBooksApplication
 com/example/springbooks/BookCommand.java
  com.example.springbooks.BookCommand
-com/example/springbooks/CartItem.java
- com.example.springbooks.CartItem
+com/example/springbooks/BooksController.java
+ com.example.springbooks.BooksController
+ com.example.springbooks.BooksController$Ping
 com/example/springbooks/BooksRepository.java
  com.example.springbooks.BooksRepository
 com/example/springbooks/ShoppingCart.java
  com.example.springbooks.ShoppingCart
-com/example/springbooks/BooksController.java
- com.example.springbooks.BooksController
- com.example.springbooks.BooksController$Ping
+com/example/springbooks/CartItem.java
+ com.example.springbooks.CartItem

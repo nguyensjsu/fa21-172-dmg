@@ -524,4 +524,4 @@ css style and no mapping to image
 * grant all on springpayments.* to 'springpayment'@'%';
 
 * create user 'springbook'@'%' identified by 'ThePassword';
-* grant all on springpayments.* to 'springbook'@'%';
+* grant all on springbooks.* to 'springbook'@'%';
