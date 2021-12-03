@@ -188,7 +188,7 @@ public class BooksController {
         List<CartItem> items = getItems(cartRepo.findByEmail(email));
         
         if(action.equals("checkout")) {
-            String subtotal = String.valueOf(cartRepo.findByEmail(email));
+            String subtotal = String.valueOf(calculateSubtotal(cartRepo.findByEmail(email)));
             ResponseEntity<String> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/shoppingcart?email=" + email.toString() + "&total=" + subtotal, action, String.class);
         } else if(action.equals("clear")) {
             for (CartItem item : items) {

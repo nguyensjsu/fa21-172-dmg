@@ -298,7 +298,7 @@ public class FrontendController {
         String email = command.getUser();
         System.out.println(email);
         
-        // TODO: Response should check for cart
+        // Response should check for cart
         ResponseEntity<BookCommand> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/catalog?bookID=" + action + "&qty=" + command.getQuantity(action) + "&email=" + email, command, BookCommand.class);
 
         return getCatalog(email, command, model);
@@ -310,7 +310,7 @@ public class FrontendController {
 
         ArrayList<CartItem> items = new ArrayList<CartItem>();
 
-        // TODO: Pass email as parameter
+        // Pass email as parameter
         ResponseEntity<ArrayList> response = restTemplate.getForEntity(SPRING_BOOKS_URI + "/shoppingcart?email=" + email, ArrayList.class, items);
         log.info("Frontend Response: " + response.toString());
         
@@ -328,12 +328,15 @@ public class FrontendController {
                 System.out.println( e ) ; 
             }
 
-        float subtotal = 0;
+        double subtotal = 0;
     
         for (CartItem item : items) {
             subtotal += item.getBook().getPrice() * item.getQuantity();
         }
 
+        subtotal = Math.round(subtotal*100.0)/100.0;
+
+        model.addAttribute("email", email);
         model.addAttribute("items", items);
         model.addAttribute("subtotal", String.valueOf(subtotal));
         
@@ -355,11 +358,10 @@ public class FrontendController {
         
         /*
         if(action.equals("checkout")) {
-            
-        } else if(action.equals("clear")) {
-            ResponseEntity<String> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/shoppingcart", action, String.class);
+            ResponseEntity<String> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/shoppingcart?email=" + email + "&total=" + subtotal, action, String.class);
         } else {
-            
+             ResponseEntity<String> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/shoppingcart?action=" + action + "&email=" + email, action, String.class);
+            getCart(email, model);
         }
         */
     }
@@ -385,8 +387,34 @@ public class FrontendController {
 
     @GetMapping("/creditcards")
     public String getAction(@ModelAttribute("command") PaymentsCommand command,
+                            @RequestParam(value="email") String email,
                             Model model) {
         System.out.println("Accessing get request for creditcards");
+
+        ArrayList<CartItem> items = new ArrayList<CartItem>();
+        ResponseEntity<ArrayList> cartResponse = restTemplate.getForEntity(SPRING_BOOKS_URI + "/shoppingcart?email=" + email, ArrayList.class, items);
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        for (Object item : cartResponse.getBody())
+            try{
+                //JsonNode jsonNode = mapper.readTree(response.getBody().toString());
+                //System.out.print("JSON: " + jsonNode);
+                CartItem newItem = new CartItem();
+
+                newItem = mapper.convertValue(item, CartItem.class);
+                items.add(newItem);
+            } catch ( Exception e ) { 
+                System.out.println( e ) ; 
+            }
+
+        double total = 0;
+    
+        for (CartItem item : items) {
+            total += item.getBook().getPrice() * item.getQuantity();
+        }
+
+        total = Math.round(total*100.0)/100.0;
 
         ResponseEntity<PaymentsCommand> response = restTemplate.getForEntity(SPRING_PAYMENTS_URI + "/creditcards", PaymentsCommand.class);
         log.info("Frontend Response: " + response.toString());
@@ -394,7 +422,7 @@ public class FrontendController {
         command = response.getBody();
         order_num= command.getOrderNumber();
 //        userId = command.getUserId();
-        total = command.getTotal();
+        //total = command.getTotal();
 
             model.addAttribute("order_number", order_num);
             model.addAttribute("total", total);
