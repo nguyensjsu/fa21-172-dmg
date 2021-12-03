@@ -97,6 +97,7 @@
 <div  th:insert="navigation :: navigation"></div>
 <form name="form" th:object="${command}" method="post" action="">
 <input type="hidden" name="email" id="email" th:field="*{user}" />
+<p hidden th:text="${email}"></p>
 <div class="body">
     <a th:href="@{/shoppingcart?email={user}(user=${email})}">Shopping Cart</a>
     <div class="row">

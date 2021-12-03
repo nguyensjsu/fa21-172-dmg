@@ -285,6 +285,7 @@ public class FrontendController {
         System.out.println("Email: " + email);
         //command.setEmail("");
         command.setUser(email);
+        model.addAttribute("email", email);
         return "catalog";
     }
 
@@ -310,7 +311,7 @@ public class FrontendController {
         ArrayList<CartItem> items = new ArrayList<CartItem>();
 
         // TODO: Pass email as parameter
-        ResponseEntity<ArrayList> response = restTemplate.getForEntity(SPRING_BOOKS_URI + "/shoppingcart", ArrayList.class, items);
+        ResponseEntity<ArrayList> response = restTemplate.getForEntity(SPRING_BOOKS_URI + "/shoppingcart?email=" + email, ArrayList.class, items);
         log.info("Frontend Response: " + response.toString());
         
         ObjectMapper mapper = new ObjectMapper();
@@ -348,7 +349,7 @@ public class FrontendController {
         
         log.info("Action: " + action);
 
-        ResponseEntity<String> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/shoppingcart?action=" + action, action, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(SPRING_BOOKS_URI + "/shoppingcart?action=" + action + "&email=" + email, action, String.class);
 
         getCart(email, model);
         

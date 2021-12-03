@@ -21,5 +21,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ShoppingCart {
     private Long cartId;
-    private Long userId ;
+    private String email ;
 }
