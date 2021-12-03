@@ -26,12 +26,12 @@ public class PaymentsCommand {
  private String expyear ;
  private String cvv ;
  private String email ;
- private String cartId ;
- private double subtotal;
+ private String userId ;
+ private double total;
 // private String notes ;
 
 
-// private String orderNumber;
+ private String orderNumber;
  private double transactionAmount;
  private String transactionCurrency;
  private String authId;
@@ -51,7 +51,8 @@ public class PaymentsCommand {
  public String expyear (){return expyear;}
  public String cvv (){return cvv;}
  public String email (){return email;}
-// public String notes (){return notes;}
+ public String userId (){return userId;}
+ public double transactionAmount (){return transactionAmount;}
 
 
 }

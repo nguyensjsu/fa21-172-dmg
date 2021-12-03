@@ -470,6 +470,37 @@ css style and no mapping to image
   * We can use ResponseEntity to configure the HTTP response
 
 --------------------------------
+### Day : 12/2/2022
+
+##### Test spring-payments API on Postman
+* Get total and order number from shopping cart
+
+![Project Payments](images/get_total.png)
+<p>&nbsp;</p>
+
+* Add a card
+
+![Project Payments](images/addcard.png)
+<p>&nbsp;</p>
+
+![Project Payments](images/addcard_1.png)
+<p>&nbsp;</p>
+
+* Place an order param
+
+ ![Project Payments](images/placeorder.png)
+<p>&nbsp;</p>
+
+* Place order body
+![Project Payments](images/placeorder_body.png)
+<p>&nbsp;</p>
+
+* Place order response
+![Project Payments](images/placeorder_response.png)
+<p>&nbsp;</p>
+
+
+
 * Deploy the app to Docker
 * Pull mysql image
   * docker run -d --name mysql -td -p 3306:3306 -e MYSQL_ROOT_PASSWORD=cmpe172 mysql:8.0 
@@ -489,3 +520,8 @@ css style and no mapping to image
     * grant all on springpayments.* to 'springuser'@'%';
 
 
+* create user 'springpayment'@'%' identified by 'ThePassword';
+* grant all on springpayments.* to 'springpayment'@'%';
+
+* create user 'springbook'@'%' identified by 'ThePassword';
+* grant all on springpayments.* to 'springbook'@'%';

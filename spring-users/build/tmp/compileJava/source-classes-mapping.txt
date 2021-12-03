@@ -4,6 +4,9 @@ com/example/springusers/UserRepository.java
  com.example.springusers.UserRepository
 com/example/springusers/MvcConfig.java
  com.example.springusers.MvcConfig
+com/example/springusers/PingController.java
+ com.example.springusers.PingController
+ com.example.springusers.PingController$Ping
 com/example/springusers/SpringUsersApplication.java
  com.example.springusers.SpringUsersApplication
 com/example/springusers/User.java
