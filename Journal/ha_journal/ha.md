@@ -539,12 +539,29 @@ css style and no mapping to image
  ![Project Payments](images/curl_test_1.png)
   <p>&nbsp;</p>
 
-curl_test_1
+
 
 
 
 
 -------------------------
+
+### Day : 12/3/2022
+
+* Removed dummy value for total
+* Got total value from spring-books
+* Tasks done and new task
+
+  ![Spring Payments](images/taskboard_12_3.png)
+  <p>&nbsp;</p>
+
+
+
+
+
+
+
+
 
 * Deploy the app to Docker
 * Pull mysql image

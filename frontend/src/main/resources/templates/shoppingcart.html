@@ -116,18 +116,13 @@
                 <td th:text="${subtotal}"></td>
 <!--                <td><button type="submit" th:name="action" id="checkout" th:value="checkout">Checkout</button></td>-->
                 <td><a th:href="@{/creditcards?email={email}(email=${email})}">Proceed to Checkout</a></td>
-<!--                <td><a th:href="@{/creditcards}">Proceed to Checkout</a></td>-->
             </tr>
             <tr>
                 <td><button type="submit" th:name="action" id="clear" th:value="clear">Clear Cart</button></td>
             </tr>
         </table>
 
-<!--    <form name="form" th:object="${command}" method="post" action="/creditcards">-->
-<!--        <input type="hidden" >-->
-<!--&lt;!&ndash;        <a  style="width: 200px"  th:href="@{/creditcards}" role="button" type="submit" th:name="action" id="checkout" th:value="checkout"> Checkout</a>&ndash;&gt;-->
-<!--        <button type="submit" th:name="action" id="checkout" th:value="checkout"> <a class="submit" th:href="@{/creditcards}" role="button">Checkout</a></button>-->
-<!--    </form>-->
+
 
 <!--        <div class ="column">-->
 <!--        <div class="card">-->
