@@ -140,7 +140,7 @@ public class PaymentsController {
     String userId ;
     double total;
     String tempemail;
-    String temptotal;
+    double temptotal;
 
 
 
@@ -185,34 +185,34 @@ public class PaymentsController {
 
 
 
-
-
-    @PostMapping("/shoppingcart")
-    public ResponseEntity<PaymentsCommand> shoppingCart(@RequestParam(value="email") String email,
-                                                        @RequestParam(value="total") String total) throws ServerException {
-
-        tempemail = email;
-        temptotal = total;
-        log.info("Params from spring-books: Email = " + tempemail + "Total= " + temptotal);
-        return new ResponseEntity("Received", HttpStatus.OK) ;
-    }
-
-
+//    @PostMapping("/shoppingcart")
+//    public ResponseEntity<PaymentsCommand> shoppingCart(@RequestParam(value="email") String email,
+//                                                        @RequestParam(value="total") String total) throws ServerException {
+//
+//        tempemail = email;
+//        temptotal = total;
+//        log.info("Params from spring-books: Email = " + tempemail + "Total= " + temptotal);
+//
+//        return new ResponseEntity("Received", HttpStatus.OK) ;
+//    }
 
 
     @GetMapping("/creditcards")
-    public ResponseEntity<PaymentsCommand> getCard() {
+//    public ResponseEntity<PaymentsCommand> getCard() {
+    public ResponseEntity<PaymentsCommand> shoppingCart(@RequestParam(value="email") String email,
+                                                        @RequestParam(value="total", required = false) double subtotal) throws ServerException {
         System.out.println("Assessing get creditcards");
         PaymentsCommand command = new PaymentsCommand();
 
         //get email and total from springbook here
-//        double subtotal = Double.parseDouble(temptotal);
-//        command.setUserId(tempemail);
-//        command.setTotal(subtotal);
+        tempemail = email;
+        temptotal = subtotal;
+        command.setUserId(tempemail);
+        command.setTotal(temptotal);
 
 
-        command.setUserId("jonh@gmail.com");
-        command.setTotal(89.79);
+//        command.setUserId("jonh@gmail.com");
+//        command.setTotal(89.79);
         command.setOrderNumber(order_num);
         userId = command.getUserId();
         total = command.getTotal();
@@ -225,7 +225,7 @@ public class PaymentsController {
 
     @PostMapping("/command")
     public ResponseEntity<PaymentsCommand> postAction(@RequestBody PaymentsCommand command,
-             @RequestParam(value = "action", required = false) String action, Errors errors, Model model, HttpServletRequest request) throws ServerException {
+             @RequestParam(value = "action", required = false) String action,Errors errors, Model model, HttpServletRequest request) throws ServerException {
 
         log.info("Action: " + action);
         log.info("Command: " + command);

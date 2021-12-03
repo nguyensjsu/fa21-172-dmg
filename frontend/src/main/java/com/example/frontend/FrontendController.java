@@ -44,14 +44,14 @@ public class FrontendController {
 	private RestTemplate restTemplate;
 
     //run on docker
-    private String SPRING_PAYMENTS_URI = "http://payments:8081";
-    private String SPRING_USERS_URI = "http://users:8082";
-    private String SPRING_BOOKS_URI = "http://books:8083";
+//    private String SPRING_PAYMENTS_URI = "http://payments:8081";
+//    private String SPRING_USERS_URI = "http://users:8082";
+//    private String SPRING_BOOKS_URI = "http://books:8083";
 
     //run locally
-//    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
-//    private String SPRING_USERS_URI = "http://localhost:8082";
-//    private String SPRING_BOOKS_URI = "http://localhost:8083";
+    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+    private String SPRING_USERS_URI = "http://localhost:8082";
+    private String SPRING_BOOKS_URI = "http://localhost:8083";
 
 
 
@@ -386,6 +386,7 @@ public class FrontendController {
     double total = 0;
 
     @GetMapping("/creditcards")
+//    public String getAction(@ModelAttribute("command") PaymentsCommand command, Model model) {
     public String getAction(@ModelAttribute("command") PaymentsCommand command,
                             @RequestParam(value="email") String email,
                             Model model) {
@@ -404,25 +405,26 @@ public class FrontendController {
 
                 newItem = mapper.convertValue(item, CartItem.class);
                 items.add(newItem);
-            } catch ( Exception e ) { 
-                System.out.println( e ) ; 
+            } catch ( Exception e ) {
+                System.out.println( e ) ;
             }
 
-        double total = 0;
-    
+//        double total = 0;
+
         for (CartItem item : items) {
             total += item.getBook().getPrice() * item.getQuantity();
         }
 
         total = Math.round(total*100.0)/100.0;
 
-        ResponseEntity<PaymentsCommand> response = restTemplate.getForEntity(SPRING_PAYMENTS_URI + "/creditcards", PaymentsCommand.class);
+//        ResponseEntity<PaymentsCommand> response = restTemplate.getForEntity(SPRING_PAYMENTS_URI + "/creditcards", PaymentsCommand.class);
+        ResponseEntity<PaymentsCommand> response = restTemplate.getForEntity(SPRING_PAYMENTS_URI + "/creditcards?email=" + email+ "&total=" + total, PaymentsCommand.class);
         log.info("Frontend Response: " + response.toString());
 
         command = response.getBody();
         order_num= command.getOrderNumber();
 //        userId = command.getUserId();
-        //total = command.getTotal();
+//        total = command.getTotal();
 
             model.addAttribute("order_number", order_num);
             model.addAttribute("total", total);
