@@ -628,6 +628,16 @@ css style and no mapping to image
   <p>&nbsp;</p>
 
 
+### Day : 12/4/2022
+
+* Reset total for new order
+* Fix navigation for Books and Shopping Cart
+* Make Shopping Cart as a button for shoppingcart page
+
+![Spring Payments](images/shoppingcart_button.png)
+  <p>&nbsp;</p>
+
+
 
 * Add card Success
 
@@ -642,45 +652,9 @@ css style and no mapping to image
 
 
 
-  * docker run -d --name spring-users --network fa21-172-dmg_network -td spring-users
-
-
-docker run -d --name starbucks-api --network kong-network -td starbucks-api
-docker run --name spring-books -td -p 80:8080 spring-books
-docker run --name spring-gumball-v2 -td -p 8080:8080 spring-gumball-v2
-
-
-
-* Pull the KONG Gateway
-  * docker pull kong
 
 
 
 
 
 
-
-* Deploy the app to Docker
-* Pull mysql image
-  * docker run -d --name mysql -td -p 3306:3306 -e MYSQL_ROOT_PASSWORD=cmpe172 mysql:8.0 
-* Access mysql container
-  * docker exec -it mysql bash
-  * mysql --password
-  * cmpe172
-* Create three databases:
-  * create database springusers; 
-  * create database springbooks;
-  * create database springpayments;
-* Create user:
-  * create user 'springuser'@'%' identified by 'ThePassword'; 
-* Gives all privileges
-    * grant all on springusers.* to 'springuser'@'%';
-    * grant all on springbooks.* to 'springuser'@'%';
-    * grant all on springpayments.* to 'springuser'@'%';
-
-
-* create user 'springpayment'@'%' identified by 'ThePassword';
-* grant all on springpayments.* to 'springpayment'@'%';
-
-* create user 'springbook'@'%' identified by 'ThePassword';
-* grant all on springbooks.* to 'springbook'@'%';
