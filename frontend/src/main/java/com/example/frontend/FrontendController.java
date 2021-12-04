@@ -372,17 +372,17 @@ public class FrontendController {
 
     String order_num;
     double balance;
-    String fname;
-    String lname;
-    String address;
-    String city;
-    String state;
-    String zip;
-    String cardnum;
-    String exp;
-    String phone;
-    String email;
-    String userId;
+    String fname = "";
+    String lname = "";
+    String address = "";
+    String city = "";
+    String state = "";
+    String zip = "";
+    String cardnum = "";
+    String exp = "";
+    String phone = "";
+    String email = "";
+    String userId = "";
     double total = 0;
 
     @GetMapping("/creditcards")
@@ -464,8 +464,11 @@ public class FrontendController {
         //Send confirmation
         //ResponseEntity<PaymentsCommand> orderResponse = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
 
-        command = response.getBody();
+        //command = response.getBody();
         fname = command.getFirstname();
+        
+        log.info("First Name: " + fname);
+
         lname = command.getLastname();
         address = command.getAddress();
         city = command.getCity();
@@ -497,7 +500,7 @@ public class FrontendController {
 
         total = 0;
 
-        return "placeorder";
+        return getPlaceOrder(command, model);
     }
 
 
@@ -505,7 +508,7 @@ public class FrontendController {
     public String getPlaceOrder( PaymentsCommand command, Model model ){
         log.info("Accessing place order get method " );
 
-
+        /*
         model.addAttribute("firstname", fname);
         model.addAttribute("lastname", lname);
         model.addAttribute("address", address);
@@ -518,6 +521,8 @@ public class FrontendController {
         model.addAttribute("card_balance",balance);
         model.addAttribute("exp", exp);
 //        model.addAttribute("email", email);
+
+        */
         return "placeorder";
 
     }
