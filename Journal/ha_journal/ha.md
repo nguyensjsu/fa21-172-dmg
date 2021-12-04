@@ -632,17 +632,25 @@ css style and no mapping to image
 
 * Reset total for new order
 * Fix navigation for Books and Shopping Cart
-* Make Shopping Cart as a button for shoppingcart page
+* Make Shopping Cart as a button for catalog page
 
 ![Spring Payments](images/shoppingcart_button.png)
   <p>&nbsp;</p>
 
+* Style shoppingcart page
 
-
-* Add card Success
-
-![Spring Payments](images/docker_add_card_suc.png)
+![Spring Payments](images/shoppingcart_page.png)
   <p>&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
 
 
 * Add card Success
