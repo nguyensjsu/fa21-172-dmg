@@ -383,7 +383,7 @@ public class FrontendController {
     String phone;
     String email;
     String userId;
-    double total;
+    double total = 0;
 
     @GetMapping("/creditcards")
 //    public String getAction(@ModelAttribute("command") PaymentsCommand command, Model model) {
@@ -409,7 +409,7 @@ public class FrontendController {
                 System.out.println( e ) ;
             }
 
-        double total = 0;
+//        double total = 0;
 
         for (CartItem item : items) {
             total += item.getBook().getPrice() * item.getQuantity();
@@ -440,6 +440,9 @@ public class FrontendController {
             model.addAttribute("exp", exp);
             model.addAttribute("email", email);
 
+            //command.setTotal(total);
+            //command.setOrderNumber(order_num);
+
         return "creditcards";
     }
 
@@ -448,12 +451,18 @@ public class FrontendController {
                                       @RequestParam(value="action", required=true) String action,
                                       Errors errors, Model model, HttpServletRequest request) {
 
-        System.out.println("Accessing post request for creditcards");
+        System.out.println("Accessing post request for creditcards " + total + " " + order_num);
+
+        command.setTotal(total);
+        command.setOrderNumber(order_num);
+
+        System.out.println("Command to Card: " + command);
+
         ResponseEntity<PaymentsCommand> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/command", command, PaymentsCommand.class);
         log.info("Frontend Response : " + response.toString());
         
         //Send confirmation
-        ResponseEntity<PaymentsCommand> orderResponse = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
+        //ResponseEntity<PaymentsCommand> orderResponse = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
 
         command = response.getBody();
         fname = command.getFirstname();
@@ -485,6 +494,8 @@ public class FrontendController {
         model.addAttribute("exp", exp);
 
         log.info("Action: " + action);
+
+        total = 0;
 
         return "placeorder";
     }
