@@ -417,10 +417,12 @@ public class PaymentsController {
           double new_balance = balance - total;
           command.setTransactionAmount(new_balance);
 
+          /*
           String msg = "Payment Successful for userId:" + userId + " and total:" + total ;
           rabbitMqSender.send(msg);
           String ms= "Message has been sent Successfully to paymentConfirmation queue";
           System.out.println(ms);
+          */
           log.info("Action: " + placeorder);
           repository.save(command);
           return  ResponseEntity.accepted().body(command);

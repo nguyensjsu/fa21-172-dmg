@@ -106,10 +106,10 @@
         </div>
         <form name="form" th:object="${command}" method="post" action="/placeorder">
             <input type="hidden" id="uemail" name="email" th:field="*{email}">
-        <div class="col-25">
+        <!--<div class="col-25">
             <button style="width: 200px" class="btn btn-primary" id="placeorder" type="submit" name="placeorder" value="placeorder">
                 Place your order
-            </button>
+            </button> -->
 <!--            <p>-->
 <!--                <a  style="width: 200px" class="btn btn-primary"  th:href="@{/place_order}" role="button"> Place your order</a>-->
 <!--            </p>-->
@@ -341,7 +341,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         </div>
                         <div class="col-50">
-                            <input type="submit" name="action" id="save_card" value="Save" class="btn">
+                            <input type="submit" name="action" id="save_card" value="Place Order" class="btn">
                         </div>
                     </div>
                 </div>

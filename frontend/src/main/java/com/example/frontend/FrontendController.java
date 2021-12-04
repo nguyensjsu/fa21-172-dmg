@@ -451,6 +451,9 @@ public class FrontendController {
         System.out.println("Accessing post request for creditcards");
         ResponseEntity<PaymentsCommand> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/command", command, PaymentsCommand.class);
         log.info("Frontend Response : " + response.toString());
+        
+        //Send confirmation
+        ResponseEntity<PaymentsCommand> orderResponse = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
 
         command = response.getBody();
         fname = command.getFirstname();
@@ -483,7 +486,7 @@ public class FrontendController {
 
         log.info("Action: " + action);
 
-        return "creditcards";
+        return "placeorder";
     }
 
 
