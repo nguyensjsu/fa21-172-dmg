@@ -50,9 +50,9 @@ public class FrontendController {
 
     //run locally
 
-//    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
-//    private String SPRING_USERS_URI = "http://localhost:8082";
-//    private String SPRING_BOOKS_URI = "http://localhost:8083";
+    //private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+    //private String SPRING_USERS_URI = "http://localhost:8082";
+    //private String SPRING_BOOKS_URI = "http://localhost:8083";
 
 
 
@@ -370,11 +370,12 @@ public class FrontendController {
     /* 
     Spring Payments
     */
-    int min = 1239871;
-    int max = 9999999;
-    int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
-    String order_num = String.valueOf(random_int);
-    double balance;
+//    int min = 1239871;
+//    int max = 9999999;
+//    int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
+//    String order_num = String.valueOf(random_int);
+    String order_num = "";
+    double balance = 0;
     String fname = "";
     String lname = "";
     String address = "";
@@ -413,7 +414,7 @@ public class FrontendController {
                 System.out.println( e ) ;
             }
 
-//        double total = 0;
+        total = 0;
 
         for (CartItem item : items) {
             total += item.getBook().getPrice() * item.getQuantity();
@@ -523,7 +524,7 @@ public class FrontendController {
         command = response.getBody();
         balance = command.getTransactionAmount();
 
-//        balance = balance - total;
+        total = 0;
         model.addAttribute("firstname", fname);
         model.addAttribute("lastname", lname);
         model.addAttribute("address", address);

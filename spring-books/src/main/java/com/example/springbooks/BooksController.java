@@ -2,7 +2,11 @@ package com.example.springbooks;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +52,16 @@ public class BooksController {
     @Autowired
     private CartItemRepository itemRepo;
 
+    
+    @Bean
+    public RabbitMqReceiver receiver() {
+        return new RabbitMqReceiver();
+    }
+    
+
+    @Autowired
+    private RabbitMqReceiver receiver;
+
     // TODO: Remove
     //private Long userID = Long.valueOf(1);
 
@@ -76,6 +90,24 @@ public class BooksController {
 
         return subtotal;
     }
+
+
+    public String clearCart(String email) {
+        ShoppingCart cart = cartRepo.findByEmail(email);
+
+        System.out.println(cart);
+
+        ArrayList<CartItem> items = getItems(cart);
+
+
+        for (CartItem item : items) {
+            itemRepo.deleteById(item.getItemID());
+            log.info("Removed Item " + item.getItemID());
+        }
+        
+        return "Cart cleared";
+    }
+
 
     class Ping {
         private String test;
@@ -207,4 +239,45 @@ public class BooksController {
         return response;
         //return "shoppingcart";
     }
+
+    @Component
+    public class RabbitMqReceiver {
+        private RabbitTemplate rabbitTemplate;
+
+        private RestTemplate restTemplate;
+
+        /*
+        @Autowired
+        public RabbitMqSender(RabbitTemplate rabbitTemplate) {
+            this.rabbitTemplate = rabbitTemplate;
+        }
+        */
+
+        @Bean
+        public Queue hello() {
+            return new Queue("paymentConfirmation");
+        }
+
+        @Autowired
+        private Queue queue;
+
+        /*
+        public void send(String msg){
+            rabbitTemplate.convertAndSend( queue.getName(),msg);
+
+        }
+        */
+        
+        
+
+        @RabbitListener(queues = "paymentConfirmation")
+        public void receive(String message) throws Exception {
+            
+            System.out.println(" Rabbit Received: " + message);
+
+            //ResponseEntity<String> response = restTemplate.getForEntity("/rabbit?email=" + message, String.class, message);
+            System.out.println(clearCart(message.replaceAll("^\"|\"$", "")));
+    }
+
+}
 }

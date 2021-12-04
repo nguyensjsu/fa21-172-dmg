@@ -16,6 +16,9 @@
     <title>Books</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" th:href="@{/styles.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
 
         .body{
@@ -95,14 +98,15 @@
 <body>
 <div  th:insert="navigation :: navigation"></div>
 <form name="form" th:object="${command}" method="post" action="">
-<p hidden th:text=${email}></p>
+<p hidden th:text="${email}"></p>
 <div class="body">
-        <table>
+        <table class="table">
             <th scope="col">ISBN</th>
             <th scope="col">Title</th>
             <th scope="col">Price</th>
             <th scope="col">Qty</th>
-            <tr th:each="item: ${items}">
+            <th scope="col">Action</th>
+            <tr class="table-primary" th:each="item: ${items}">
                 <div class="row">
                     <td th:text="${item.book.isbn}" />
                     <td th:text="${item.book.title}" />
@@ -115,14 +119,16 @@
                 <td><b>Subtotal: $</b></td>
                 <td th:text="${subtotal}"></td>
 <!--                <td><button type="submit" th:name="action" id="checkout" th:value="checkout">Checkout</button></td>-->
-                <td><a th:href="@{/creditcards?email={email}(email=${email})}">Proceed to Checkout</a></td>
+<!--                <td><a th:href="@{/creditcards?email={email}(email=${email})}">Proceed to Checkout</a></td>-->
             </tr>
             <tr>
                 <td><button type="submit" th:name="action" id="clear" th:value="clear">Clear Cart</button></td>
             </tr>
         </table>
 
-
+<div>
+    <a class="btn btn-primary" style="width: 200px;" role="button" th:href="@{/creditcards?email={email}(email=${email})}">Proceed to Checkout</a>
+</div>
 
 <!--        <div class ="column">-->
 <!--        <div class="card">-->

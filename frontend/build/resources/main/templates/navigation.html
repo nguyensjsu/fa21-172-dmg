@@ -77,11 +77,14 @@
     </style>
     <script>
         function myFunction() {
+
             var x = document.getElementById("myTopnav");
             if (x.className === "topnav") {
                 x.className += " responsive";
+
             } else {
                 x.className = "topnav";
+
             }
         }
     </script>
@@ -91,12 +94,13 @@
     <h3  th:fragment="navigation" class="title">DMGBooks</h3>
 </div>
 <div class="topnav" th:fragment="navigation" id="myTopnav">
+<!--    <p hidden th:text="${email}" id="email"></p>-->
     <a th:href="@{/}" >Home </a>
     <a th:href="@{/register}" >Register </a>
-    <a th:href="@{/catalog}">Books </a>
+<!--    <a th:href="@{/catalog?email={email}(email=${email})}">Books </a>-->
 <!--    <a th:href="@{/placeorder}">Place Order </a>-->
 <!--    <a th:href="@{/creditcards}">Add Card </a>-->
-    <a th:href="@{/shoppingcart}" >Shopping Cart </a>
+<!--    <a th:href="@{/shoppingcart?email={email}(email=${email})}" >Shopping Cart </a>-->
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
     </a>

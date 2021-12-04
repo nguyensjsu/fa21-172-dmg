@@ -135,11 +135,11 @@ public class PaymentsController {
     int max = 9999999;
     int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
     String order_num = String.valueOf(random_int);
-    double balance;
-    String userId ;
-    double total;
-    String tempemail;
-    double temptotal;
+    double balance = 0;
+    String userId = "" ;
+    double total = 0;
+    String tempemail = "";
+    double temptotal = 0;
 
 
 
@@ -416,7 +416,7 @@ public class PaymentsController {
         double new_balance = balance - total;
         command.setTransactionAmount(new_balance);
         balance = command.getTransactionAmount();
-        String msg = "Payment Successful for userId:" + userId + " and total:" + total ;
+        String msg = email;
         rabbitMqSender.send(msg);
         String ms= "Message has been sent Successfully to paymentConfirmation queue";
         System.out.println(ms);
