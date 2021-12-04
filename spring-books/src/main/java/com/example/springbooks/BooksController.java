@@ -95,6 +95,8 @@ public class BooksController {
     public String clearCart(String email) {
         ShoppingCart cart = cartRepo.findByEmail(email);
 
+        System.out.println(cart);
+
         ArrayList<CartItem> items = getItems(cart);
 
 
@@ -274,7 +276,7 @@ public class BooksController {
             System.out.println(" Rabbit Received: " + message);
 
             //ResponseEntity<String> response = restTemplate.getForEntity("/rabbit?email=" + message, String.class, message);
-            System.out.println(clearCart(message));
+            System.out.println(clearCart(message.replaceAll("^\"|\"$", "")));
     }
 
 }
