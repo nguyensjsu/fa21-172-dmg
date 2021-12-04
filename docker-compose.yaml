@@ -76,7 +76,18 @@ services:
       - 8083:8083
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/springbooks
-    restart: always      
+    restart: always
+  rabbitmq:
+    image: rabbitmq:3-management
+    #container_name: 'rabbitmq'
+    networks:
+      - network
+    ports:
+        - 5672:5672
+        - 15672:15672
+    #volumes:
+        #- ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        #- ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq      
   # lb:
   #   image: eeacms/haproxy
   #   depends_on:
