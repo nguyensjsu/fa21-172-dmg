@@ -462,7 +462,7 @@ public class FrontendController {
         log.info("Frontend Response : " + response.toString());
         
         //Send confirmation
-        //ResponseEntity<PaymentsCommand> orderResponse = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
+        ResponseEntity<PaymentsCommand> orderResponse = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
 
         //command = response.getBody();
         fname = command.getFirstname();
