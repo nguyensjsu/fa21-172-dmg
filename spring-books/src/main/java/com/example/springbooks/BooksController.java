@@ -48,6 +48,16 @@ public class BooksController {
     @Autowired
     private CartItemRepository itemRepo;
 
+    
+    @Bean
+    public RabbitMqReceiver receiver() {
+        return new RabbitMqReceiver();
+    }
+    
+
+    @Autowired
+    private RabbitMqReceiver receiver;
+
     // TODO: Remove
     //private Long userID = Long.valueOf(1);
 
@@ -206,5 +216,10 @@ public class BooksController {
 
         return response;
         //return "shoppingcart";
+    }
+
+    @GetMapping("/rabbit")
+    public void testRabbit() {
+        //receiver();
     }
 }
