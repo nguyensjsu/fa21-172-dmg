@@ -1,0 +1,24 @@
+
+
+_format_version: "1.1"
+
+services:
+- name: payments
+  protocol: http
+  host: spring-payments
+  port: 8080
+  path: /
+  plugins:
+  - name: key-auth  
+  routes:
+  - name: payments
+    paths:
+    - /payments
+    
+consumers:
+- username: apiclient
+  keyauth_credentials:
+  - key: 2H3fONTa8ugl1IcVS7CjLPnPIS2Hp9dJ
+
+
+

@@ -555,7 +555,110 @@ css style and no mapping to image
   ![Spring Payments](images/taskboard_12_3.png)
   <p>&nbsp;</p>
 
+####  Deploy the app to Docker
 
+* Step 1:
+  * Build jar files for each service and the frontend at their root folder
+    * gradle clean
+    * gradle bootJar
+
+* Step 2:
+  * Build images for each service and the frontend at their root folder
+    * docker build -t frontend .
+    * docker build -t spring-users .
+    * docker build -t spring-payments .
+    * docker build -t spring-books .
+    
+* Step 3:
+  * run the app in docker
+  * run the mysql db
+    * docker-compose up -d mysql
+    * docker-compose up -d
+
+* Docker containers
+
+  ![Spring Payments](images/docker_containers.png)
+  <p>&nbsp;</p>
+
+* Home page
+  ![Spring Payments](images/docker_home.png)
+  <p>&nbsp;</p>
+
+* Register Page
+  ![Spring Payments](images/docker_register.png)
+  <p>&nbsp;</p>
+
+* Register success
+
+![Spring Payments](images/docker_register_suc.png)
+  <p>&nbsp;</p>
+
+* Login success
+
+![Spring Payments](images/docker_login_suc.png)
+  <p>&nbsp;</p>
+
+* Books
+
+![Spring Payments](images/docker_book.png)
+  <p>&nbsp;</p>
+
+* Shopping cart
+
+![Spring Payments](images/docker_shoppingcart.png)
+  <p>&nbsp;</p>
+
+* Remove
+
+![Spring Payments](images/docker_shoppingcart_remove.png)
+  <p>&nbsp;</p>
+
+* Checkout
+
+![Spring Payments](images/docker_shoppingcart_checkout.png)
+  <p>&nbsp;</p>
+
+* Add a card
+
+![Spring Payments](images/docker_add_card.png)
+  <p>&nbsp;</p>
+
+* Invalid Phone
+
+![Spring Payments](images/docker_InvalidPhone.png)
+  <p>&nbsp;</p>
+
+* Add card Success
+
+![Spring Payments](images/docker_add_card_suc.png)
+  <p>&nbsp;</p>
+
+
+
+* Add card Success
+
+![Spring Payments](images/docker_add_card_suc.png)
+  <p>&nbsp;</p>
+
+
+* Add card Success
+
+![Spring Payments](images/docker_add_card_suc.png)
+  <p>&nbsp;</p>
+
+
+
+  * docker run -d --name spring-users --network fa21-172-dmg_network -td spring-users
+
+
+docker run -d --name starbucks-api --network kong-network -td starbucks-api
+docker run --name spring-books -td -p 80:8080 spring-books
+docker run --name spring-gumball-v2 -td -p 8080:8080 spring-gumball-v2
+
+
+
+* Pull the KONG Gateway
+  * docker pull kong
 
 
 

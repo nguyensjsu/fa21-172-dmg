@@ -44,14 +44,14 @@ public class FrontendController {
 	private RestTemplate restTemplate;
 
     //run on docker
-//    private String SPRING_PAYMENTS_URI = "http://payments:8081";
-//    private String SPRING_USERS_URI = "http://users:8082";
-//    private String SPRING_BOOKS_URI = "http://books:8083";
+    private String SPRING_PAYMENTS_URI = "http://payments:8081";
+    private String SPRING_USERS_URI = "http://users:8082";
+    private String SPRING_BOOKS_URI = "http://books:8083";
 
     //run locally
-    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
-    private String SPRING_USERS_URI = "http://localhost:8082";
-    private String SPRING_BOOKS_URI = "http://localhost:8083";
+//    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+//    private String SPRING_USERS_URI = "http://localhost:8082";
+//    private String SPRING_BOOKS_URI = "http://localhost:8083";
 
 
 
@@ -511,10 +511,11 @@ public class FrontendController {
     @PostMapping("/placeorder")
     public String postOrder(@Valid @ModelAttribute("command") PaymentsCommand command,
                                      @RequestParam(value="placeorder", required=true) String action,
+                                     @RequestParam(value="email", required=true) String email,
                                      Errors errors, Model model, HttpServletRequest request) {
 
         log.info("Accessing place order post method " );
-        ResponseEntity<PaymentsCommand> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
+        ResponseEntity<PaymentsCommand> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email="  + email, command,PaymentsCommand.class);
         log.info("Frontend Response : " + response.toString());
         command = response.getBody();
         balance = command.getTransactionAmount();

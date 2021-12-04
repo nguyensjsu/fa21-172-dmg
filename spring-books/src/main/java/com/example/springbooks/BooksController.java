@@ -52,10 +52,10 @@ public class BooksController {
     //private Long userID = Long.valueOf(1);
 
     //run on docker
-//    private String SPRING_PAYMENTS_URI = "http://payments:8081";
+    private String SPRING_PAYMENTS_URI = "http://payments:8081";
 
     //run on localhost
-    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+//    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
 
     // Initialize shopping cart
     // TODO: make userId match user
