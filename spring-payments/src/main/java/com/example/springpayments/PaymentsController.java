@@ -135,11 +135,11 @@ public class PaymentsController {
     int max = 9999999;
     int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
     String order_num = String.valueOf(random_int);
-    double balance;
-    String userId ;
-    double total;
-    String tempemail;
-    double temptotal;
+    double balance = 0;
+    String userId = "" ;
+    double total = 0;
+    String tempemail = "";
+    double temptotal = 0;
 
 
 
