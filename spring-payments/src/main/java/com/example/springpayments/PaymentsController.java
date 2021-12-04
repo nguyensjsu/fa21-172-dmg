@@ -416,7 +416,7 @@ public class PaymentsController {
         double new_balance = balance - total;
         command.setTransactionAmount(new_balance);
         balance = command.getTransactionAmount();
-        String msg = "Payment Successful for userId:" + userId + " and total:" + total ;
+        String msg = email;
         rabbitMqSender.send(msg);
         String ms= "Message has been sent Successfully to paymentConfirmation queue";
         System.out.println(ms);
