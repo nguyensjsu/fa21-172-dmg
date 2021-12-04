@@ -95,7 +95,7 @@
 <body>
 <div  th:insert="navigation :: navigation"></div>
 <form name="form" th:object="${command}" method="post" action="">
-<p hidden th:text=${email}></p>
+<p hidden th:text="${email}"></p>
 <div class="body">
         <table>
             <th scope="col">ISBN</th>
