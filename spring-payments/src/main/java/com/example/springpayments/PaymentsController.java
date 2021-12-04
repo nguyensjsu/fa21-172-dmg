@@ -406,7 +406,8 @@ public class PaymentsController {
     public ResponseEntity<PaymentsCommand> placeOrder(PaymentsCommand command, @RequestParam(value="email") String email,
                                                        @RequestParam(value="placeorder", required=false) String placeorder) throws ServerException{
           log.info("Accessing place order method ");
-
+        
+          /*
           command = repository.findByEmail(email);
           balance = command.getTransactionAmount();
           if (balance < total) {
@@ -416,13 +417,16 @@ public class PaymentsController {
           }
           double new_balance = balance - total;
           command.setTransactionAmount(new_balance);
+          */
 
+          
           String msg = "Payment Successful for userId:" + userId + " and total:" + total ;
           rabbitMqSender.send(msg);
           String ms= "Message has been sent Successfully to paymentConfirmation queue";
           System.out.println(ms);
+          
           log.info("Action: " + placeorder);
-          repository.save(command);
+          //repository.save(command);
           return  ResponseEntity.accepted().body(command);
 
       }

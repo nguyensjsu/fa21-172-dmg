@@ -49,9 +49,15 @@ public class FrontendController {
     private String SPRING_BOOKS_URI = "http://books:8083";
 
     //run locally
+<<<<<<< HEAD
 //    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
 //    private String SPRING_USERS_URI = "http://localhost:8082";
 //    private String SPRING_BOOKS_URI = "http://localhost:8083";
+=======
+    //private String SPRING_PAYMENTS_URI = "http://localhost:8081";
+    //private String SPRING_USERS_URI = "http://localhost:8082";
+    //private String SPRING_BOOKS_URI = "http://localhost:8083";
+>>>>>>> 9d339676c8aa104a989ebbf7202db8f9a42fdd7f
 
 
 
@@ -372,17 +378,17 @@ public class FrontendController {
 
     String order_num;
     double balance;
-    String fname;
-    String lname;
-    String address;
-    String city;
-    String state;
-    String zip;
-    String cardnum;
-    String exp;
-    String phone;
-    String email;
-    String userId;
+    String fname = "";
+    String lname = "";
+    String address = "";
+    String city = "";
+    String state = "";
+    String zip = "";
+    String cardnum = "";
+    String exp = "";
+    String phone = "";
+    String email = "";
+    String userId = "";
     double total = 0;
 
     @GetMapping("/creditcards")
@@ -440,6 +446,9 @@ public class FrontendController {
             model.addAttribute("exp", exp);
             model.addAttribute("email", email);
 
+            //command.setTotal(total);
+            //command.setOrderNumber(order_num);
+
         return "creditcards";
     }
 
@@ -448,12 +457,24 @@ public class FrontendController {
                                       @RequestParam(value="action", required=true) String action,
                                       Errors errors, Model model, HttpServletRequest request) {
 
-        System.out.println("Accessing post request for creditcards");
+        System.out.println("Accessing post request for creditcards " + total + " " + order_num);
+
+        command.setTotal(total);
+        command.setOrderNumber(order_num);
+
+        System.out.println("Command to Card: " + command);
+
         ResponseEntity<PaymentsCommand> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/command", command, PaymentsCommand.class);
         log.info("Frontend Response : " + response.toString());
+        
+        //Send confirmation
+        ResponseEntity<PaymentsCommand> orderResponse = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
 
-        command = response.getBody();
+        //command = response.getBody();
         fname = command.getFirstname();
+        
+        log.info("First Name: " + fname);
+
         lname = command.getLastname();
         address = command.getAddress();
         city = command.getCity();
@@ -483,7 +504,9 @@ public class FrontendController {
 
         log.info("Action: " + action);
 
-        return "creditcards";
+        total = 0;
+
+        return getPlaceOrder(command, model);
     }
 
 
@@ -491,7 +514,7 @@ public class FrontendController {
     public String getPlaceOrder( PaymentsCommand command, Model model ){
         log.info("Accessing place order get method " );
 
-
+        /*
         model.addAttribute("firstname", fname);
         model.addAttribute("lastname", lname);
         model.addAttribute("address", address);
@@ -504,6 +527,8 @@ public class FrontendController {
         model.addAttribute("card_balance",balance);
         model.addAttribute("exp", exp);
 //        model.addAttribute("email", email);
+
+        */
         return "placeorder";
 
     }
