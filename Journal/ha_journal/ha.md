@@ -561,15 +561,9 @@ css style and no mapping to image
   * Build jar files for each service and the frontend at their root folder
     * gradle clean
     * gradle bootJar
-
-* Step 2:
-  * Build images for each service and the frontend at their root folder
-    * docker build -t frontend .
-    * docker build -t spring-users .
-    * docker build -t spring-payments .
-    * docker build -t spring-books .
+   
     
-* Step 3:
+* Step 2:
   * run the app in docker
   * run the mysql db
     * docker-compose up -d mysql

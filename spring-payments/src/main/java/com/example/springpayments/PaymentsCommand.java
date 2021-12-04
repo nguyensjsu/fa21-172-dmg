@@ -28,7 +28,7 @@ public class PaymentsCommand {
  private String email ;
  private String userId ;
  private double total;
-// private String notes ;
+ private String notes ;
 
 
  private String orderNumber;

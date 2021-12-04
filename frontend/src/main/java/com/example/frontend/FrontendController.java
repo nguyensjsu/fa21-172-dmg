@@ -49,15 +49,10 @@ public class FrontendController {
     private String SPRING_BOOKS_URI = "http://books:8083";
 
     //run locally
-<<<<<<< HEAD
+
 //    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
 //    private String SPRING_USERS_URI = "http://localhost:8082";
 //    private String SPRING_BOOKS_URI = "http://localhost:8083";
-=======
-    //private String SPRING_PAYMENTS_URI = "http://localhost:8081";
-    //private String SPRING_USERS_URI = "http://localhost:8082";
-    //private String SPRING_BOOKS_URI = "http://localhost:8083";
->>>>>>> 9d339676c8aa104a989ebbf7202db8f9a42fdd7f
 
 
 
@@ -375,8 +370,10 @@ public class FrontendController {
     /* 
     Spring Payments
     */
-
-    String order_num;
+    int min = 1239871;
+    int max = 9999999;
+    int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
+    String order_num = String.valueOf(random_int);
     double balance;
     String fname = "";
     String lname = "";
@@ -390,6 +387,7 @@ public class FrontendController {
     String email = "";
     String userId = "";
     double total = 0;
+
 
     @GetMapping("/creditcards")
 //    public String getAction(@ModelAttribute("command") PaymentsCommand command, Model model) {
@@ -432,49 +430,34 @@ public class FrontendController {
 //        userId = command.getUserId();
 //        total = command.getTotal();
 
-            model.addAttribute("order_number", order_num);
-            model.addAttribute("total", total);
-            model.addAttribute("fname", fname);
-            model.addAttribute("lname", lname);
-            model.addAttribute("address", address);
-            model.addAttribute("city", city);
-            model.addAttribute("state", state);
-            model.addAttribute("zip", zip);
-            model.addAttribute("phone", phone);
-            model.addAttribute("card_num", cardnum);
-            model.addAttribute("card_balance", balance);
-            model.addAttribute("exp", exp);
-            model.addAttribute("email", email);
-
-            //command.setTotal(total);
-            //command.setOrderNumber(order_num);
+        model.addAttribute("order_number", order_num);
+        model.addAttribute("total", total);
+        model.addAttribute("fname", fname);
+        model.addAttribute("lname", lname);
+        model.addAttribute("address", address);
+        model.addAttribute("city", city);
+        model.addAttribute("state", state);
+        model.addAttribute("zip", zip);
+        model.addAttribute("phone", phone);
+        model.addAttribute("card_num", cardnum);
+        model.addAttribute("card_balance", balance);
+        model.addAttribute("exp", exp);
+        model.addAttribute("email", email);
 
         return "creditcards";
     }
 
     @PostMapping("/creditcards")
     public String postAction(@Valid @ModelAttribute("command") PaymentsCommand command,
-                                      @RequestParam(value="action", required=true) String action,
-                                      Errors errors, Model model, HttpServletRequest request) {
+                             @RequestParam(value="action", required=true) String action,
+                             Errors errors, Model model, HttpServletRequest request) {
 
-        System.out.println("Accessing post request for creditcards " + total + " " + order_num);
-
-        command.setTotal(total);
-        command.setOrderNumber(order_num);
-
-        System.out.println("Command to Card: " + command);
-
+        System.out.println("Accessing post request for creditcards");
         ResponseEntity<PaymentsCommand> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/command", command, PaymentsCommand.class);
         log.info("Frontend Response : " + response.toString());
-        
-        //Send confirmation
-        ResponseEntity<PaymentsCommand> orderResponse = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
 
-        //command = response.getBody();
+        command = response.getBody();
         fname = command.getFirstname();
-        
-        log.info("First Name: " + fname);
-
         lname = command.getLastname();
         address = command.getAddress();
         city = command.getCity();
@@ -504,43 +487,38 @@ public class FrontendController {
 
         log.info("Action: " + action);
 
-        total = 0;
-
-        return getPlaceOrder(command, model);
+        return "creditcards";
     }
 
 
-    @GetMapping("/placeorder")
-    public String getPlaceOrder( PaymentsCommand command, Model model ){
-        log.info("Accessing place order get method " );
-
-        /*
-        model.addAttribute("firstname", fname);
-        model.addAttribute("lastname", lname);
-        model.addAttribute("address", address);
-        model.addAttribute("city", city);
-        model.addAttribute("state", state);
-        model.addAttribute("zip", zip);
-        model.addAttribute("phone", phone);
-
-        model.addAttribute("card_num", cardnum);
-        model.addAttribute("card_balance",balance);
-        model.addAttribute("exp", exp);
-//        model.addAttribute("email", email);
-
-        */
-        return "placeorder";
-
-    }
+//    @GetMapping("/placeorder")
+//    public String getPlaceOrder( PaymentsCommand command, Model model ){
+//        log.info("Accessing place order get method " );
+//
+//
+//        model.addAttribute("firstname", fname);
+//        model.addAttribute("lastname", lname);
+//        model.addAttribute("address", address);
+//        model.addAttribute("city", city);
+//        model.addAttribute("state", state);
+//        model.addAttribute("zip", zip);
+//        model.addAttribute("phone", phone);
+//
+//        model.addAttribute("card_num", cardnum);
+//        model.addAttribute("card_balance",balance);
+//        model.addAttribute("exp", exp);
+////        model.addAttribute("email", email);
+//        return "placeorder";
+//
+//    }
 
     @PostMapping("/placeorder")
     public String postOrder(@Valid @ModelAttribute("command") PaymentsCommand command,
-                                     @RequestParam(value="placeorder", required=true) String action,
-                                     @RequestParam(value="email", required=true) String email,
-                                     Errors errors, Model model, HttpServletRequest request) {
+                            @RequestParam(value="placeorder", required=true) String action,
+                            Errors errors, Model model, HttpServletRequest request) {
 
         log.info("Accessing place order post method " );
-        ResponseEntity<PaymentsCommand> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email="  + email, command,PaymentsCommand.class);
+        ResponseEntity<PaymentsCommand> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
         log.info("Frontend Response : " + response.toString());
         command = response.getBody();
         balance = command.getTransactionAmount();
@@ -562,5 +540,177 @@ public class FrontendController {
 
         return "placeorder";
     }
+//    @GetMapping("/creditcards")
+////    public String getAction(@ModelAttribute("command") PaymentsCommand command, Model model) {
+//    public String getAction(@ModelAttribute("command") PaymentsCommand command,
+//                            @RequestParam(value="email") String email,
+//                            Model model) {
+//        System.out.println("Accessing get request for creditcards");
+//
+//        ArrayList<CartItem> items = new ArrayList<CartItem>();
+//        ResponseEntity<ArrayList> cartResponse = restTemplate.getForEntity(SPRING_BOOKS_URI + "/shoppingcart?email=" + email, ArrayList.class, items);
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//
+//        for (Object item : cartResponse.getBody())
+//            try{
+//                //JsonNode jsonNode = mapper.readTree(response.getBody().toString());
+//                //System.out.print("JSON: " + jsonNode);
+//                CartItem newItem = new CartItem();
+//
+//                newItem = mapper.convertValue(item, CartItem.class);
+//                items.add(newItem);
+//            } catch ( Exception e ) {
+//                System.out.println( e ) ;
+//            }
+//
+////        double total = 0;
+//
+//        for (CartItem item : items) {
+//            total += item.getBook().getPrice() * item.getQuantity();
+//        }
+//
+//        total = Math.round(total*100.0)/100.0;
+//
+////        ResponseEntity<PaymentsCommand> response = restTemplate.getForEntity(SPRING_PAYMENTS_URI + "/creditcards", PaymentsCommand.class);
+//        ResponseEntity<PaymentsCommand> response = restTemplate.getForEntity(SPRING_PAYMENTS_URI + "/creditcards?email=" + email+ "&total=" + total, PaymentsCommand.class);
+////        log.info("Frontend Response: " + response.toString());
+////
+////        command = response.getBody();
+////        order_num= command.getOrderNumber();
+////        userId = command.getUserId();
+////        total = command.getTotal();
+//
+//            model.addAttribute("order_number", order_num);
+//            model.addAttribute("total", total);
+//            model.addAttribute("fname", fname);
+//            model.addAttribute("lname", lname);
+//            model.addAttribute("address", address);
+//            model.addAttribute("city", city);
+//            model.addAttribute("state", state);
+//            model.addAttribute("zip", zip);
+//            model.addAttribute("phone", phone);
+//            model.addAttribute("card_num", cardnum);
+//            model.addAttribute("card_balance", balance);
+//            model.addAttribute("exp", exp);
+//            model.addAttribute("email", email);
+//
+//            //command.setTotal(total);
+//            //command.setOrderNumber(order_num);
+//
+//        return "creditcards";
+//    }
+//
+//    @PostMapping("/creditcards")
+//    public String postAction(@Valid @ModelAttribute("command") PaymentsCommand command,
+//                                      @RequestParam(value="action", required=true) String action,
+//                                      Errors errors, Model model, HttpServletRequest request) {
+//
+//        System.out.println("Accessing post request for creditcards " + total + " " + order_num);
+//
+//        command.setTotal(total);
+//        command.setOrderNumber(order_num);
+//
+//        System.out.println("Command to Card: " + command);
+//
+//        ResponseEntity<PaymentsCommand> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/command", command, PaymentsCommand.class);
+//        log.info("Frontend Response : " + response.toString());
+//
+//
+//        //Send confirmation
+////        ResponseEntity<PaymentsCommand> orderResponse = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email=" + command.getEmail(), command,PaymentsCommand.class);
+//
+//        command = response.getBody();
+//        fname = command.getFirstname();
+//
+//        log.info("First Name: " + fname);
+//
+//        lname = command.getLastname();
+//        address = command.getAddress();
+//        city = command.getCity();
+//        state = command.getState();
+//        zip = command.getZip();
+//        balance = command.getTransactionAmount();
+//        cardnum = command.getCardnumber();
+//        exp = command.getExpmonth();
+//        exp = exp + "/";
+//        exp = exp + command.getExpyear();
+//        phone = command.getPhone();
+//        email = command.getEmail();
+//
+//        model.addAttribute("order_number", order_num);
+//        model.addAttribute("total", total);
+//        model.addAttribute("fname", command.getFirstname() );
+//        model.addAttribute("lname", command.getLastname());
+//        model.addAttribute("address", command.getAddress() );
+//        model.addAttribute("city", command.getCity() );
+//        model.addAttribute("state", command.getState() );
+//        model.addAttribute("zip", command.getZip());
+//        model.addAttribute("phone", command.getPhone());
+//        model.addAttribute("userId", userId);
+//        model.addAttribute("card_num", command.getCardnumber());
+//        model.addAttribute("card_balance",  balance);
+//        model.addAttribute("exp", exp);
+//
+//        log.info("Action: " + action);
+//
+//        total = 0;
+//
+//        return getPlaceOrder(command, model);
+//    }
+//
+//
+//    @GetMapping("/placeorder")
+//    public String getPlaceOrder( PaymentsCommand command, Model model ){
+//        log.info("Accessing place order get method " );
+//
+//        /*
+//        model.addAttribute("firstname", fname);
+//        model.addAttribute("lastname", lname);
+//        model.addAttribute("address", address);
+//        model.addAttribute("city", city);
+//        model.addAttribute("state", state);
+//        model.addAttribute("zip", zip);
+//        model.addAttribute("phone", phone);
+//
+//        model.addAttribute("card_num", cardnum);
+//        model.addAttribute("card_balance",balance);
+//        model.addAttribute("exp", exp);
+////        model.addAttribute("email", email);
+//
+//        */
+//        return "placeorder";
+//
+//    }
+//
+//    @PostMapping("/placeorder")
+//    public String postOrder(@Valid @ModelAttribute("command") PaymentsCommand command,
+//                                     @RequestParam(value="placeorder", required=true) String action,
+//                                     @RequestParam(value="email", required=true) String email,
+//                                     Errors errors, Model model, HttpServletRequest request) {
+//
+//        log.info("Accessing place order post method " );
+//        ResponseEntity<PaymentsCommand> response = restTemplate.postForEntity(SPRING_PAYMENTS_URI + "/placeorder?email="  + email, command,PaymentsCommand.class);
+//        log.info("Frontend Response : " + response.toString());
+//        command = response.getBody();
+//        balance = command.getTransactionAmount();
+//
+////        balance = balance - total;
+//        model.addAttribute("firstname", fname);
+//        model.addAttribute("lastname", lname);
+//        model.addAttribute("address", address);
+//        model.addAttribute("city", city);
+//        model.addAttribute("state", state);
+//        model.addAttribute("zip", zip);
+//        model.addAttribute("phone", phone);
+//
+//        model.addAttribute("card_num", cardnum);
+//        model.addAttribute("card_balance",balance);
+//        model.addAttribute("exp", exp);
+//        model.addAttribute("userId", userId);
+//        log.info("Balance:"  + balance);
+//
+//        return "placeorder";
+//    }
 
 }
