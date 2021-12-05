@@ -123,8 +123,8 @@ public class BooksController {
     
     // For testing Kong 
     @GetMapping("/ping")
-    public Ping ping() {
-        return new Ping("Spring-Books is alive!");
+    public String ping() {
+        return "Spring-Books is alive!";
     }
 
     // May not be needed
