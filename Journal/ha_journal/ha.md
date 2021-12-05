@@ -707,16 +707,7 @@ css style and no mapping to image
 ![Spring Payments](images/gke_cluster.png)
   <p>&nbsp;</p>
 
-* GKE cluster
-
-![Spring Payments](images/gke_cluster.png)
-  <p>&nbsp;</p>
-
-* GKE cluster
-
-![Spring Payments](images/gke_cluster.png)
-  <p>&nbsp;</p>
-
+* The rest moved to project README file
 
 
 

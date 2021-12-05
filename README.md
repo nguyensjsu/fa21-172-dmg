@@ -81,14 +81,12 @@
 ![Project DMG](images/gke_cyber_carddetail_2.png)
 <p>&nbsp;</p>
 
-
-
-
-
-![Project DMG](images/gke_cyber_carddetail_1.png)
+* Place an order
+![Project DMG](images/gke_placeOrder.png)
 <p>&nbsp;</p>
 
-![Project DMG](images/gke_cyber_carddetail_1.png)
+* Message to RabbitMQ
+![Project DMG](images/gke_rabbitmq.png)
 <p>&nbsp;</p>
 
 
