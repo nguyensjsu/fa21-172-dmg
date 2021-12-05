@@ -1,22 +1,23 @@
-# Team Project (Book Store )
+# Team Project (DMGBooks )
 
-### Team Journal
-[Team Journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/team_journal/README.md)
+San Jose State University Computer Engineering Fall 2021  
 
-### Individual Member Journals 
-[Rhea's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/rhea.md)
+Written by: 
 
-[Ha's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/ha_journal/ha.md)
+*Rhea Dash
 
-[Patrick's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/patrick_journal/patrick.md)
+*Ha Duong  
+
+*Patrick Merrill
+
+### Introduction
+ The project aims to build a Google Cloud Hosted Enterprise Application for a fictious Corporation
+ to support the order and payment processing for buying books at DMGBooks.
+ 
 
 ### Project Demo
 
 ### Book Store App
-
-
-### Project Notes
-#### Deploy to GKE
 
 * Home page
 
@@ -89,8 +90,71 @@
 ![Project DMG](images/gke_rabbitmq.png)
 <p>&nbsp;</p>
 
+* Password reset
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-unr.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-unr-b.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-inc.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-inc-b.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-suc.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-a.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-b.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-c.JPG)
+<p>&nbsp;</p>
 
 
+### Project Notes
+
+#### Functional Requirements
+
+Front Office Portal: 
+A "Front Office" Web Application that allows customers to sign-up for accounts, browse product catalog, place, and pay for orders using credit cards.
+Back Office Portals: 
+One "Back Office" Web Applications that supports customers reset password
+REST APIs: 
+Back Office and Front Office Applications integrate with "Backends" using REST APIs.
+
+#### Technical Requirements
+
+* The application was implemented in Java Spring and be deployable as Docker Containers on Google Cloud VM's and/or Kubernetes Engine (GKE).
+* The source code is hosted in an assigned Team Repository in CMPE172 GitHub Organization.
+*  All team members were committing work to GitHub.
+*  Making weekly Individual Status Reports as (Markdown GitHub Files) at:
+### Team Journal
+[Team Journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/team_journal/README.md)
+
+### Individual Member Journals 
+[Rhea's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/rhea_journal/rhea.md)
+
+[Ha's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/ha_journal/ha.md)
+
+[Patrick's journal](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/Journal/patrick_journal/patrick.md)
+
+
+*   Along with using GitHub's Team Task Board to track our progress.
+*  https://github.com/nguyensjsu/fa21-172-dmg/projects/1
+
+
+#### Software Stack & Tools
+* Spring Framework (Spring MVC, Spring JPA, Etc...) for
+ * Back Office Portal
+ * REST APIs
+ * Front Office Portal using Thymeleaf
+* Development Tools
+ * Gradle 5.6
+ * Version of Java should be JDK 11
+ * Database & Middleware Requirements
+   * MySQL Database 8.0
+   * RabbitMQ
+   * Kong API Gateway
+ * Credit Card Payments Support
+   * Integration with CyberSource Payment Gateway
 
 #### What is KONG API Gateway?
 

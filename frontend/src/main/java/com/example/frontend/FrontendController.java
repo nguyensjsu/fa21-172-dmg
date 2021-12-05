@@ -53,7 +53,10 @@ public class FrontendController {
 //    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
 //    private String SPRING_USERS_URI = "http://localhost:8082";
 //    private String SPRING_BOOKS_URI = "http://localhost:8083";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9a9228e6b3f2ec6cd36f8d26cb85e3efa7492c20
 
 
 
