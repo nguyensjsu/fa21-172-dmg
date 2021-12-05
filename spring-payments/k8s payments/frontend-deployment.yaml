@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: frontend
+  name: frontend
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      name: frontend
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: frontend
+    spec:
+      containers:
+      - image: hannyduong2024/frontend:v1
+        imagePullPolicy: Always
+        name: frontend
+        ports:
+        - containerPort: 8080
+        resources: {}
+      restartPolicy: Always
+status: {}

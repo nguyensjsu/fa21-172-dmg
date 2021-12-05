@@ -643,21 +643,79 @@ css style and no mapping to image
   <p>&nbsp;</p>
 
 
+##### Deploy the app to GKE
+* Step 1: Create images and push to Docker Hub
 
+  * docker build -t hannyduong2024/backoffice:v1 -t hannyduong2024/backoffice:v1 .
+  * docker push hannyduong2024/backoffice:v1
 
+  * docker build -t hannyduong2024/spring-books:v1 -t hannyduong2024/spring-books:v1 .
+  * docker push hannyduong2024/spring-books:v1
 
+  * docker build -t hannyduong2024/frontend:v1 -t hannyduong2024/frontend:v1 .
+  * docker push hannyduong2024/frontend:v1
 
+  * docker build -t hannyduong2024/spring-payments:v1 -t hannyduong2024/spring-payments:v1 .
+  * docker push hannyduong2024/spring-payments:v1
 
+  *  docker build -t hannyduong2024/spring-users:v1 -t hannyduong2024/spring-users:v1 .
+  * docker push hannyduong2024/spring-users:v1
 
+* Step 2: Create cluster name: cmpe172
+* Step 3: Connect to it
+* Step 4: Create a folder name cmpe172: mkdir cmpe172 
+* Step 5: Go to cmpe172 folder: cd cmpe172
 
+* Step 6: Upload files in k8 payments to cmpe172 folder
+* Step 7: Issue these commands
+   * kubectl apply -f mysql-deployment.yaml
+   * kubectl apply -f mysql-service.yaml
 
+   * kubectl apply -f frontend-deployment.yaml
+   * kubectl apply -f frontend-service.yaml
 
+   * kubectl apply -f backoffice-deployment.yaml
+   * kubectl apply -f backoffice-service.yaml
 
-* Add card Success
+   * kubectl apply -f users-deployment.yaml
+   * kubectl apply -f users-service.yaml
 
-![Spring Payments](images/docker_add_card_suc.png)
+   * kubectl apply -f payments-deployment.yaml
+   * kubectl apply -f payments-service.yaml
+
+   * kubectl apply -f books-deployment.yaml
+   * kubectl apply -f books-service.yaml 
+
+  
+* GKE cluster
+
+![Spring Payments](images/gke_cluster.png)
   <p>&nbsp;</p>
 
+* GKE commands
+
+![Spring Payments](images/gke_commands.png)
+  <p>&nbsp;</p>
+
+* GKE services
+
+![Spring Payments](images/gke_servies.png)
+  <p>&nbsp;</p>
+
+* GKE cluster
+
+![Spring Payments](images/gke_cluster.png)
+  <p>&nbsp;</p>
+
+* GKE cluster
+
+![Spring Payments](images/gke_cluster.png)
+  <p>&nbsp;</p>
+
+* GKE cluster
+
+![Spring Payments](images/gke_cluster.png)
+  <p>&nbsp;</p>
 
 
 

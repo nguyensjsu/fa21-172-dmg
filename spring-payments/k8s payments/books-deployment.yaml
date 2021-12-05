@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yaml
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: books
+  name: books
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      name: books
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: books
+    spec:
+      containers:
+      - env:
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:mysql://mysql:3306/springbooks
+        image: hannyduong2024/spring-books:v1
+        imagePullPolicy: Always
+        name: books
+        ports:
+        - containerPort: 8083
+        resources: {}
+      restartPolicy: Always
+status: {}

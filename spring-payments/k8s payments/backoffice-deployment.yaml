@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: backoffice
+  name: backoffice
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      name: backoffice
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: backoffice
+    spec:
+      containers:
+      - image: hannyduong2024/backoffice:v1
+        imagePullPolicy: Always
+        name: backoffice
+        ports:
+        - containerPort: 8080
+        resources: {}
+      restartPolicy: Always
+status: {}

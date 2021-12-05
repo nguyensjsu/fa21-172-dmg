@@ -16,6 +16,83 @@
 
 
 ### Project Notes
+#### Deploy to GKE
+
+* Home page
+
+![Project DMG](images/gke_home.png)
+<p>&nbsp;</p>
+
+* Register page
+
+![Project DMG](images/gke_register.png)
+<p>&nbsp;</p>
+
+* Login Success
+
+![Project DMG](images/gke_login_suc.png)
+<p>&nbsp;</p>
+
+* Catalog page
+
+![Project DMG](images/gke_catalog.png)
+<p>&nbsp;</p>
+
+![Project DMG](images/gke_catalog_1.png)
+<p>&nbsp;</p>
+
+* Shopping Cart page
+
+![Project DMG](images/gke_shoppingcart.png)
+<p>&nbsp;</p>
+
+* Creditcards page
+
+![Project DMG](images/gke_addcard.png)
+<p>&nbsp;</p>
+
+* Credit card info
+
+![Project DMG](images/gke_addcard_info.png)
+<p>&nbsp;</p>
+
+* Initial balance
+
+![Project DMG](images/gke_initial_balance.png)
+<p>&nbsp;</p>
+
+* Credit card Register Success in Cybersource
+
+![Project DMG](images/gke_cyber.png)
+<p>&nbsp;</p>
+
+![Project DMG](images/gke_cyber_1.png)
+<p>&nbsp;</p>
+
+
+* Card Details
+
+![Project DMG](images/gke_cyber_carddetail.png)
+<p>&nbsp;</p>
+
+![Project DMG](images/gke_cyber_carddetail_1.png)
+<p>&nbsp;</p>
+
+![Project DMG](images/gke_cyber_carddetail_2.png)
+<p>&nbsp;</p>
+
+
+
+
+
+![Project DMG](images/gke_cyber_carddetail_1.png)
+<p>&nbsp;</p>
+
+![Project DMG](images/gke_cyber_carddetail_1.png)
+<p>&nbsp;</p>
+
+
+
 
 #### What is KONG API Gateway?
 

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yaml
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: payments
+  name: payments
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      name: payments
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: payments
+    spec:
+      containers:
+      - env:
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:mysql://mysql:3306/springpayments
+        image: hannyduong2024/spring-payments:v1
+        imagePullPolicy: Always
+        name: payments
+        ports:
+        - containerPort: 8081
+        resources: {}
+      restartPolicy: Always
+      
+status: {}
