@@ -53,7 +53,8 @@ services:
     #image: rheadash/spring-users:v1
     build: spring-payments
     depends_on:
-    - mysql    
+    - mysql
+    - rabbitmq    
     volumes:
       - /tmp:/tmp
     networks:
@@ -67,7 +68,8 @@ services:
     #image: rheadash/spring-users:v1
     build: spring-books
     depends_on:
-    - mysql    
+    - mysql
+    - rabbitmq        
     volumes:
       - /tmp:/tmp
     networks:

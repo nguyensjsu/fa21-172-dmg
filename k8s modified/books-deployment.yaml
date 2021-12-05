@@ -25,7 +25,7 @@ spec:
       - env:
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://mysql:3306/springbooks
-        image: rheadash/spring-books:v1
+        image: merrillpe/spring-books:v1
         imagePullPolicy: Always
         name: books
         ports:
