@@ -45,6 +45,9 @@ public class PaymentsController {
         this.repository = repository;
 
     }
+    final String API_KEY = "apikey";
+    final String API_KEY_VALUE = "Zkfokey2311";
+
 
     private static boolean DEBUG = true;
     private CyberSourceAPI api = new CyberSourceAPI();
@@ -176,10 +179,16 @@ public class PaymentsController {
     }
 
     @GetMapping("/ping")
-    public ResponseEntity<PaymentsCommand> ping() {
+//    public <ResponseEntity<PaymentsCommand> ping() {
+    public ResponseEntity<String> ping() {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set(API_KEY,API_KEY_VALUE);
         String msg = "Spring-Payments is alive!";
         log.info("Ping: " + msg);
-        return new ResponseEntity(msg, HttpStatus.OK) ;
+//        return new ResponseEntity(msg, HttpStatus.OK)
+        return  ResponseEntity.ok()
+                .header(String.valueOf(responseHeaders))
+                .body(msg);
     }
 
 

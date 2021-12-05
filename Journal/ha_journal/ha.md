@@ -710,8 +710,87 @@ css style and no mapping to image
 * The rest moved to project README file
 
 
+#### Day: 12/05/2021
+* Record the demo
+* Test Kong with spring-payments on GKE
+* Deploy spring-payments, jumbox, and create a service for spring payment 
+  * kubectl apply -f payments-deployment.yaml
+  * kubectl apply -f payments-service.yaml
+  * kubectl create -f jumpbox.yaml
+* Install Kong GKE Ingress controller
+  * kubectl apply -f https://bit.ly/k4k8s
+  * export KONG=34.123.177.44
+  * kubectl apply -f kong-ingress-rule.yaml  
+  *  kubectl apply -f kong-strip-path.yaml
+  *  kubectl patch ingress payments -p '{"metadata":{"annotations":{"konghq.com/override":"kong-strip-path"}}}'
+  *  curl $KONG/api/ping
+  *  kubectl apply -f kong-key-auth.yaml
+  *  kubectl patch service payments -p '{"metadata":{"annotations":{"konghq.com/plugins":"kong-key-auth"}}}'
+  *  kubectl apply -f kong-consumer.yaml
+  *  kubectl create secret generic apikey --from-literal=kongCredType=key-auth --from-literal=key=Zkfokey2311
+  *  kubectl apply -f kong-credentials.yaml
+
+  
+![Spring Payments](images/gke_kong.png)
+  <p>&nbsp;</p>
+
+![Spring Payments](images/gke_kong_1.png)
+  <p>&nbsp;</p>
+
+![Spring Payments](images/gke_kong_2.png)
+  <p>&nbsp;</p>
+
+![Spring Payments](images/gke_kong_3.png)
+  <p>&nbsp;</p>
+
+* curl $KONG/api/ping
+
+![Spring Payments](images/gke_kong_4.png)
+  <p>&nbsp;</p>
+
+* curl $KONG/api/ping --header 'apikey: Zkfokey2311'
 
 
+![Spring Payments](images/gke_kong_5.png)
+  <p>&nbsp;</p>
 
+* Test in Postman
+![Spring Payments](images/gke_kong_6.png)
+  <p>&nbsp;</p>
 
+* Add a card
+  ![Spring Payments](images/gke_kong_7.png)
+  <p>&nbsp;</p>
+
+* Add card with curl 
+* curl --location --request POST 'http://107.178.212.121/api/command?apikey=Zkfokey2311' \
+  --header 'apikey: Zkfokey2311' \
+  --header 'Content-Type: application/json' \
+  --data-raw '
+  {
+  "id": null,
+  "action": "Save",
+  "firstname": "Kim",
+  "lastname": "Daisy",
+  "address": "789 Rose st",
+  "city": "Fremont",
+  "state": "CA",
+  "zip": "95111",
+  "phone": "(408)-123-4569",
+  "cardnumber": "4622-9431-2701-3747",
+  "expmonth": "December",
+  "expyear": "2022",
+  "cvv": "370",
+  "email": "brown@sjsu.edu",
+  "cartId": " null",
+  "subtotal": 0.0,
+  "transactionAmount": 0.0,
+  "transactionCurrency": null,
+  "authId": null,
+  "authStatus": null,
+  "captureId": null,
+  "captureStatus": null
+  }'
+  ![Spring Payments](images/gke_kong_8.png)
+  <p>&nbsp;</p>
 
