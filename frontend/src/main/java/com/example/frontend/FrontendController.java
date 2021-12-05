@@ -50,15 +50,9 @@ public class FrontendController {
 
     //run locally
 
-<<<<<<< HEAD
 //    private String SPRING_PAYMENTS_URI = "http://localhost:8081";
 //    private String SPRING_USERS_URI = "http://localhost:8082";
 //    private String SPRING_BOOKS_URI = "http://localhost:8083";
-=======
-    //private String SPRING_PAYMENTS_URI = "http://localhost:8081";
-    //private String SPRING_USERS_URI = "http://localhost:8082";
-    //private String SPRING_BOOKS_URI = "http://localhost:8083";
->>>>>>> 2707f7152d40158d812727c30ac1fd6d810b7ad1
 
 
 
