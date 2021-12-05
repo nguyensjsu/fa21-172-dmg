@@ -90,6 +90,23 @@ Written by:
 ![Project DMG](images/gke_rabbitmq.png)
 <p>&nbsp;</p>
 
+* Password reset
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-unr.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-unr-b.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-inc.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-inc-b.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-suc.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-a.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-b.JPG)
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gke-reset-c.JPG)
+<p>&nbsp;</p>
 
 
 ### Project Notes
