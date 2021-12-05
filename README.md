@@ -5,8 +5,10 @@ San Jose State University Computer Engineering Fall 2021
 Written by: 
 
 *Rhea Dash
-Ha Duong  
-Patrick Merrill*  
+
+*Ha Duong  
+
+*Patrick Merrill
 
 ### Introduction
  The project aims to build a Google Cloud Hosted Enterprise Application for a fictious Corporation
