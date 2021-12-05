@@ -38,8 +38,8 @@ docker-shell:
 docker-push:
 	gradle build
 	docker login
-	docker build -t rheadash/spring-books:v1 -t rheadash/spring-books:v1 .
-	docker push rheadash/spring-books:v1 
+	docker build -t merrillpe/spring-books:v1 -t merrillpe/spring-books:v1 .
+	docker push merrillpe/spring-books:v1 
 
 # Compose
 
