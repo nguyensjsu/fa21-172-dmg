@@ -156,6 +156,7 @@ public class BackofficeController {
         System.out.println("frontend/FrontendController.java");
         System.out.println("Email = " + user.getEmail() + ", Password = " + user.getPassword());
         ResponseEntity<User> response = restTemplate.getForEntity(KONG_URI + "/users?email=" + user.getEmail() + "&password=" + user.getPassword() + "&apikey=" + apiKey, User.class, user);
+        System.out.println("URL: " + KONG_URI);
         //User existingUser = restTemplate.getForObject(SPRING_USERS_URI + "/users/" + user.getEmail(), User.class, toMap(user));
         //User existingUser = repository.findByEmail(user.getEmail());
         System.out.println("After sending GET to backend: ");
