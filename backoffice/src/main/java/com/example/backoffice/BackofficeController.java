@@ -78,7 +78,7 @@ public class BackofficeController {
     // Kong Test
     @GetMapping("/ping")
     public String kongPing() {
-        ResponseEntity<String> response = restTemplate.getForEntity(KONG_URI + "/users/ping?apikey=" + apiKey, String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(KONG_URI + "/ping?apikey=" + apiKey, String.class);
         System.out.println(response.getBody());
 
         return response.getBody();
