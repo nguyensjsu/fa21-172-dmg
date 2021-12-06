@@ -78,9 +78,9 @@ public class FrontendController {
     @GetMapping("/ping")
     public String kongPing() {
         String response = restTemplate.getForObject(KONG_URI + "/books/ping?apikey=" + apiKey, String.class);
-        System.out.println(response.toString());
+        System.out.println(response);
 
-        return response.toString();
+        return response;
     }
 
     /*

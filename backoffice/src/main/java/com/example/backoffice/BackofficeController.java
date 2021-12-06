@@ -48,6 +48,9 @@ public class BackofficeController {
     private String SPRING_USERS_URI = "http://users:8082";
     private String SPRING_BOOKS_URI = "http://books:8083";
 
+    private String KONG_URI = "http://kong:8000";
+    private String apiKey = "2H3fONTa8ugl1IcVS7CjLPnPIS2Hp9dJ";
+
     //run locally
     //private String SPRING_PAYMENTS_URI = "http://localhost:8081";
     //private String SPRING_USERS_URI = "http://localhost:8082";
@@ -69,6 +72,15 @@ public class BackofficeController {
             map.put( field.getName(), field.get( object ) );
         }
         return map;
+    }
+
+    // Kong Test
+    @GetMapping("/ping")
+    public String kongPing() {
+        ResponseEntity<String> response = restTemplate.getForEntity(KONG_URI + "/users/ping?apikey=" + apiKey, String.class);
+        System.out.println(response.getBody());
+
+        return response.getBody();
     }
 
     /*
