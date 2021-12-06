@@ -32,6 +32,17 @@
 _format_version: "1.1"
 
 services:
+<<<<<<< HEAD
+=======
+- name: users
+  protocol: http
+  host: users
+  port: 8082
+  path: /
+  plugins:
+  - name: key-auth  
+  routes:
+>>>>>>> 8c7945aa1371354a3218d7dc459b319f3af0e4be
   - name: users
     protocol: http
     host: users
@@ -50,6 +61,7 @@ consumers:
       - key: 2H3fONTa8ugl1IcVS7CjLPnPIS2Hp9dJ
 
 
+<<<<<<< HEAD
 # Each Kong entity (core entity or custom entity introduced by a plugin)
 # can be listed in the top-level as an array of objects:
 
@@ -184,3 +196,5 @@ _transform: true
 #   tags:
 #   - extra_limits
 #   - my_tag
+=======
+>>>>>>> 8c7945aa1371354a3218d7dc459b319f3af0e4be

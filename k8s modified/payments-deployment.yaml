@@ -25,7 +25,7 @@ spec:
       - env:
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://mysql:3306/springpayments
-        image: rheadash/spring-payments:v1
+        image: merrillpe/spring-payments:v1
         imagePullPolicy: Always
         name: payments
         ports:

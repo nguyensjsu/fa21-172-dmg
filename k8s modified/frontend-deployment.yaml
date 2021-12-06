@@ -18,7 +18,7 @@ spec:
         name: frontend
     spec:
       containers:
-      - image: rheadash/frontend:v1
+      - image: merrillpe/frontend:v1
         imagePullPolicy: Always
         name: frontend
         ports:
