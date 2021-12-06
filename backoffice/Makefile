@@ -38,8 +38,8 @@ docker-shell:
 docker-push:
 	gradle build
 	docker login
-	docker build -t rheadash/backoffice:v1 .
-	docker push rheadash/backoffice:v1 
+	docker build -t merrillpe/backoffice:v1 .
+	docker push merrillpe/backoffice:v1 
 
 # Compose
 

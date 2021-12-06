@@ -1,0 +1,7 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: kong-key-auth
+plugin: key-auth
+
+# kubectl patch service users -p '{"metadata":{"annotations":{"konghq.com/plugins":"kong-key-auth"}}}'

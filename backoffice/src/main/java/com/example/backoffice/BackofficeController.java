@@ -48,7 +48,8 @@ public class BackofficeController {
     private String SPRING_USERS_URI = "http://users:8082";
     private String SPRING_BOOKS_URI = "http://books:8083";
 
-    private String KONG_URI = "http://kong:8000";
+    //private String KONG_URI = "http://kong:8000/users";
+    private String KONG_URI = "http://kong-proxy/users";
     private String apiKey = "2H3fONTa8ugl1IcVS7CjLPnPIS2Hp9dJ";
 
     //run locally
@@ -154,7 +155,7 @@ public class BackofficeController {
         log.info(" User : " + user) ;
         System.out.println("frontend/FrontendController.java");
         System.out.println("Email = " + user.getEmail() + ", Password = " + user.getPassword());
-        ResponseEntity<User> response = restTemplate.getForEntity(KONG_URI + "/users/users?email=" + user.getEmail() + "&password=" + user.getPassword() + "&apikey=" + apiKey, User.class, user);
+        ResponseEntity<User> response = restTemplate.getForEntity(KONG_URI + "/users?email=" + user.getEmail() + "&password=" + user.getPassword() + "&apikey=" + apiKey, User.class, user);
         //User existingUser = restTemplate.getForObject(SPRING_USERS_URI + "/users/" + user.getEmail(), User.class, toMap(user));
         //User existingUser = repository.findByEmail(user.getEmail());
         System.out.println("After sending GET to backend: ");
@@ -190,7 +191,7 @@ public class BackofficeController {
         @RequestParam(value="action", required=false) String action, 
         Errors errors, Model model, HttpServletRequest request) {
         
-        String uri_path = KONG_URI + "/users/passwordreset?email=" + user.getEmail() + 
+        String uri_path = KONG_URI + "/passwordreset?email=" + user.getEmail() + 
         "&oldPassword=" + user.getPassword() + "&newPassword=" + user.getNewPassword()  + "&apikey=" + apiKey;
         System.out.println("frontend/passwordreset");
        // System.out.println(uri_path);
