@@ -1,5 +1,5 @@
 package com.example.springusers;
-
+/*
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -23,3 +23,4 @@ public class PingController {
         return new Ping("Spring Users API alive!");
     }
 }
+*/

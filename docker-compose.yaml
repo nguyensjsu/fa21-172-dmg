@@ -15,6 +15,22 @@ services:
     volumes: 
       - ./init:/docker-entrypoint-initdb.d
     restart: always
+  kong:
+    image: kong:2.4.0
+    #container_name: 'rabbitmq'
+    networks:
+      - network
+    environment:
+      KONG_DATABASE: "off"
+      KONG_PG_HOST: kong-database
+      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_PROXY_LISTEN_SSL: 0.0.0.0:8444
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+    ports:
+        - 80:8000
+        - 443:8443
+        - 8001:8001
+        - 8444:8444
   frontend:
     build: frontend
     #image: rheadash/frontend:v1

@@ -18,7 +18,7 @@ spec:
         name: backoffice
     spec:
       containers:
-      - image: rheadash/backoffice:v1
+      - image: merrillpe/backoffice:v1
         imagePullPolicy: Always
         name: backoffice
         ports:

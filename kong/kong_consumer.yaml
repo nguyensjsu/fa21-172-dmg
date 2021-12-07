@@ -1,0 +1,9 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: apiclient
+  annotations:
+    kubernetes.io/ingress.class: kong
+username: apiclient
+
+# kubectl create secret generic apikey  --from-literal=kongCredType=key-auth  --from-literal=key=2H3fONTa8ugl1IcVS7CjLPnPIS2Hp9dJ
