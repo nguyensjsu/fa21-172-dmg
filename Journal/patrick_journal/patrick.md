@@ -135,3 +135,32 @@ Added hidden fields to html pages to assist in tracking logged in user's email f
 User's email is now passed to catalog and shopping cart after login
 
 [Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/e4ce7724dd815d41119998c51e1289c612f03f84) 
+
+### December 3
+
+Implemented RabbitMQ listener in spring-books to receive message from spring-payments
+RabbitMQ working in docker
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/9d339676c8aa104a989ebbf7202db8f9a42fdd7f)
+
+### Decemeber 4
+
+Spring-books now clears cart for user when RabbitMQ message is received after purchase is made
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/ccdf8224cf935555d542bf97f91feb09df9948db)
+
+![screen](https://cdn.discordapp.com/attachments/825238290797953027/916810724360208454/unknown.png)
+
+Implemented RabbitMQ deployment in GKE
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/2707f7152d40158d812727c30ac1fd6d810b7ad1)
+
+### Decemeber 5
+
+Implemented Kong between backoffice portal and user service
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/73a02a311b633984708b28cc6334afc439223870)
+
+Added yaml files to implement Kong in GKE within same namespace as rest of cluster
+
+[Commit](https://github.com/nguyensjsu/fa21-172-dmg/commit/f0b6eb85f16af1ba4e782dd387f1c8cf4ce3da0f)
