@@ -1,6 +1,14 @@
 
 ### Spring users
 
+* Ping
+  * curl --location --request GET 'http://users:8082/ping'
+
+* Create user
+  * curl -X GET -H "Content-Type: application/json" -d '{"firstName": "Joanna", "lastName": "Jones", "email": "joanna.jones@sjsu.edu","password": "password"}' "http://users:8082/users"
+* Login with user
+  * curl "http://users:8082/users?email=joanna.jones@sjsu.edu&password=password"
+
 ### Spring books
 
 ### Spring payments
