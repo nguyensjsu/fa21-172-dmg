@@ -38,8 +38,8 @@ docker-shell:
 docker-push:
 	gradle build
 	docker login
-	docker build -t rheadash/spring-payments:v1 .
-	docker push rheadash/spring-payments:v1 
+	docker build -t merrillpe/spring-payments:v1 .
+	docker push merrillpe/spring-payments:v1 
 
 # Compose
 

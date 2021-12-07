@@ -38,6 +38,13 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
+    // For testing Kong 
+    @GetMapping("/ping")
+    public ResponseEntity<String> ping() {
+        ResponseEntity<String> response = new ResponseEntity("Spring-Users is alive!", HttpStatus.OK);
+        return response;
+    }
+
     @GetMapping("/users")
     public ResponseEntity<User> getUser(@RequestParam(value = "email") String email, @RequestParam(value = "password") String password) throws ServerException {
         

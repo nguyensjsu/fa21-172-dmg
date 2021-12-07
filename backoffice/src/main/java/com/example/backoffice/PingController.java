@@ -3,7 +3,7 @@ package com.example.backoffice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+/*
 @RestController
 public class PingController {
 
@@ -15,7 +15,8 @@ public class PingController {
 
     @GetMapping("/ping")
     public Ping ping() {
-        return new Ping("Starbucks API version 1.0 alive!");
+        return new Ping("Back office is alive");
     }
     
 }
+*/

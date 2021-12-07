@@ -25,7 +25,7 @@ spec:
       - env:
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://mysql:3306/springusers
-        image: rheadash/spring-users:v1
+        image: merrillpe/spring-users:v1
         imagePullPolicy: Always
         name: users
         ports:
