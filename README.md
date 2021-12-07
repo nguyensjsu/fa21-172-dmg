@@ -149,10 +149,18 @@ Back Office and Front Office Applications integrate with "Backends" using REST A
 * Development Tools
  * Gradle 5.6
  * Version of Java should be JDK 11
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/gradle-and-java.JPG)
+
  * Database & Middleware Requirements
    * MySQL Database 8.0
+
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/mysql.JPG)
+
    * RabbitMQ
    * Kong API Gateway
+![image](https://github.com/nguyensjsu/fa21-172-dmg/blob/main/images/kong.JPG)
+
  * Credit Card Payments Support
    * Integration with CyberSource Payment Gateway
 
